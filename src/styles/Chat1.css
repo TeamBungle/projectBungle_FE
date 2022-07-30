@@ -151,6 +151,7 @@
     display: inline-block;
     text-align: initial;
     max-width: fit-content;
+    width: 60%;
 }
 .msg::after{
     /* position: absolute;
@@ -208,7 +209,6 @@
     /* text-align: center; */
     float: right;
     /* margin-top: 4px; */
-    width: 125px;
     margin-right: 10px;
     margin-left: 10px;
     color: #898989;
@@ -265,6 +265,7 @@
     text-align: initial;
     max-width: fit-content;
     /* margin-right: 25px; */
+    width: 60%;
 }
 .mymsg::after{
     /* position: absolute;
@@ -312,7 +313,6 @@
     float: left;
     margin-right: 5px;
     color: #898989;
-    width: 120px;
 }
 
 /* toggle */

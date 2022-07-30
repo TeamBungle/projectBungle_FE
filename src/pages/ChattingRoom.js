@@ -1053,7 +1053,7 @@ function ChattingRoom({ setRealTimeChat }) {
                                 )}
                               </>
                             )}
-                            <span className="time" key={index}>
+                            <span className="mytime" key={index}>
                               {beforeChattingDate[index]}
                             </span>
                           </div>
