@@ -26,7 +26,7 @@ function Category( props ) {
   const { location } = props;
   
   const categoryClickHandler = ( category ) => {
-   console.log( category );
+  //  console.log( category );
     dispatch( categoryBungleList( { location, category, navigate } ))    
     // navigate(`/categorysearch/${category}`);
   };

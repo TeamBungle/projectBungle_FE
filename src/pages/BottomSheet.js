@@ -22,7 +22,7 @@ import IconLowTemp from "../assets/icon-manner-low.svg";
 import IconLoadingLogo from "../assets/icon-splash-logo.svg";
 
 function BottomSheet({ aroundLocation }) {
-  console.log(aroundLocation);
+  // console.log(aroundLocation);
   // 미터 예외처리
   const distancePrint = (distance) => {
     if (distance >= 0 && distance < 1) {
@@ -38,7 +38,7 @@ function BottomSheet({ aroundLocation }) {
 
   // 주변 위치 Bottom Sheet modal state
   const [isBottom, setIsBottom] = useState(false);
-  console.log(isBottom);
+  // console.log(isBottom);
 
   //Detail Modal 밖 영역 클릭 시 닫기
   const handleMapModal = (e) => {
@@ -50,7 +50,7 @@ function BottomSheet({ aroundLocation }) {
   };
 
   const moreTagLikeOnClick = (postId) => {
-    console.log(postId);
+    // console.log(postId);
     dispatch(likeBungleList(postId));
   };
 
@@ -163,7 +163,7 @@ function BottomSheet({ aroundLocation }) {
                                     />
                                   </div>
                                 )}
-                                {console.log(item.postId)}
+                                {/* {console.log(item.postId)} */}
                                 <img
                                   className="search-card-img-like"
                                   src={item.isLike ? likeImg : UnlikeImg}

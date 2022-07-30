@@ -21,11 +21,11 @@ function CategorySearchCard(props) {
   const { categoryList } = props;
   const dispatch = useDispatch();
   // console.log(moreList);
-  console.log(categoryList);
+  // console.log(categoryList);
   const navigate = useNavigate();
 
   const categoryListLikeClick = (postId) => {
-    console.log(postId);
+    // console.log(postId);
     dispatch(likeBungleList(postId));
   };
 
@@ -71,7 +71,7 @@ function CategorySearchCard(props) {
                 />
               </div>
             )}
-            {console.log(categoryList.postId)}
+            {/* {console.log(categoryList.postId)} */}
             <img
               className="search-card-img-like"
               src={categoryList.isLike ? likeImg : UnlikeImg}

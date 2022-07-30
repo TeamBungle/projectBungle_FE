@@ -120,10 +120,10 @@ function MyPageSetting() {
       )
     );
     if (file === undefined) {
-      console.log("??");
+      // console.log("??");
       formData.append("profileImg ", "");
     } else {
-      console.log(file);
+      // console.log(file);
       formData.append("profileImg ", file);
     }
 

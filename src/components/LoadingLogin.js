@@ -23,7 +23,7 @@ function LoadingLogin() {
     // 네이버 소셜 로그인 시도 후, JWT 토큰 획득
     const getNaverLoginJWTtoken = async () => {
       // console.log(SERVER_URL);
-      console.log(code);
+      // console.log(code);
   
       try {
         const response = await axios.get(`${SERVER_URL}/user/signin/naver`, {
@@ -32,7 +32,7 @@ function LoadingLogin() {
             state: createStateToken(code),
           },
         });
-        console.log(response);
+        // console.log(response);
         if (response.data.response) {
           localStorage.setItem("login-token", response.headers.authorization);
           localStorage.setItem("userId", response.data.userId);
@@ -44,8 +44,12 @@ function LoadingLogin() {
             path: "/",
             secure: true,
           });
-          console.log(localStorage.getItem("login-token"));
-          navigate("/main")
+          
+          if( !response.data.agreedLbs ){
+            navigate("/onboard");
+          }else{
+            navigate("/main");
+          }
         }
       } catch (error) {
         console.log(error);
@@ -66,7 +70,7 @@ function LoadingLogin() {
             code: code,
           },
         });
-        console.log(response);
+        // console.log(response);
         if (response.data.response) {
           localStorage.setItem("login-token", response.headers.authorization);
           localStorage.setItem("userId", response.data.userId);
@@ -78,8 +82,12 @@ function LoadingLogin() {
             path: "/",
             secure: true,
           });
-          console.log(localStorage.getItem("login-token"));
-          navigate("/main")
+          
+          if( !response.data.agreedLbs ){
+            navigate("/onboard");
+          }else{
+            navigate("/main");
+          }
         }
       } catch (error) {
         console.log(error);
@@ -107,8 +115,12 @@ function LoadingLogin() {
             path: "/",
             secure: true,
           });
-          console.log(localStorage.getItem("login-token"));
-          navigate("/main");
+          
+          if( !response.data.agreedLbs ){
+            navigate("/onboard");
+          }else{
+            navigate("/main");
+          }
         }
       } catch (error) {
         console.log(error);
@@ -116,15 +128,15 @@ function LoadingLogin() {
     };
   
     if (code !== null) {
-      console.log(code, url);
+      // console.log(code, url);
       if (url.href.includes("state")) {
-        console.log("naver login");
+        // console.log("naver login");
         getNaverLoginJWTtoken();
       } else if (url.href.includes("scope")) {
-        console.log("google login");
+        // console.log("google login");
         getGoogleLoginJWTtoken();
       } else {
-        console.log("kakao login");
+        // console.log("kakao login");
         getKakaoLoginJWTtoken();
       }
     }

@@ -86,16 +86,16 @@ function App() {
   const [isDisconnectModal, setIsDisconnectModal] = useState(false);
 
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-  console.log(ownerCheck);
+  // console.log(ownerCheck);
 
   // chat test
   const client = useSelector((state) => state.Bungle.ChatClient.client);
-  console.log(client);
+  // console.log(client);
   const guest = useSelector((state) => state.Bungle.ChatClient.guest);
   const Owner = useSelector((state) => state.Bungle.OnwerPostId);
 
   const myChattingInfo = useSelector((state) => state.Bungle.myChatting);
-  console.log(myChattingInfo);
+  // console.log(myChattingInfo);
   const dispatch = useDispatch();
 
   // const trailingActions = () => (
@@ -118,7 +118,7 @@ function App() {
     // console.log(id);
     enterChat(id);
   }
-  console.log("post Id: ", getPostId);
+  // console.log("post Id: ", getPostId);
 
   const navigate = useNavigate();
   const enterChat = (id) => {
@@ -138,7 +138,7 @@ function App() {
     let currentSecond = now.getSeconds();
 
     const dateList = a.split(",");
-    console.log(dateList);
+    // console.log(dateList);
     let hour = (Number(currentHour) - Number(dateList[3])) * 3600;
     let minute = (Number(currentMinute) - Number(dateList[4])) * 60;
     let second = Number(currentSecond) - Number(dateList[5]);
@@ -178,7 +178,7 @@ function App() {
           "일 벙글";
       }
     }
-    console.log(realStartDate);
+    // console.log(realStartDate);
   }
 
   //Disconnect
@@ -202,7 +202,7 @@ function App() {
     });
   };
 
-  console.log();
+  // console.log();
 
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);

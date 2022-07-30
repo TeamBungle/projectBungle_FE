@@ -356,7 +356,7 @@ function CreatePost() {
 
   // ChatButton 클릭 함수
   const ChatButtonClickHandler = (text) => {
-    console.log("Chat : ", text);
+    // console.log("Chat : ", text);
     setChatBtnState(true);
     setOnlyNumber("2");
     if (text === "letter") {
@@ -594,7 +594,7 @@ function CreatePost() {
           currentMinute,
           Math.min(currentMinute, Number(event.target.value))
         );
-        console.log("limit ", limitMinute);
+        // console.log("limit ", limitMinute);
         setMinute(limitMinute);
       }
     }
@@ -760,7 +760,7 @@ function CreatePost() {
     } else {
       content = Content_ref.current.value.trim();
     }
-    console.log("제목 길이 :", title.length, "본문 길이 :", content.length);
+    // console.log("제목 길이 :", title.length, "본문 길이 :", content.length);
     const hour = ("0" + hour_ref.current.value).slice(-2);
     const minute = ("0" + minute_ref.current.value).slice(-2);
 
@@ -787,7 +787,7 @@ function CreatePost() {
         categories: SeelectedCategories,
         isLetter: isLetter,
       };
-      console.log(postDto);
+      // console.log(postDto);
 
       const appendFile = isFile.filter((item) => {
         if (item !== "") {

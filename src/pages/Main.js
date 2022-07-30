@@ -19,7 +19,6 @@ import {
 import { getCookie } from "../customapi/CustomCookie";
 
 import Loading from "../components/Loading";
-import OnBoarding from "./OnBoarding";
 
 import Tag from "../components/Tag";
 import Search from "../components/Search";
@@ -125,7 +124,7 @@ function Main() {
   }, [NotificationState]);
   // isOwner
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-  console.log(ownerCheck);
+  // console.log(ownerCheck);
 
   // dispatch
   const dispatch = useDispatch();
@@ -243,7 +242,7 @@ function Main() {
 
   // 실시간 벙글 하트 클릭
   const HeartRealTimeClickHanlder = (realTimeIndex, postId) => {
-    console.log(realTimeIndex, postId);
+    // console.log(realTimeIndex, postId);
     setIsRealTimeHeart(
       isRealTimeHeart.map((item, Checkedindex) => {
         if (Checkedindex === realTimeIndex) {
@@ -308,17 +307,6 @@ function Main() {
       "https://docs.google.com/forms/d/e/1FAIpQLSdYv_eLc3Bug9ZUUe6UVcbwQJXx98qfoMw_bCKaDX9Xerut2g/viewform?usp=sf_link";
   };
 
-  // if (!location || ( !realTimeList && !endTimeList )) {
-  //   // console.log(location);
-  //   return (
-  //     <>
-
-  //       <Loading></Loading>
-  //     </>
-  //   );
-  // } else {
-  // console.log(location);
-
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);
   //로그 아웃
@@ -326,11 +314,10 @@ function Main() {
     dispatch(LogOut({ navigate, refreshToken, token }));
   };
 
-  const userAgree = useSelector( state => state.Bungle.userAgree );
-
   //회원 탈퇴
   const [withdrawalModal, setWithdrawalModal] = useState(false);
   const WithdrawalApi = () => {
+    localStorage.removeItem("userAgree");
     dispatch(Withdrawal({ navigate }));
   };
   //Setting Modal 밖 영역 클릭 시 닫기
@@ -341,13 +328,18 @@ function Main() {
       setSettingModal(false);
     }
   };
+  if (!location || ( !realTimeList && !endTimeList )) {
+    // console.log(location);
+    return (
+      <>
 
-  if( !userAgree ){
-    return <OnBoarding/>
-  }
-  else{ return (
+        <Loading></Loading>
+      </>
+    );
+  } 
+
+  return (
     <>
-      {/* <OnBoarding /> */}
       {/* {!isLoad && ( */}
       <MainWrap>
         <MainHeaderWrap>
@@ -753,7 +745,6 @@ function Main() {
       {/* )} */}
     </>
   );
-}
 }
 // }
 

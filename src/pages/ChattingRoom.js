@@ -144,10 +144,10 @@ function ChattingRoom({ setRealTimeChat }) {
     setUserData({ ...userData, connected: true });
         
     if (Bungle) {
-      console.log("방장 connect");
+      // console.log("방장 connect");
       client.subscribe(`/sub/chat/room/${parseInt(postId)}`, onMessageReceived);
     } else if (Guest) {
-      console.log("게스트 connect");
+      // console.log("게스트 connect");
       client.subscribe(`/sub/chat/room/${parseInt(postId)}`, onMessageReceived);
     }
     userJoin();
@@ -155,7 +155,7 @@ function ChattingRoom({ setRealTimeChat }) {
   // console.log(userData);
 
   const userJoin = () => {
-    console.log("Test user Join");
+    // console.log("Test user Join");
     // if (Bungle) {
     if (1) {
       var chatMessage = {
@@ -175,7 +175,7 @@ function ChattingRoom({ setRealTimeChat }) {
     // }
 
     client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-    console.log("Test user Subscribe");
+    // console.log("Test user Subscribe");
   };
 
   const handleMessage = (event) => {
@@ -184,7 +184,7 @@ function ChattingRoom({ setRealTimeChat }) {
   };
 
   const sendValue = async () => {
-    console.log("Test user send");
+    // console.log("Test user send");
 
     if ((client && userData.message) || (client && fileUrl)) {
       // if (Bungle) {
@@ -211,17 +211,17 @@ function ChattingRoom({ setRealTimeChat }) {
       setIsFile(null);
     }
   };
-  console.log("userdata: ", userData);
+  // console.log("userdata: ", userData);
 
   const onMessageReceived = (payload) => {
     var payloadData = JSON.parse(payload.body);
-    console.log(payloadData);
+    // console.log(payloadData);
     if (
       payloadData.type === "TALK" ||
       payloadData.type === "ENTER" ||
       payloadData.type === "QUIT"
     ) {
-      console.log("switch Message");
+      // console.log("switch Message");
       publicChats.push(payloadData);
       setNotiChats(() => payloadData);
       setPublicChats([...publicChats]);
@@ -277,11 +277,11 @@ function ChattingRoom({ setRealTimeChat }) {
       chattingDate.push(ampm + " " + hour + ":" + minutes);
     }
   }
-  console.log("publicChats: ", publicChats);
+  // console.log("publicChats: ", publicChats);
 
   //Disconnect
   const chatDisconnect = () => {
-    console.log("Chat disconnect");
+    // console.log("Chat disconnect");
     // if (Bungle) {
     if (1) {
       var chatMessage = {
@@ -322,7 +322,7 @@ function ChattingRoom({ setRealTimeChat }) {
 
   //엔터키
   const onKeyPress = (e) => {
-    console.log(e.key);
+    // console.log(e.key);
 
     if (e.key === "Enter") {
       sendValue();
@@ -350,7 +350,7 @@ function ChattingRoom({ setRealTimeChat }) {
   const chatImg = async () => {
     if (fileUrl) {
       setFileUrl("");
-      console.log(fileUrl);
+      // console.log(fileUrl);
     } else {
       const formData = new FormData();
       formData.append("file ", isFile);
@@ -362,7 +362,7 @@ function ChattingRoom({ setRealTimeChat }) {
       });
       setFileUrl(response.data);
     }
-    console.log(fileUrl);
+    // console.log(fileUrl);
   };
   // console.log(fileUrl);
 
@@ -402,7 +402,7 @@ function ChattingRoom({ setRealTimeChat }) {
       // },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setChatPeople(() => response.data);
         MembersArray.push(chatPeople);
       })
@@ -421,15 +421,15 @@ function ChattingRoom({ setRealTimeChat }) {
       // },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setChatFiles(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  console.log("사람 : ", chatPeople);
-  console.log("파일 : ", chatFiles);
+  // console.log("사람 : ", chatPeople);
+  // console.log("파일 : ", chatFiles);
 
   // Modal state
 
@@ -494,7 +494,7 @@ function ChattingRoom({ setRealTimeChat }) {
   //신고하기
   const [report, setReport] = useState("");
   const [reportUserId, setReportUserId] = useState();
-  console.log(report);
+  // console.log(report);
   const chatReportPerson = () => {
     AxiosAPI({
       method: "post",
@@ -507,10 +507,10 @@ function ChattingRoom({ setRealTimeChat }) {
       },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
   //유저 아이디 바로 가져오는 변수
@@ -518,9 +518,9 @@ function ChattingRoom({ setRealTimeChat }) {
   //userId 가져오는 함수
   function getInnerHTML(id) {
     setReportUserId(() => id);
-    console.log(id);
+    // console.log(id);
   }
-  console.log("유저 신고 Id: ", reportUserId);
+  // console.log("유저 신고 Id: ", reportUserId);
 
   //프로필 상세 정보
   const [chatProfile, setChatProfile] = useState({});
@@ -540,7 +540,7 @@ function ChattingRoom({ setRealTimeChat }) {
       });
   };
   useEffect(() => {
-    console.log("reportUser ", reportUserId);
+    // console.log("reportUser ", reportUserId);
     if (reportUserId) {
       detailProfile();
     }
@@ -581,7 +581,7 @@ function ChattingRoom({ setRealTimeChat }) {
       // },
     })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].type === "TALK") {
             setBeforeChat(response.data);
@@ -606,12 +606,12 @@ function ChattingRoom({ setRealTimeChat }) {
   const handleOutOwner = () => {
     for (let i = 0; i < publicChats.length; i++) {
       if (publicChats[i].quitOwner === true) {
-        console.log("안에서 찍는거: ", publicChats[i].quitOwner);
+        // console.log("안에서 찍는거: ", publicChats[i].quitOwner);
         setOutOwner(() => true);
       }
     }
   };
-  console.log("방장 나갔냐? : ", outOwner);
+  // console.log("방장 나갔냐? : ", outOwner);
 
   useEffect(() => {
     handleOutOwner();
@@ -642,7 +642,7 @@ function ChattingRoom({ setRealTimeChat }) {
   const [scrollState, setScrollState] = useState(true); // 자동 스크롤 여부
 
   const scrollEvent = _.debounce(() => {
-    console.log("scroll");
+    // console.log("scroll");
     const scrollTop = boxRef.current.scrollTop; // 스크롤 위치
     const clientHeight = boxRef.current.clientHeight; // 요소의 높이
     const scrollHeight = boxRef.current.scrollHeight; // 스크롤의 높이
@@ -675,10 +675,10 @@ function ChattingRoom({ setRealTimeChat }) {
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   };
 
@@ -1084,7 +1084,7 @@ function ChattingRoom({ setRealTimeChat }) {
                               </>
                             ) : (
                               <>
-                                {console.log(chat.fileUrl.data)}
+                                {/* {console.log(chat.fileUrl.data)} */}
                                 {chat.fileUrl.slice(-3) === "jpg" ||
                                 chat.fileUrl.slice(-3) === "png" ||
                                 chat.fileUrl.slice(-4) === "jpeg" ||

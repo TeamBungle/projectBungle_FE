@@ -2,7 +2,6 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { agreeUser } from "../redux/modules/BungleSlice";
 
 import { setCookie } from "../customapi/CustomCookie";
 import moment from "moment";
@@ -65,127 +64,130 @@ function Login() {
 
   // 네이버 소셜 로그인 시작
   // 네이버 소셜 로그인 시도 후, JWT 토큰 획득
-  const getNaverLoginJWTtoken = async () => {
-    // console.log(SERVER_URL);
+  // const getNaverLoginJWTtoken = async () => {
+  //   // console.log(SERVER_URL);
 
-    try {
-      const response = await axios.get(`${SERVER_URL}/user/signin/naver`, {
-        params: {
-          code: code,
-          state: createStateToken(code),
-        },
-      });
+  //   try {
+  //     const response = await axios.get(`${SERVER_URL}/user/signin/naver`, {
+  //       params: {
+  //         code: code,
+  //         state: createStateToken(code),
+  //       },
+  //     });
 
-      if (response.data.response) {
-        localStorage.setItem("login-token", response.headers.authorization);
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem(
-          "expireAt",
-          moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
-        );
-        setCookie("refresh_token", response.headers.refreshtoken, {
-          path: "/",
-          secure: true,
-        });
-        dispatch( agreeUser( response.data.agreedLbs ) );
-        navigate("/main");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const createStateToken = (code) => {
-    const md5 = require("md5");
-    return md5(code).slice(0, 16);
-  };
-
-  // // naver 소셜 로그인 함수
-  // const naverSocialLogin = () => {
-  //   window.location.href = NAVER_AUTH_URL;
+  //     if (response.data.response) {
+  //       localStorage.setItem("login-token", response.headers.authorization);
+  //       localStorage.setItem("userId", response.data.userId);
+  //       localStorage.setItem(
+  //         "expireAt",
+  //         moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
+  //       );
+  //       setCookie("refresh_token", response.headers.refreshtoken, {
+  //         path: "/",
+  //         secure: true,
+  //       });
+  //       localStorage.setItem("userAgree", JSON.stringify(response.data.agreedLbs) );
+  //       dispatch( agreeUser( response.data.agreedLbs ) );
+  //       navigate("/main");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
   // };
 
-  // 카카오 소셜 로그인 시작
-  // 카카오 소셜 로그인 시도 후, JWT 토큰 획득
-  const getKakaoLoginJWTtoken = async () => {
-    try {
-      const response = await axios.get(`${SERVER_URL}/user/signin/kakao`, {
-        params: {
-          code: code,
-        },
-      });
-      console.log(response);
-      if (response.data.response) {
-        localStorage.setItem("login-token", response.headers.authorization);
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem(
-          "expireAt",
-          moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
-        );
-        setCookie("refresh_token", response.headers.refreshtoken, {
-          path: "/",
-          secure: true,
-        });
-        dispatch( agreeUser( response.data.agreedLbs ) );
-        navigate("/main");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  // const createStateToken = (code) => {
+  //   const md5 = require("md5");
+  //   return md5(code).slice(0, 16);
+  // };
+
+  // naver 소셜 로그인 함수
+  const naverSocialLogin = () => {
+    window.location.href = NAVER_AUTH_URL;
   };
+
+  // // 카카오 소셜 로그인 시작
+  // // 카카오 소셜 로그인 시도 후, JWT 토큰 획득
+  // const getKakaoLoginJWTtoken = async () => {
+  //   try {
+  //     const response = await axios.get(`${SERVER_URL}/user/signin/kakao`, {
+  //       params: {
+  //         code: code,
+  //       },
+  //     });
+      
+  //     if (response.data.response) {
+  //       localStorage.setItem("login-token", response.headers.authorization);
+  //       localStorage.setItem("userId", response.data.userId);
+  //       localStorage.setItem(
+  //         "expireAt",
+  //         moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
+  //       );
+  //       setCookie("refresh_token", response.headers.refreshtoken, {
+  //         path: "/",
+  //         secure: true,
+  //       });
+  //       localStorage.setItem("userAgree", JSON.stringify(response.data.agreedLbs) );
+  //       dispatch( agreeUser( response.data.agreedLbs ) );
+  //       navigate("/main");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // 카카오 로그인
   const kakaoSocialLogin = () => {
     window.location.href = KAKAO_AUTH_URL;
   };
 
-  // 구글 소셜 로그인 시작
-  // 구글 소셜 로그인 시도 후, JWT 토큰 획득
-  const getGoogleLoginJWTtoken = async () => {
-    try {
-      const response = await axios.get(`${SERVER_URL}/user/signin/google`, {
-        params: {
-          code: code,
-        },
-      });
-      console.log(response);
-      if (response.data.response) {
-        localStorage.setItem("login-token", response.headers.authorization);
-        localStorage.setItem("userId", response.data.userId);
-        localStorage.setItem(
-          "expireAt",
-          moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
-        );
-        setCookie("refresh_token", response.headers.refreshtoken, {
-          path: "/",
-          secure: true,
-        });
-        dispatch( agreeUser( response.data.agreedLbs ) );
-        navigate("/main");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // // 구글 소셜 로그인 시작
+  // // 구글 소셜 로그인 시도 후, JWT 토큰 획득
+  // const getGoogleLoginJWTtoken = async () => {
+  //   try {
+  //     const response = await axios.get(`${SERVER_URL}/user/signin/google`, {
+  //       params: {
+  //         code: code,
+  //       },
+  //     });
+      
+  //     if (response.data.response) {
+  //       localStorage.setItem("login-token", response.headers.authorization);
+  //       localStorage.setItem("userId", response.data.userId);
+  //       localStorage.setItem(
+  //         "expireAt",
+  //         moment().add(30, "minute").format("yyyy-MM-DD HH:mm:ss")
+  //       );
+  //       setCookie("refresh_token", response.headers.refreshtoken, {
+  //         path: "/",
+  //         secure: true,
+  //       });
+  //       localStorage.setItem("userAgree", JSON.stringify(response.data.agreedLbs) );
+  //       dispatch( agreeUser( response.data.agreedLbs ) );
+  //       navigate("/main");
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   // 구글 로그인 함수
   const googleSocialLogin = () => {
-    console.log(GOOGLE_AUTH_URL);
+    // console.log(GOOGLE_AUTH_URL);
     window.location.href = GOOGLE_AUTH_URL;
     // window.localStorage.href = "";
   };
 
-  if (code !== null) {
-    console.log(code, url);
-    if (url.href.includes("state")) {
-      console.log("naver login");
-      getNaverLoginJWTtoken();
-    } else if (url.href.includes("scope")) {
-      console.log("google login");
-      getGoogleLoginJWTtoken();
-    } else {
-      console.log("kakao login");
-      getKakaoLoginJWTtoken();
-    }
-  }
+  // if (code !== null) {
+  //   // console.log(code, url);
+  //   if (url.href.includes("state")) {
+  //     // console.log("naver login");
+  //     getNaverLoginJWTtoken();
+  //   } else if (url.href.includes("scope")) {
+  //     // console.log("google login");
+  //     getGoogleLoginJWTtoken();
+  //   } else {
+  //     // console.log("kakao login");
+  //     getKakaoLoginJWTtoken();
+  //   }
+  // }
 
   // 이메일 ref
   const email_Ref = useRef();
@@ -214,7 +216,7 @@ function Login() {
     try {
       const response = await axios.post(`${SERVER_URL}/user/login`, LoginUser);
       // localStorage.setItem("login-token", response.headers.authorization );
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         localStorage.setItem("login-token", response.headers.authorization);
         localStorage.setItem("userId", response.data.userId);
@@ -226,10 +228,15 @@ function Login() {
           path: "/",
           secure: true,
         });
+        localStorage.setItem("userAgree", JSON.stringify(response.data.agreedLbs) );
+          const localUserAuth = JSON.parse( localStorage.getItem("userAgree") );
+          
+          if( !response.data.agreedLbs ){
+            navigate("/onboard");
+          }else{
+            navigate("/main");
+          }
         
-        dispatch( agreeUser( response.data.agreedLbs ) );
-
-        navigate("/main");
       } else {
         setIsModal(true);
         setIsError(response.data.message);

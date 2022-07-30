@@ -88,6 +88,7 @@ import IconLightening from "../assets/icon-lightening.svg";
 import IconLike from "../assets/icon-like.svg";
 import IconUnlike from "../assets/icon-unlike.svg";
 import IconChat from "../assets/icon-chat.svg";
+import IconChatNo from "../assets/icon-chat-join-no.svg";
 import IconVideo from "../assets/icon-detail-camera.svg";
 
 import IconHighTemp from "../assets/icon-manner-high.svg";
@@ -149,7 +150,7 @@ const Post = () => {
   useEffect(() => {
     // postId가 있을 경우, dispatch 실행
     dispatch(detailBungleList(postId));
-    console.log("Detail mount");
+    // console.log("Detail mount");
     window.scrollTo(0, 0);
   }, [postId]);
 
@@ -202,7 +203,7 @@ const Post = () => {
 
   const isLikeClick = (postId) => {
     dispatch(detailLikeBungleList(postId));
-    console.log("like ", postId);
+    // console.log("like ", postId);
   };
 
   // 설정 modal state
@@ -408,7 +409,7 @@ const Post = () => {
                   isLikeClick(detailBungleInfo.postId);
                 }}
               />
-              {console.log(detailBungleInfo.postUrls.length)}
+              {/* {console.log(detailBungleInfo.postUrls.length)} */}
               {/* { detailBungleInfo.postUrls.length === 1 && detailBungleInfo.postUrls[0] === filterPostURL ?
               (
                 <PostImg src={IconNoPost} />
@@ -532,22 +533,25 @@ const Post = () => {
             </PostMemberWrap>
             {detailBungleInfo.isLetter ? (
               <PostJoinButtonWrapper>
-                <PostJoinIcon src={IconChat} />
+                {/* <PostJoinIcon src={IconChatNo} /> */}
                 {detailBungleInfo.joinCount === detailBungleInfo.personnel ? (
                   <>
+                  <PostJoinIcon src={IconChatNo} />
                     <PostJoinButton
                       // onClick={goToChatRoom}
                       style={{
+                        border: "none",
                         pointerEvents: "none",
                         backgroundColor: "#D9D9D9",
                         color: "#898989",
                       }}
                     >
-                      참여하기
+                      <span style={{marginLeft:"3px"}}>참여하기</span>
                     </PostJoinButton>
                   </>
                 ) : (
                   <>
+                  <PostJoinIcon src={IconChat} style={{marginTop:"2px"}}/>
                     <PostJoinButton onClick={goToChatRoom}>
                       <span>참여하기</span>
                     </PostJoinButton>
