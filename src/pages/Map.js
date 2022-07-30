@@ -171,20 +171,20 @@ function Map() {
   const [checkMapData, setCheckMapData] = useState([true, false, false]);
   //주변 지도 리스트
   const getAroundBungle = useSelector((state) => state.Bungle.mapList);
-  console.log("전체 지도 벙글 조회: ", getAroundBungle);
+  // console.log("전체 지도 벙글 조회: ", getAroundBungle);
   //상세 검색 후 리스트
   const getDetailMapBungle = useSelector(
     (state) => state.Bungle.detailMapBungle
   );
   //태그 검색 후 리스트
   const getTagSearchBungle = useSelector((state) => state.Bungle.moreList);
-  console.log("태그 검색 리스트: ", getTagSearchBungle);
-  console.log("상세 조회 리스트: ", getDetailMapBungle);
+  // console.log("태그 검색 리스트: ", getTagSearchBungle);
+  // console.log("상세 조회 리스트: ", getDetailMapBungle);
   //Footer 작성, 삭제 구분
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
 
-  console.log("전체냐 태그냐 상세냐 그것이 문제로다 :", mapBungleData);
-  console.log("전체, 태그, 상세: ", checkMapData);
+  // console.log("전체냐 태그냐 상세냐 그것이 문제로다 :", mapBungleData);
+  // console.log("전체, 태그, 상세: ", checkMapData);
 
   //현재 위치 state에 현재 위치 담기
   const handleSuccess = (pos) => {
@@ -208,15 +208,15 @@ function Map() {
   //지도 전체 리스트
   useEffect(() => {
     if (location) {
-      console.log("전체리스트 갖고오기");
+      // console.log("전체리스트 갖고오기");
       dispatch(getMapBungle(location));
     }
   }, [location]);
 
   useEffect(() => {
-    console.log("전체: ", location, checkMapData[0]);
+    // console.log("전체: ", location, checkMapData[0]);
     if (location && checkMapData[0] === true) {
-      console.log("전체 리스트 갖고와서 넣어주기");
+      // console.log("전체 리스트 갖고와서 넣어주기");
       setMapBungleData(() => getAroundBungle);
     }
   }, [getAroundBungle]);
@@ -226,9 +226,9 @@ function Map() {
   const onKeyDown = (e) => {
     // setKey(() => e.key);
     if (e.target.value.length !== 0 && e.key === "Enter") {
-      console.log("태그 리스트 가져오기");
+      // console.log("태그 리스트 가져오기");
       dispatch(mapTagSearch({ tag: e.target.value, location }));
-      console.log("태그 검색 플래그 세우기");
+      // console.log("태그 검색 플래그 세우기");
 
       setCheckMapData([false, true, false]);
     }
@@ -237,7 +237,7 @@ function Map() {
   //태그 검색 시 배열에 태그 검색 리스트 담기
   useEffect(() => {
     if (location && checkMapData[1] === true) {
-      console.log("태그 리스트 가져와서 넣어주기");
+      // console.log("태그 리스트 가져와서 넣어주기");
       setMapBungleData(() => getTagSearchBungle);
     }
   }, [checkMapData[1], getTagSearchBungle]);
@@ -294,9 +294,9 @@ function Map() {
   //세부 설정 적용 함수
   const mapSearch = () => {
     if (location && onlyNumber && onlyDistance && selectCategory) {
-      console.log("세부 설정 적용 리스트 불러오기");
+      // console.log("세부 설정 적용 리스트 불러오기");
       dispatch(getDetailMap(sendData));
-      console.log("세부 설정 플래그 세우기");
+      // console.log("세부 설정 플래그 세우기");
       setCheckMapData([false, false, true]);
       setIsDetail(false);
     }
@@ -304,7 +304,7 @@ function Map() {
 
   useEffect(() => {
     if (location && checkMapData[2] === true) {
-      console.log("세부 설정 리스트 담아주기");
+      // console.log("세부 설정 리스트 담아주기");
       setMapBungleData(() => getDetailMapBungle);
     }
   }, [checkMapData[2], getDetailMapBungle]);
@@ -393,7 +393,7 @@ function Map() {
         //   latlng: new kakao.maps.LatLng(33.451393, 126.570738),
         // },
       ];
-      console.log("왜 안돼 이거");
+      // console.log("왜 안돼 이거");
 
       mapBungleData.map((location, index) => {
         positions = [

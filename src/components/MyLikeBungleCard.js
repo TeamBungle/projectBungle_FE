@@ -65,7 +65,7 @@ function MyLikeBungleCard(props) {
   const navigate = useNavigate();
 
   const likeMyBugleList = (postId) => {
-    console.log(postId);
+    // console.log(postId);
     dispatch(likeBungleList(postId));
   };
 
@@ -74,7 +74,7 @@ function MyLikeBungleCard(props) {
       <SwipeAction
         destructive={true}
         onClick={() => {
-          console.log("찜 삭제");
+          // console.log("찜 삭제");
           likeMyBugleList(myLikeList.postId);
         }}
       >

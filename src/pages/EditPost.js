@@ -304,7 +304,7 @@ function EditPost() {
   const onFistFileChange = (e) => {
     // console.log( e );
     if (e.target.files[0]) {
-      console.log("gg");
+      // console.log("gg");
       setFirstFile(e.target.files[0]);
       uploadFiles(e, 0);
     } else {
@@ -400,7 +400,7 @@ function EditPost() {
 
   // ChatButton 클릭 함수
   const ChatButtonClickHandler = (text) => {
-    console.log("Chat : ", text);
+    // console.log("Chat : ", text);
     setChatBtnState(true);
     setOnlyNumber("2");
     if (text === "letter") {
@@ -414,7 +414,7 @@ function EditPost() {
 
   // 카테고리 중복 선택 가능 함수
   const CategoryClickHandler = (selectCategory) => {
-    console.log(selectCategory);
+    // console.log(selectCategory);
     setCheckedCategory(
       checkedCategory.map((item) => {
         if (item.category === selectCategory) {
@@ -499,7 +499,7 @@ function EditPost() {
   };
   // 시간 focus가 바뀌었을 떄
   const hourOnBlur = (event) => {
-    console.log(event.target.value, isToday);
+    // console.log(event.target.value, isToday);
     if (isToday) {
       if (Number(event.target.value) < Number(currentHour)) {
         setIsModal(true);
@@ -527,7 +527,7 @@ function EditPost() {
         setHour(("0" + limitHour).slice(-2));
       }
     } else {
-      console.log(event.target.value, currentHour);
+      // console.log(event.target.value, currentHour);
       if (Number(event.target.value) > Number(currentHour)) {
         setIsModal(true);
         setModalMessage(
@@ -588,7 +588,7 @@ function EditPost() {
           currentMinute,
           Math.min(currentMinute, Number(event.target.value))
         );
-        console.log("limit ", limitMinute);
+        // console.log("limit ", limitMinute);
         setMinute(limitMinute);
       }
     }
@@ -796,7 +796,7 @@ function EditPost() {
       setModalMessage("벙글 이름을 입력해주세요.");
       return null;
     }
-    console.log("제목 길이:", title.length, "본문 길이:", content.length);
+    // console.log("제목 길이:", title.length, "본문 길이:", content.length);
     if (content.length > 100 || content.length === 0) {
       setIsModal(true);
       setModalMessage("벙글 소개글은 0자 이상 100자 이하여야 합니다.");
@@ -816,11 +816,11 @@ function EditPost() {
       }
 
       let postUrls = [];
-      console.log(
-        isFirstFile?.includes("data"),
-        isSecondFile?.includes("data"),
-        isThirdFile?.includes("data")
-      );
+      // console.log(
+      //   isFirstFile?.includes("data"),
+      //   isSecondFile?.includes("data"),
+      //   isThirdFile?.includes("data")
+      // );
       if (isFirstFile && !isFirstFile?.includes("data")) {
         postUrls.push(isFirstFile);
       }
@@ -828,7 +828,7 @@ function EditPost() {
         postUrls.push(isSecondFile);
       }
       if (isThirdFile && !isThirdFile?.includes("data")) {
-        console.log("??");
+        // console.log("??");
         postUrls.push(isThirdFile);
       }
 
@@ -843,7 +843,7 @@ function EditPost() {
         isLetter: isLetter,
         postUrls: postUrls,
       };
-      console.log(postDto);
+      // console.log(postDto);
       const appendFile = isFile.filter((item) => {
         // console.log(item);
         if (item !== "") {
@@ -852,8 +852,8 @@ function EditPost() {
       });
 
       // console.log( isFirstFile, isSecondFile, isThirdFile );
-      console.log(postUrls);
-      console.log("append ", appendFile);
+      // console.log(postUrls);
+      // console.log("append ", appendFile);
       // console.log("isFile ", isFile);
       const formData = new FormData();
 
@@ -904,7 +904,7 @@ function EditPost() {
     }
 
     const PK = Number(localStorage.getItem("userId"));
-    console.log("삭제 버튼 클릭", chatMessage);
+    // console.log("삭제 버튼 클릭", chatMessage);
     dispatch(
       deleteMyBungleList({
         postId: myBungle.postId,

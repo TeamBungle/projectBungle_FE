@@ -28,6 +28,8 @@ import OpenViduSettings from "./components/videos/OpenViduSettings";
 import LoadingLogin from "./components/LoadingLogin";
 import Notification from "./pages/Notification";
 
+import OnBoarding from "./pages/OnBoarding";
+
 import TermsConditions from "./pages/TermsConditions";
 // 404 Not found
 import NotFound from "./components/NotFound";
@@ -49,7 +51,7 @@ function App() {
           />
           {/* MyPage */}
           <Route path="/mypage" element={<MyPage />} />
-
+          <Route path="/onboard" element={<OnBoarding/>} />
           <Route path="/chatlist" element={<ChatList />} />
           <Route path="/detailpost/:postId" element={<DetailPost />} />
           <Route path="/map/detailpost/:postId" element={<DetailPost />} />

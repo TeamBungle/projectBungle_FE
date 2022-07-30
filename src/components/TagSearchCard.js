@@ -85,7 +85,7 @@ function TagSearchCard(props) {
             />
           </div>
         )}
-        {console.log(moreList.postId)}
+        {/* {console.log(moreList.postId)} */}
         <img
           className="search-card-img-like"
           src={moreList.isLike ? likeImg : UnlikeImg}

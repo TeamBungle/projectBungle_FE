@@ -151,7 +151,7 @@ const Signup = () => {
       } else {
         alert(response.data.message);
       }
-      console.log(response);
+      // console.log(response);
     } catch (err) {
       console.log(err);
     }
@@ -229,7 +229,7 @@ const Signup = () => {
             `${SERVER_URL}/user/duplicate/username`,
             { username: event.target.value }
           );
-          console.log(response);
+          // console.log(response);
           setIsEmail(false);
           setEmailMessage(response.data.message);
           setDuplicateEmail(response.data.response);

@@ -17,9 +17,11 @@ export const userAgreeLocation = createAsyncThunk(
   async (data) => {
     try {
       const response = await AxiosAPI.get(`/user/onboardandlbs`);
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
-        data.navigate("/");
+        window.location.href = "/main";
+        return response.data.response;
+        // data.navigate("/main");
       }
     } catch (error) {
       console.log(error);
@@ -37,9 +39,9 @@ export const createBungleList = createAsyncThunk(
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.status === 200 && response.data.response) {
-        console.log(data);
+        // console.log(data);
         if (data.isLetter) {
           data.navigate(`/chat/${response.data.postId}`);
           return response.data.postId;
@@ -81,7 +83,7 @@ export const editMyBungleList = createAsyncThunk(
       if (response.data.response) {
         window.location.href = "/main";
       }
-      console.log(response);
+      // console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -94,7 +96,7 @@ export const deleteMyBungleList = createAsyncThunk(
   async (rev) => {
     try {
       const response = await AxiosAPI.delete(`/posts/${rev.postId}`);
-      console.log(response);
+      // console.log(response);
 
       if (response.data.response) {
         let data = {
@@ -103,15 +105,13 @@ export const deleteMyBungleList = createAsyncThunk(
         };
         if (rev.client) {
           const PK = Number(localStorage.getItem("userId"));
-
-          console.log("게시물 삭제 성공 후 disconnect");
           rev.client.send(
             "/pub/chat/message",
             { PK },
             JSON.stringify(rev.chatMessage)
           );
           rev.client.disconnect(function () {
-            console.log("disconnect 완료");
+            // console.log("disconnect 완료");
           });
         }
         rev.navigate("/main");
@@ -126,7 +126,7 @@ export const deleteMyBungleList = createAsyncThunk(
 export const getMainBungleList = createAsyncThunk(
   "GET/getMainBungleList",
   async (position) => {
-    console.log(position);
+    // console.log(position);
     try {
       const response = await AxiosAPI.get(`/posts`, {
         params: {
@@ -163,7 +163,7 @@ export const moreBungleList = createAsyncThunk(
           status: data.status,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         data.navigate("/tagsearch"); // window.location.href = "/tagsearch";
         return response.data.list;
@@ -181,7 +181,7 @@ export const moreBungleList = createAsyncThunk(
 export const getMapBungle = createAsyncThunk(
   "GET/getMapBungle",
   async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const response = await AxiosAPI.get(`/map`, {
         params: {
@@ -189,7 +189,7 @@ export const getMapBungle = createAsyncThunk(
           longitude: data.longitude,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return response.data;
       } else {
@@ -205,7 +205,7 @@ export const getMapBungle = createAsyncThunk(
 export const getDetailMap = createAsyncThunk(
   "GET/getDetailMap",
   async (data) => {
-    console.log(data);
+    // console.log(data);
     try {
       const response = await AxiosAPI.get(`/map/details`, {
         params: {
@@ -216,7 +216,7 @@ export const getDetailMap = createAsyncThunk(
           longitude: data.location.longitude,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return response.data.mapListDtos;
       } else {
@@ -232,10 +232,10 @@ export const getDetailMap = createAsyncThunk(
 export const likeBungleList = createAsyncThunk(
   "LIKE/likeBungleList",
   async (postId) => {
-    console.log(postId);
+    // console.log(postId);
     try {
       const response = await AxiosAPI.post(`/posts/like/${postId}`, {});
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return postId;
       }
@@ -250,10 +250,10 @@ export const likeBungleList = createAsyncThunk(
 export const detailBungleList = createAsyncThunk(
   "DETAIL/detailBungleList",
   async (postId) => {
-    console.log(postId);
+    // console.log(postId);
     try {
       const response = await AxiosAPI.get(`/posts/${postId}`);
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return response.data.postDetailsResponseDto;
       }
@@ -268,13 +268,13 @@ export const detailBungleList = createAsyncThunk(
 export const detailLikeBungleList = createAsyncThunk(
   "LIKE/detailLikeBungleList",
   async (postId) => {
-    console.log(postId);
+    // console.log(postId);
     try {
       const response = await AxiosAPI.post(
         `${SERVER_URL}/posts/like/${postId}`,
         {}
       );
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return postId;
       }
@@ -289,7 +289,7 @@ export const detailLikeBungleList = createAsyncThunk(
 export const categoryBungleList = createAsyncThunk(
   "GET/categoryBungleList",
   async (item) => {
-    console.log(item);
+    // console.log(item);
     try {
       const response = await AxiosAPI.get(`/posts/categories`, {
         params: {
@@ -299,7 +299,7 @@ export const categoryBungleList = createAsyncThunk(
           categories: item.category,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         item.navigate(`/categorysearch/${item.category}`);
         return response.data.list;
@@ -325,10 +325,10 @@ export const tagBungleList = createAsyncThunk(
           tags: item.tag,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
-        console.log(response.data.list);
-        console.log(item);
+        // console.log(response.data.list);
+        // console.log(item);
         item.navigate("/tagsearch");
         // window.location.href = "/tagsearch";
         return response.data.list;
@@ -355,9 +355,9 @@ export const mapTagSearch = createAsyncThunk(
           tags: item.tag,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
-        console.log(response.data.list);
+        // console.log(response.data.list);
         return response.data.list;
       }
     } catch (e) {
@@ -372,7 +372,7 @@ export const getUserProfile = createAsyncThunk(
   async () => {
     try {
       const response = await AxiosAPI.get(`/user/profile`, {});
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return response.data.profileResponseDto;
       }
@@ -416,7 +416,7 @@ export const myLikeBungleList = createAsyncThunk(
           longitude: location.longitude,
         },
       });
-      console.log(response);
+      // console.log(response);
       if (response.data.response) {
         return response.data.list;
       }
@@ -434,7 +434,7 @@ export const myChattingList = createAsyncThunk(
     // console.log(1);
     try {
       const response = await AxiosAPI.get(`/chat/rooms`);
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         return response.data;
       }
@@ -464,9 +464,6 @@ export const getIntervalNotification = createAsyncThunk(
 
 // 로그 아웃
 export const LogOut = createAsyncThunk("POST/LogOut", async (data) => {
-  console.log("로그아웃");
-  console.log(data.refreshToken);
-  console.log(data);
   try {
     const response = await axios.post(
       `${SERVER_URL}/user/logout`,
@@ -496,7 +493,7 @@ export const LogOut = createAsyncThunk("POST/LogOut", async (data) => {
 export const Withdrawal = createAsyncThunk(
   "DELETE/Withdrawal",
   async (data) => {
-    console.log("회원 탈퇴");
+    // console.log("회원 탈퇴");
 
     try {
       const response = await AxiosAPI.delete(`/user`);
@@ -519,8 +516,6 @@ const BungleSlice = createSlice({
   name: "Bungle",
 
   initialState: {
-    // 유저 동의 여부
-    userAgree: false,
     // location gps
     userLocation: {
       latitude: 0,
@@ -566,10 +561,6 @@ const BungleSlice = createSlice({
     detailMapBungle: [{}],
   },
   reducers: {
-    // 유저 동의 여부 확인
-    agreeUser: (state, action) => {
-      state.userAgree = action.payload;
-    },
     // 클라이언트 값 가져오기
     getChatClient: (state, action) => {
       state.ChatClient.client = action.payload.client;
@@ -585,7 +576,6 @@ const BungleSlice = createSlice({
     // 벙글 생성, post ID 전달
     [createBungleList.fulfilled]: (state, action) => {
       // console.log( action.payload );
-      console.log(action.payload);
       state.OnwerPostId = action.payload;
     },
     [createBungleList.rejected]: (state, action) => {
@@ -594,8 +584,6 @@ const BungleSlice = createSlice({
 
     // Main 전체 게시글 조회
     [getMainBungleList.fulfilled]: (state, action) => {
-      console.log("Main get");
-      console.log(action.payload);
       if (action.payload) {
         state.userLocation.latitude = action.payload.latitude;
         state.userLocation.longitude = action.payload.longitude;
@@ -612,7 +600,6 @@ const BungleSlice = createSlice({
 
     // 게시글 찜하기
     [likeBungleList.fulfilled]: (state, action) => {
-      console.log(action.payload);
       // realTime Update
       // const realTimeUpdate = current(state.realTime).map((item) => {
       const realTimeUpdate = state.realTime?.map((item) => {
@@ -649,7 +636,6 @@ const BungleSlice = createSlice({
       // more or Tag search Update
       // const moreTempUpdate = current(state.moreList).map((item) => {
       const moreTempUpdate = state.moreList?.map((item) => {
-        console.log(item);
         if (item.postId === action.payload) {
           // console.log( item.isLike );
           if (item.isLike) {
@@ -717,7 +703,6 @@ const BungleSlice = createSlice({
 
       // const MyLikeBungleUpdate = current(state.myLikeList).map((item) => {
       const MyLikeBungleUpdate = state.myLikeList?.map((item) => {
-        console.log(item, action.payload);
         if (item.postId === action.payload) {
           if (item.isLike) {
             return { ...item, isLike: false };
@@ -731,19 +716,15 @@ const BungleSlice = createSlice({
 
       state.myLikeList = MyLikeBungleUpdate;
     },
-    [likeBungleList.rejected]: (state, action) => {
-      console.log("Like reject");
-    },
+    [likeBungleList.rejected]: (state, action) => {},
     // 더보기, 태그 검색 결과
     [moreBungleList.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.moreList = action.payload;
     },
     [moreBungleList.rejected]: (state, action) => {},
 
     // 지도태그 검색 결과
     [mapTagSearch.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.moreList = action.payload;
     },
     [mapTagSearch.rejected]: (state, action) => {},
@@ -768,9 +749,7 @@ const BungleSlice = createSlice({
       // console.log( action.payload );
       state.detailBungle = action.payload;
     },
-    [detailBungleList.rejected]: (state, action) => {
-      console.log("상세조회 실패");
-    },
+    [detailBungleList.rejected]: (state, action) => {},
     // 상세 게시글 좋아요 클릭
     [detailLikeBungleList.fulfilled]: (state, action) => {
       if (state.detailBungle.isLike) {
@@ -781,39 +760,31 @@ const BungleSlice = createSlice({
     },
     // 카테고리 조회
     [categoryBungleList.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.categoriesList = action.payload;
     },
     [categoryBungleList.rejected]: (state, action) => {},
     // 태그 조회
     [tagBungleList.fulfilled]: (state, action) => {
-      console.log("?????");
-      console.log(action.payload);
       if (action.payload) {
         state.moreList = action.payload;
       } else {
         state.moreList = null;
       }
     },
-    [tagBungleList.rejected]: (state, action) => {
-      console.log("erarsat");
-    },
+    [tagBungleList.rejected]: (state, action) => {},
 
     // 유저 프로필 조회
     [getUserProfile.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.userProfile = action.payload;
     },
     [getUserProfile.rejected]: (state, action) => {},
 
     // 유저 프로필 수정
     [editUserProfile.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.userProfile = action.payload;
     },
     [editUserProfile.rejected]: (state, action) => {},
     [myLikeBungleList.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.myLikeList = action.payload;
     },
     // 채팅 목록 조회
@@ -821,17 +792,13 @@ const BungleSlice = createSlice({
       state.myChatting = action.payload.messageDto;
       state.isOwner = action.payload.owner;
     },
-    [myChattingList.rejected]: (state, action) => {
-      console.log("상세조회 실패");
-    },
+    [myChattingList.rejected]: (state, action) => {},
     [getMyBungleList.fulfilled]: (state, action) => {
-      // console.log( action.payload );
       state.myBunglePost = action.payload;
     },
 
     // 게시물 삭제
     [deleteMyBungleList.fulfilled]: (state, action) => {
-      console.log(action.payload);
       const postId = action.payload.postId;
       const isOwner = action.payload.isOwner;
 
@@ -848,9 +815,11 @@ const BungleSlice = createSlice({
       state.NoitficationList = action.payload;
     },
     [getIntervalNotification.rejected]: (state, action) => {},
+    [userAgreeLocation.fulfilled]: (state, action) => {
+      state.userAgree = action.payload;
+    },
   },
 });
 
-export const { getChatClient, clearNotificationState, agreeUser } =
-  BungleSlice.actions;
+export const { getChatClient, clearNotificationState } = BungleSlice.actions;
 export default BungleSlice.reducer;

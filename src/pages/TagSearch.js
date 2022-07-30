@@ -87,7 +87,7 @@ function TagSearch() {
   const [isLoad, setIsLoad] = useState(true);
   //검색 정렬 드롭박스
   const searchList = useSelector((state) => state.Bungle.moreList);
-  console.log(searchList);
+  // console.log(searchList);
   const [selected, setSelected] = React.useState("최신순");
   const handleSelect = (e) => {
     // console.log(e.target.value);

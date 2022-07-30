@@ -121,7 +121,7 @@ function MyPageRecent() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(location);
+  // console.log(location);
 
   const getMyLikeList = (location) => {
     dispatch(myLikeBungleList(location));
@@ -149,7 +149,7 @@ function MyPageRecent() {
       }, 200);
     }
   }, []);
-  console.log(myLikeList);
+  // console.log(myLikeList);
 
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);
