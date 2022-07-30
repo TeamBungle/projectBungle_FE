@@ -19,7 +19,7 @@ export const userAgreeLocation = createAsyncThunk(
       const response = await AxiosAPI.get(`/user/onboardandlbs`);
       console.log(response);
       if (response.data.response) {
-        // data.navigate("/main");
+        data.navigate("/");
       }
     } catch (error) {
       console.log(error);

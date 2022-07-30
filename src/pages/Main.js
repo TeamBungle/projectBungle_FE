@@ -326,7 +326,7 @@ function Main() {
     dispatch(LogOut({ navigate, refreshToken, token }));
   };
 
-  const userAgree = useSelector( state => state.Bungle.userAgree );
+  const userAgree = useSelector((state) => state.Bungle.userAgree);
 
   //회원 탈퇴
   const [withdrawalModal, setWithdrawalModal] = useState(false);
@@ -342,80 +342,82 @@ function Main() {
     }
   };
 
-  if( !userAgree ){
-    return <OnBoarding/>
-  }
-  else{ return (
-    <>
-      {/* <OnBoarding /> */}
-      {/* {!isLoad && ( */}
-      <MainWrap>
-        <MainHeaderWrap>
-          <MainHeaderLogo src={IconMainLogo} />
-          <MainHeaderIconsWrap>
+  // console.log(userAgree);
+
+  if (!userAgree) {
+    return <OnBoarding />;
+  } else {
+    return (
+      <>
+        {/* <OnBoarding /> */}
+        {/* {!isLoad && ( */}
+        <MainWrap>
+          <MainHeaderWrap>
+            <MainHeaderLogo src={IconMainLogo} />
+            <MainHeaderIconsWrap>
+              <div
+                style={{
+                  marginLeft: "20px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                }}
+                onClick={() => {
+                  researchOnClickHandler();
+                }}
+              >
+                ⭐이벤트 참여 Click!⭐
+              </div>
+              <IconMyLocation
+                src={IconMyPoint}
+                style={{ visibility: "hidden" }}
+                onClick={() => {
+                  getCurrentLocationBtnClick();
+                }}
+              />
+              {notificationState ? (
+                <IconNotification
+                  src={NotificationOn}
+                  onClick={() => {
+                    navigate("/notification");
+                  }}
+                />
+              ) : (
+                <IconNotification
+                  src={Notification}
+                  onClick={() => {
+                    navigate("/notification");
+                  }}
+                />
+              )}
+              <IconSetting
+                src={Setting}
+                onClick={() => {
+                  setSettingModal(true);
+                }}
+              />
+            </MainHeaderIconsWrap>
+          </MainHeaderWrap>
+          {settingModal && (
             <div
-              style={{
-                marginLeft: "20px",
-                cursor: "pointer",
-                fontSize: "14px",
-              }}
-              onClick={() => {
-                researchOnClickHandler();
+              className="setting-modal-wrapper"
+              onClick={(e) => {
+                handleModal(e);
               }}
             >
-              ⭐이벤트 참여 Click!⭐
-            </div>
-            <IconMyLocation
-              src={IconMyPoint}
-              style={{ visibility: "hidden" }}
-              onClick={() => {
-                getCurrentLocationBtnClick();
-              }}
-            />
-            {notificationState ? (
-              <IconNotification
-                src={NotificationOn}
-                onClick={() => {
-                  navigate("/notification");
-                }}
-              />
-            ) : (
-              <IconNotification
-                src={Notification}
-                onClick={() => {
-                  navigate("/notification");
-                }}
-              />
-            )}
-            <IconSetting
-              src={Setting}
-              onClick={() => {
-                setSettingModal(true);
-              }}
-            />
-          </MainHeaderIconsWrap>
-        </MainHeaderWrap>
-        {settingModal && (
-          <div
-            className="setting-modal-wrapper"
-            onClick={(e) => {
-              handleModal(e);
-            }}
-          >
-            <div className="setting-modal-inner">
-              <div className="setting-modal-content-wrap">
-                <div className="modal-content-wrap-setting">
-                  <PostHeaderWrap>
-                    <ChattingBackKey
-                      src={IconBackKey}
-                      style={{ visibility: "hidden" }}
-                      onClick={() => {
-                        setSettingModal(false);
-                      }}
-                    />
-                    <MapPageTitle>설정</MapPageTitle>
-                    <HeadrIconsWrap>
-                      {/* {notificationState ? (
+              <div className="setting-modal-inner">
+                <div className="setting-modal-content-wrap">
+                  <div className="modal-content-wrap-setting">
+                    <PostHeaderWrap>
+                      <ChattingBackKey
+                        src={IconBackKey}
+                        style={{ visibility: "hidden" }}
+                        onClick={() => {
+                          setSettingModal(false);
+                        }}
+                      />
+                      <MapPageTitle>설정</MapPageTitle>
+                      <HeadrIconsWrap>
+                        {/* {notificationState ? (
                         <IconNotification
                           src={NotificationOn}
                           onClick={() => {
@@ -425,179 +427,181 @@ function Main() {
                       ) : (
                         <IconNotification src={Notification} />
                       )} */}
-                      {/* <span className="material-icons"> clear </span> */}
-                      {/* <IconSetting
+                        {/* <span className="material-icons"> clear </span> */}
+                        {/* <IconSetting
                         style={{ visibility: "hidden" }}
                         src={Setting}
                       /> */}
-                    </HeadrIconsWrap>
-                  </PostHeaderWrap>
-                  <div
-                    style={{
-                      width: "89%",
-                      display: "flex",
-                      flexDirection: "column",
-                      margin: "auto",
-                    }}
-                  >
-                    <div className="mypage-selectbar-list">
-                      <div
-                        className="mypage-selectbar"
-                        onClick={() => {
-                          LogOutApi();
-                        }}
-                      >
-                        로그 아웃
-                      </div>
-                    </div>
+                      </HeadrIconsWrap>
+                    </PostHeaderWrap>
                     <div
-                      className="mypage-selectbar-list"
-                      onClick={() => {
-                        navigate("/termsconditions");
+                      style={{
+                        width: "89%",
+                        display: "flex",
+                        flexDirection: "column",
+                        margin: "auto",
                       }}
                     >
-                      <div className="mypage-selectbar">이용 약관</div>
-                    </div>
-                    <Divider />
-                    <div className="mypage-selectbar-list">
+                      <div className="mypage-selectbar-list">
+                        <div
+                          className="mypage-selectbar"
+                          onClick={() => {
+                            LogOutApi();
+                          }}
+                        >
+                          로그 아웃
+                        </div>
+                      </div>
                       <div
-                        className="mypage-selectbar"
+                        className="mypage-selectbar-list"
                         onClick={() => {
-                          setWithdrawalModal(true);
-                          setSettingModal(false);
+                          navigate("/termsconditions");
                         }}
                       >
-                        회원 탈퇴
+                        <div className="mypage-selectbar">이용 약관</div>
+                      </div>
+                      <Divider />
+                      <div className="mypage-selectbar-list">
+                        <div
+                          className="mypage-selectbar"
+                          onClick={() => {
+                            setWithdrawalModal(true);
+                            setSettingModal(false);
+                          }}
+                        >
+                          회원 탈퇴
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        )}
-        {withdrawalModal && (
-          <ModalWrapper>
-            <ModalOverlay>
-              <ModalInner>
-                <ModalContentWrap>
-                  <h3>벙글 탈퇴</h3>
-                  <div style={{ fontSize: "14px" }}>
-                    정말{" "}
-                    <span
-                      style={{
-                        color: "red",
-                        margin: "0px 3px 0px 3px",
-                        fontWeight: "bold",
+          )}
+          {withdrawalModal && (
+            <ModalWrapper>
+              <ModalOverlay>
+                <ModalInner>
+                  <ModalContentWrap>
+                    <h3>벙글 탈퇴</h3>
+                    <div style={{ fontSize: "14px" }}>
+                      정말{" "}
+                      <span
+                        style={{
+                          color: "red",
+                          margin: "0px 3px 0px 3px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        탈퇴
+                      </span>{" "}
+                      하시겠습니까?
+                    </div>
+                    <div style={{ marginTop: "5px" }}>
+                      탈퇴 후
+                      <span
+                        style={{
+                          color: "red",
+                          margin: "0px 3px 0px 3px",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        2일 동안
+                      </span>{" "}
+                      재가입할 수 없습니다.
+                    </div>
+                  </ModalContentWrap>
+                  <ModalDivider />
+                  <ModalButtonWrap>
+                    <ModalCancelButton
+                      onClick={() => {
+                        setWithdrawalModal(false);
+                      }}
+                    >
+                      취소
+                    </ModalCancelButton>
+                    <ModalDeleteButton
+                      onClick={() => {
+                        WithdrawalApi();
                       }}
                     >
                       탈퇴
-                    </span>{" "}
-                    하시겠습니까?
-                  </div>
-                  <div style={{ marginTop: "5px" }}>
-                    탈퇴 후
-                    <span
-                      style={{
-                        color: "red",
-                        margin: "0px 3px 0px 3px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      2일 동안
-                    </span>{" "}
-                    재가입할 수 없습니다.
-                  </div>
-                </ModalContentWrap>
-                <ModalDivider />
-                <ModalButtonWrap>
-                  <ModalCancelButton
-                    onClick={() => {
-                      setWithdrawalModal(false);
-                    }}
-                  >
-                    취소
-                  </ModalCancelButton>
-                  <ModalDeleteButton
-                    onClick={() => {
-                      WithdrawalApi();
-                    }}
-                  >
-                    탈퇴
-                  </ModalDeleteButton>
-                </ModalButtonWrap>
-              </ModalInner>
-            </ModalOverlay>
-          </ModalWrapper>
-        )}
-        {/* <Tag /> 인기 태그 막기*/}
-        <Search location={location} />
-        <Category location={location} />
-        <ContentDivide />
-        {/* 실시간 벙글 */}
-        <MainContentWrap>
-          <MainContentTitle>실시간 벙글</MainContentTitle>
-          <MainContentItemWrap>
-            {realTimeList.map((item, index) => {
-              // console.log( item );
-              return (
-                <MainContentItemFrame key={index}>
-                  {item.postUrl ? (
-                    <MainContentItemImg
-                      src={item.postUrl}
-                      onClick={() => {
-                        showDetailBungle(item.postId);
-                      }}
-                    />
-                  ) : (
-                    <MainContentItemDefalutWrap style={{ marginBottom: "7px" }}>
-                      <MainContentItemImgDefault
-                        src={defaultCardImg}
+                    </ModalDeleteButton>
+                  </ModalButtonWrap>
+                </ModalInner>
+              </ModalOverlay>
+            </ModalWrapper>
+          )}
+          {/* <Tag /> 인기 태그 막기*/}
+          <Search location={location} />
+          <Category location={location} />
+          <ContentDivide />
+          {/* 실시간 벙글 */}
+          <MainContentWrap>
+            <MainContentTitle>실시간 벙글</MainContentTitle>
+            <MainContentItemWrap>
+              {realTimeList.map((item, index) => {
+                // console.log( item );
+                return (
+                  <MainContentItemFrame key={index}>
+                    {item.postUrl ? (
+                      <MainContentItemImg
+                        src={item.postUrl}
                         onClick={() => {
                           showDetailBungle(item.postId);
                         }}
                       />
-                    </MainContentItemDefalutWrap>
-                  )}
-                  <MainContentItemImgTemp
-                    src={
-                      item.avgTemp >= 50
-                        ? IconHighTemp
-                        : item.avgTemp >= 25
-                        ? IconMiddleTemp
-                        : IconLowTemp
-                    }
-                  />
-                  <MainContentTextWrap>
-                    <MainContentTitleWrap>
-                      <MainContentItemTitle
-                        onClick={() => {
-                          showDetailBungle(item.postId);
-                        }}
+                    ) : (
+                      <MainContentItemDefalutWrap
+                        style={{ marginBottom: "7px" }}
                       >
-                        {item.title}
-                      </MainContentItemTitle>
-                      <MainContentItemLike
-                        src={item.isLike ? IconLike : IconUnlike}
-                        onClick={() =>
-                          HeartRealTimeClickHanlder(index, item.postId)
-                        }
-                      />
-                    </MainContentTitleWrap>
-                    <MainContentItemTimePeople>
-                      {item.time} ({item.joinCount}/{item.personnel})
-                    </MainContentItemTimePeople>
-                  </MainContentTextWrap>
-                </MainContentItemFrame>
-              );
-            })}
-          </MainContentItemWrap>
-          <MainContentButton onClick={() => MoreBtnClickHandler("realTime")}>
-            더보기
-          </MainContentButton>
-        </MainContentWrap>
-        {/* 평균 매너가 좋은 벙글 */}
-        {/* <MainContentWrap>
+                        <MainContentItemImgDefault
+                          src={defaultCardImg}
+                          onClick={() => {
+                            showDetailBungle(item.postId);
+                          }}
+                        />
+                      </MainContentItemDefalutWrap>
+                    )}
+                    <MainContentItemImgTemp
+                      src={
+                        item.avgTemp >= 50
+                          ? IconHighTemp
+                          : item.avgTemp >= 25
+                          ? IconMiddleTemp
+                          : IconLowTemp
+                      }
+                    />
+                    <MainContentTextWrap>
+                      <MainContentTitleWrap>
+                        <MainContentItemTitle
+                          onClick={() => {
+                            showDetailBungle(item.postId);
+                          }}
+                        >
+                          {item.title}
+                        </MainContentItemTitle>
+                        <MainContentItemLike
+                          src={item.isLike ? IconLike : IconUnlike}
+                          onClick={() =>
+                            HeartRealTimeClickHanlder(index, item.postId)
+                          }
+                        />
+                      </MainContentTitleWrap>
+                      <MainContentItemTimePeople>
+                        {item.time} ({item.joinCount}/{item.personnel})
+                      </MainContentItemTimePeople>
+                    </MainContentTextWrap>
+                  </MainContentItemFrame>
+                );
+              })}
+            </MainContentItemWrap>
+            <MainContentButton onClick={() => MoreBtnClickHandler("realTime")}>
+              더보기
+            </MainContentButton>
+          </MainContentWrap>
+          {/* 평균 매너가 좋은 벙글 */}
+          {/* <MainContentWrap>
         <MainContentTitle>평균 매너가 좋은 벙글</MainContentTitle>
         <MainContentItemWrap>
           {ContentArray.map((item, index) => {
@@ -620,140 +624,142 @@ function Main() {
         </MainContentItemWrap>
         <MainContentButton onClick={ () => { MoreBtnClickHandler( "manner" ) } }>더보기</MainContentButton>
       </MainContentWrap> */}
-        {/* 마감 임박순 벙글 */}
-        <MainContentWrap>
-          <MainContentTitle>마감 임박순 벙글</MainContentTitle>
-          <MainContentItemWrap>
-            {endTimeList.map((item, index) => {
-              // console.log( item );
+          {/* 마감 임박순 벙글 */}
+          <MainContentWrap>
+            <MainContentTitle>마감 임박순 벙글</MainContentTitle>
+            <MainContentItemWrap>
+              {endTimeList.map((item, index) => {
+                // console.log( item );
 
-              return (
-                <MainContentItemFrame key={index}>
-                  {item.postUrl ? (
-                    <MainContentItemImg
-                      src={item.postUrl}
-                      onClick={() => {
-                        showDetailBungle(item.postId);
-                      }}
-                    />
-                  ) : (
-                    <MainContentItemDefalutWrap style={{ marginBottom: "7px" }}>
-                      <MainContentItemImgDefault
-                        src={defaultCardImg}
+                return (
+                  <MainContentItemFrame key={index}>
+                    {item.postUrl ? (
+                      <MainContentItemImg
+                        src={item.postUrl}
                         onClick={() => {
                           showDetailBungle(item.postId);
                         }}
                       />
-                    </MainContentItemDefalutWrap>
-                  )}
-                  <MainContentItemImgTemp
-                    src={
-                      item.avgTemp >= 50
-                        ? IconHighTemp
-                        : item.avgTemp >= 25
-                        ? IconMiddleTemp
-                        : IconLowTemp
-                    }
-                  />
-                  <MainContentTextWrap>
-                    <MainContentTitleWrap>
-                      <MainContentItemTitle
-                        onClick={() => {
-                          showDetailBungle(item.postId);
-                        }}
+                    ) : (
+                      <MainContentItemDefalutWrap
+                        style={{ marginBottom: "7px" }}
                       >
-                        {item.title}
-                      </MainContentItemTitle>
-                      <MainContentItemLike
-                        src={item.isLike ? IconLike : IconUnlike}
-                        onClick={() => {
-                          HeartEndTimeClickHandler(index, item.postId);
-                        }}
-                      />
-                    </MainContentTitleWrap>
-                    <MainContentItemTimePeople>
-                      {item.time} ({item.joinCount}/{item.personnel})
-                    </MainContentItemTimePeople>
-                  </MainContentTextWrap>
-                </MainContentItemFrame>
-              );
-            })}
-          </MainContentItemWrap>
-          <MainContentButton
-            onClick={() => {
-              MoreBtnClickHandler("endTime");
-            }}
-          >
-            더보기
-          </MainContentButton>
-        </MainContentWrap>
-        <FooterWrap>
-          <FooterIconWrap
-            onClick={() => {
-              navigate("/main");
-            }}
-          >
-            <FooterIconImg src={IconHomeCurrent} />
-            <FooterIconText style={{ color: "#FFC632" }}>홈</FooterIconText>
-          </FooterIconWrap>
-          <FooterIconWrap
-            onClick={() => {
-              navigate("/map");
-            }}
-          >
-            <FooterIconImg src={IconLocation} />
-            <FooterIconText>벙글지도</FooterIconText>
-          </FooterIconWrap>
-          {ownerCheck ? (
-            <FooterAddBungae
-              src={IconEdit}
+                        <MainContentItemImgDefault
+                          src={defaultCardImg}
+                          onClick={() => {
+                            showDetailBungle(item.postId);
+                          }}
+                        />
+                      </MainContentItemDefalutWrap>
+                    )}
+                    <MainContentItemImgTemp
+                      src={
+                        item.avgTemp >= 50
+                          ? IconHighTemp
+                          : item.avgTemp >= 25
+                          ? IconMiddleTemp
+                          : IconLowTemp
+                      }
+                    />
+                    <MainContentTextWrap>
+                      <MainContentTitleWrap>
+                        <MainContentItemTitle
+                          onClick={() => {
+                            showDetailBungle(item.postId);
+                          }}
+                        >
+                          {item.title}
+                        </MainContentItemTitle>
+                        <MainContentItemLike
+                          src={item.isLike ? IconLike : IconUnlike}
+                          onClick={() => {
+                            HeartEndTimeClickHandler(index, item.postId);
+                          }}
+                        />
+                      </MainContentTitleWrap>
+                      <MainContentItemTimePeople>
+                        {item.time} ({item.joinCount}/{item.personnel})
+                      </MainContentItemTimePeople>
+                    </MainContentTextWrap>
+                  </MainContentItemFrame>
+                );
+              })}
+            </MainContentItemWrap>
+            <MainContentButton
               onClick={() => {
-                navigate("/editpost");
+                MoreBtnClickHandler("endTime");
               }}
-            />
-          ) : (
-            <FooterAddBungae
-              src={IconCreate}
+            >
+              더보기
+            </MainContentButton>
+          </MainContentWrap>
+          <FooterWrap>
+            <FooterIconWrap
               onClick={() => {
-                navigate("/createpost");
+                navigate("/main");
               }}
-            />
-          )}
-          <FooterIconWrap>
-            <FooterIconImg
-              src={IconChat}
+            >
+              <FooterIconImg src={IconHomeCurrent} />
+              <FooterIconText style={{ color: "#FFC632" }}>홈</FooterIconText>
+            </FooterIconWrap>
+            <FooterIconWrap
               onClick={() => {
-                navigate("/chatlist");
+                navigate("/map");
               }}
-            />
-            <FooterIconText>채팅</FooterIconText>
-          </FooterIconWrap>
-          <FooterIconWrap
-            onClick={() => {
-              navigate("/mypage");
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+            >
+              <FooterIconImg src={IconLocation} />
+              <FooterIconText>벙글지도</FooterIconText>
+            </FooterIconWrap>
+            {ownerCheck ? (
+              <FooterAddBungae
+                src={IconEdit}
+                onClick={() => {
+                  navigate("/editpost");
+                }}
+              />
+            ) : (
+              <FooterAddBungae
+                src={IconCreate}
+                onClick={() => {
+                  navigate("/createpost");
+                }}
+              />
+            )}
+            <FooterIconWrap>
+              <FooterIconImg
+                src={IconChat}
+                onClick={() => {
+                  navigate("/chatlist");
+                }}
+              />
+              <FooterIconText>채팅</FooterIconText>
+            </FooterIconWrap>
+            <FooterIconWrap
               onClick={() => {
                 navigate("/mypage");
               }}
             >
-              <FooterIconImg src={IconMyBungae} />
-              <FooterIconText>나의 벙글</FooterIconText>
-            </div>
-          </FooterIconWrap>
-        </FooterWrap>
-      </MainWrap>
-      {/* )} */}
-    </>
-  );
-}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
+                <FooterIconImg src={IconMyBungae} />
+                <FooterIconText>나의 벙글</FooterIconText>
+              </div>
+            </FooterIconWrap>
+          </FooterWrap>
+        </MainWrap>
+        {/* )} */}
+      </>
+    );
+  }
 }
 // }
 

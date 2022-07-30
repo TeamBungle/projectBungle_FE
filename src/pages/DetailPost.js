@@ -543,7 +543,7 @@ const Post = () => {
                         color: "#898989",
                       }}
                     >
-                      참여하기
+                      <span>참여하기</span>
                     </PostJoinButton>
                   </>
                 ) : (
