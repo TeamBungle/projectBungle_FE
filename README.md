@@ -44,7 +44,9 @@
 <details>
     <summary> Private routes </summary>
     <div markdonw="1">
+        <div>
     https://github.comTeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74
+        </div>
     </div>
 </details>
    
