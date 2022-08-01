@@ -1,6 +1,7 @@
 
 ![배너용](https://user-images.githubusercontent.com/107230384/182052615-f4743530-6596-4b4f-9b5e-6100f021eebb.jpg)
 
+![Untitled (1)](https://user-images.githubusercontent.com/107230384/182148357-849998e4-4510-48bd-806b-b95e02be6665.png)
 
 **싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.**
 
