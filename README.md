@@ -226,4 +226,4 @@
 | FE | 최서우님 | https://github.com/zerovodka |
 | FE | 한결님 | https://github.com/GHan19 |
 | FE( L ) | 한지용님 | https://github.com/jigomgom |
-| Designer | 양승연님 |  |
+| Designer | 양승연님 | didtmddus123@gmail.com |
