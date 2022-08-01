@@ -43,7 +43,7 @@
 - FE Trouble Shooting
 <details>
     <summary> Private routes </summary>
-   <a href="https://github.comTeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74"/>
+   <a href="https://github.comTeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74">코드로 바로 가기</a>
       
 </details>
    
