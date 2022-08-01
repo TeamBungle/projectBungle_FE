@@ -1,5 +1,6 @@
 
-<img width="265" alt="슬랙 홍보용 이미지" src="https://user-images.githubusercontent.com/107230384/182052460-575b1443-3ecf-4e87-a05e-8938517af90f.png">
+![배너용](https://user-images.githubusercontent.com/107230384/182052615-f4743530-6596-4b4f-9b5e-6100f021eebb.jpg)
+
 
 **싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.**
 
