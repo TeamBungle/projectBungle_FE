@@ -41,7 +41,12 @@
     
 
 - FE Trouble Shooting
-    https://github.com/TeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74
+<details>
+    <summary> Private routes </summary>
+    <div markdonw="1">
+    https://github.comTeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74
+    </div>
+</details>
    
 
 ### 😍 벙글 [서비스 링크 바로가기](https://bungle.life)
