@@ -10,7 +10,8 @@
 
 ### 🙂 아키텍쳐
 
-![벙글 아키텍쳐](https://user-images.githubusercontent.com/107230384/182052487-e8c516c4-8650-4b86-a720-3ab7c2064461.png)
+![최종 아키텍처](https://user-images.githubusercontent.com/107230384/182052947-7c29f084-224a-492b-9a71-0c0f09c65a9e.jpg)
+
 
 
 ### 🤩 벙글 주요 기능
