@@ -1,4 +1,5 @@
-![슬랙 홍보용 이미지.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/09fb6a34-de5c-4692-8bd6-5f1454534f77/__.png)
+
+<img width="265" alt="슬랙 홍보용 이미지" src="https://user-images.githubusercontent.com/107230384/182052460-575b1443-3ecf-4e87-a05e-8938517af90f.png">
 
 **싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.**
 
@@ -8,7 +9,8 @@
 
 ### 🙂 아키텍쳐
 
-![벙글 아키텍쳐.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2425d948-7a2c-4b8c-aa64-f03baea3a3bc/_.png)
+![벙글 아키텍쳐](https://user-images.githubusercontent.com/107230384/182052487-e8c516c4-8650-4b86-a720-3ab7c2064461.png)
+
 
 ### 🤩 벙글 주요 기능
 
@@ -16,18 +18,20 @@
     - 사용자 위치 기준, 400km 반경의 실시간 벙글 위치와 마감 임박순 벙글 을 나타냄
     - 서비스 론칭 기간이 짧기 때문에 400km로 결정, 추후 데이터가 많이 쌓이면 50km로 변경 예정
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08fc6038-5f8a-4c7e-a2dc-3de7b2000c80/Untitled.png)
+![Untitled (1)](https://user-images.githubusercontent.com/107230384/182052513-562cce1e-09d0-4496-aceb-e17440cf3b22.png)
     
 
 1. 실시간 벙글 생성 및 문자 채팅 ( Redis, StompJS, SockJS )
     - 벙글 생성을 통해 주변 사람들과 모임을 가질 수 있고 문자 채팅에서 상세 결정을 내릴 수 있음
     - 사용자 피드백에 따라 화상 채팅 추가 예정
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b96c15b5-30a1-40c2-92b1-e985ed93eb15/Untitled.png)
+![Untitled (2)](https://user-images.githubusercontent.com/107230384/182052538-9e3d28f1-0f7f-4604-a944-35c920fa2aca.png)
+
 
 1. 지도를 통해 실시간 진행 중인 벙글 확인 ( Redis, Kakao map API )
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/61ff04ab-3d2c-41b3-b458-2101a393c73f/Untitled.png)
+![Untitled (3)](https://user-images.githubusercontent.com/107230384/182052556-d5fb2af0-7617-403a-9e39-a3becd215dd3.png)
+
 
 ### 🧐 Trouble Shooting
 
