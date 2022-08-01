@@ -37,7 +37,7 @@
 
 ### 🧐 Trouble Shooting
 
-<a href="https://github.com/TeamBungle/projectBungle_BE/">BE Trouble Shooting </a>
+- <a href="https://github.com/TeamBungle/projectBungle_BE/">BE Trouble Shooting </a>
     
 
 - FE Trouble Shooting
