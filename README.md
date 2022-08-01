@@ -90,10 +90,38 @@
     <h5>Private Route로 App.js의 Route 감싸기</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/00460f7436e216b8d65729aae642864c7185c9ab/src/App.js#L42-L74
     </details>
-
+    
     <details>
-        <summary>Chatting :  Client 문제</summary>
-    </details>    
+    <summary>Chatting : refresh token 이슈로 인한 send 문제</summary>
+    <pre>
+    1. 문제 인지
+      - refresh token을 받아오는 순간에 채팅이 1번 입력이 되지 않는 경우가 발생
+      - send 함수의 인자로 access token을 넣어서 보내는데 access token 의 exp 타임이 만료되어 순간적으로 intercept하여 refresh 토큰을 발급하는 경우가 생겨 해당 이슈가 발생했다고 판단
+    2. 선택지
+      - token이 아닌 다른 방식으로 유저를 구분하는 방법이 있는지 Back end와 의견 공유
+	3. 해결 방법
+      - 기존 token을 보내는 방식이 아닌 유저의 PK( primary key )를 send 함수 인자로 전달하여 유저를 구분하였음
+    </pre>
+    <h5>PK send로 대체</h5>    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/ChattingRoom.js#L208-L209
+    </details>
+    
+    <details>
+    <summary>Chatting : file 전송 문제</summary>
+    <pre>
+    1. 문제 인지
+      - 채팅 시, 파일을 전송하기 위해서는 binary 를 sokect을 통해 전달하여야 함
+      - 하지만 binary의 용량이 4MB로 제한되어 있기 때문에 이를 우회할 방법을 모색
+    2. 선택지
+      - binary를 1024 bit 단위로 쪼개어 전송 후, 서버에서 merge : 기능 구현에 어려움을 느낌
+      - formData로 파일을 전송하고 전송된 파일을 Back-end에서 s3 bucket에 업로드 후, 파일 URL을 reponse 해줌
+    3. 해결 방법
+      - wss가 아닌 https 방식으로 axios 통신을 시도
+      - formData로 파일을 전송하고 전송된 파일을 Back-end에서 s3 bucket에 업로드 후, 파일 URL을 reponse 해줌
+      - 서버의 redis default 용량을 10MB로 변경하여 좀더 큰 용량의 파일을 처리할 수 있게 함
+    </pre>
+    <h5>채팅 이미지 전송</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/ChattingRoom.js#L350-L366
+    </details>  
     
     <details>
     <summary>Chatting : 게시물 삭제시, disconnect 요청</summary>
@@ -115,6 +143,25 @@
     </details>
     
     <details>
+    <summary>Map : 첫 지도 렌더링, 태그 검색 및 상세 정보 검색 시 지도에 바로 마커를 표시하지 못하는 상황</summary>
+    <pre>
+    1. 문제 인지
+      데이터는 제대로 불러오는데 해당 데이터를 넣어서 사용할 state 배열이 제대로 업데이트가 되지 않음
+    2. 선택지
+      - flag를 세워 각 dependency array에 넣을 데이터를 입력
+      - 하나의 useEffect() 내에서 조건문을 통해 실행
+    3. 해결 방법
+      하나의 useEffect() 내에서 조건문을 통해 실행할 경우, dependency array가 공용으로 사용되다보니, 데이터르 제대로 못 넣었다. 그리하여 각 데이터마다 useEffect()를 실행하여 dependency array에 서버에서 받아온 각각의 데이터를 넣어주고 flag state를 만들어 해당 flag일 때 실행되도록 하니 동기적으로 잘 작동함.
+    </pre>
+    <h5>state 배열 선언 및 관리</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L166-L171
+    <h5>렌더링 시 전체 리스트, 태그 검색 리스트 적용 </h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L209-L243
+    <h5>상세 정보 검색 리스트 적용</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L295-L310
+    </details>
+    
+    <details>
     <summary>크로스 브라우징 : Enter Key 문제</summary>
     <pre>
     1. 문제 인지
@@ -129,6 +176,9 @@
     <h5>Login enter key 적용 코드</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/pages/Login.js#L295-L317
     </details>
+    
+    
+    
     <details>
     <summary>크로스 브라우징 : input 태그 CSS 적용 문제</summary>
     <pre>
