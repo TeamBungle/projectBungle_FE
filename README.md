@@ -41,8 +41,12 @@
     
 
 - FE Trouble Shooting
-
+<details>
+<summary>비인가 사용자 URL 막기</summary>
+<div markedown="1">
 https://github.com/TeamBungle/projectBungle_FE/blob/00460f7436e216b8d65729aae642864c7185c9ab/src/App.js#L42-L74
+</div>
+</details>
 
    
 
