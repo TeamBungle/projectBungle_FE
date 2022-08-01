@@ -42,8 +42,6 @@
 
 - FE Trouble Shooting
 
-    
-   https://github.comTeamBungle/projectBungle_FE/blob/c59ca843603028c114949199179fcc88dac413db/src/App.js#L42-L74
       
 
    
