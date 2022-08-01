@@ -32,8 +32,6 @@ import {
   ModalButton,
 } from "../styles/StyledLogin";
 
-import Setting from "../assets/icon-setting.svg";
-import Notification from "../assets/icon-notification.svg";
 import IconHome from "../assets/icon-home.svg";
 import IconLocation from "../assets/icon-location.svg";
 import IconChat from "../assets/icon-chat.svg";
@@ -90,13 +88,11 @@ function MyPageSetting() {
     const reader = new FileReader();
     reader.onload = () => {
       if (reader.readyState === 2) {
-        // console.log(reader);
         setProfile(reader.result);
       }
     };
     reader.readAsDataURL(e.target.files[0]);
   };
-  // console.log(file);
 
   const dispatch = useDispatch();
 
@@ -120,10 +116,8 @@ function MyPageSetting() {
       )
     );
     if (file === undefined) {
-      // console.log("??");
       formData.append("profileImg ", "");
     } else {
-      // console.log(file);
       formData.append("profileImg ", file);
     }
 
@@ -140,9 +134,7 @@ function MyPageSetting() {
       return null;
     }
 
-    // else {
     dispatch(editUserProfile({ formData, navigate }));
-    // }
   };
 
   return (
@@ -207,9 +199,7 @@ function MyPageSetting() {
             placeholder="자기소개를 입력해주세요."
           />
         </div>
-        {/* <button className="profile-setting-form-btn">가입하기</button> */}
       </div>
-      {/* <button className="profile-setting-form-btn">가입하기</button> */}
       <MapFooterWrap>
         <FooterIconWrap
           onClick={() => {

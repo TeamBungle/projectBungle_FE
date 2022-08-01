@@ -58,10 +58,6 @@ function OnBoarding() {
     dispatch(userAgreeLocation({ navigate }));
   };
 
-  const exitOnboardingClickHanlder = () => {
-    navigate("/");
-  };
-
   return (
     <div>
       <OnBoardWrapper>
@@ -103,22 +99,6 @@ function OnBoarding() {
           </SwiperSlide>
           <SwiperSlide>
             <OnBoardContentWrap>
-              {/* <span
-                  style={{
-                    fontSize: "16px",
-                    position: "relative",
-                    right: "-165px",
-                    top: "15px",
-                    cursor: "pointer",
-                  }}
-                  className="material-icons"
-                  onClick={() => {
-                    exitOnboardingClickHanlder();
-                  }}
-                >
-                  {" "}
-                  clear{" "}
-                </span> */}
               <OnBoardFinalText src={onboardPageText6} />
               <OnBoardFinalImg src={onboardPageImg6} />
               <div style={{ display: "flex" }}>

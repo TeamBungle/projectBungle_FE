@@ -17,11 +17,9 @@ export const userAgreeLocation = createAsyncThunk(
   async (data) => {
     try {
       const response = await AxiosAPI.get(`/user/onboardandlbs`);
-      // console.log(response);
       if (response.data.response) {
         window.location.href = "/main";
         return response.data.response;
-        // data.navigate("/main");
       }
     } catch (error) {
       console.log(error);
@@ -39,9 +37,8 @@ export const createBungleList = createAsyncThunk(
           "Content-Type": "multipart/form-data",
         },
       });
-      // console.log(response);
+
       if (response.status === 200 && response.data.response) {
-        // console.log(data);
         if (data.isLetter) {
           data.navigate(`/chat/${response.data.postId}`);
           return response.data.postId;
@@ -83,7 +80,6 @@ export const editMyBungleList = createAsyncThunk(
       if (response.data.response) {
         window.location.href = "/main";
       }
-      // console.log(response);
     } catch (e) {
       console.log(e);
     }
@@ -96,7 +92,6 @@ export const deleteMyBungleList = createAsyncThunk(
   async (rev) => {
     try {
       const response = await AxiosAPI.delete(`/posts/${rev.postId}`);
-      // console.log(response);
 
       if (response.data.response) {
         let data = {
@@ -126,7 +121,6 @@ export const deleteMyBungleList = createAsyncThunk(
 export const getMainBungleList = createAsyncThunk(
   "GET/getMainBungleList",
   async (position) => {
-    // console.log(position);
     try {
       const response = await AxiosAPI.get(`/posts`, {
         params: {
@@ -135,8 +129,6 @@ export const getMainBungleList = createAsyncThunk(
         },
       });
       if (response.status === 200) {
-        // return response.data; origin
-        // for test
         const data = {
           latitude: position.latitude,
           longitude: position.longitude,
@@ -146,7 +138,6 @@ export const getMainBungleList = createAsyncThunk(
         return data;
       }
     } catch (e) {
-      // window.location.href = `/notFound/${e.message}`;
       console.log(e);
     }
   }
@@ -163,16 +154,14 @@ export const moreBungleList = createAsyncThunk(
           status: data.status,
         },
       });
-      // console.log(response);
       if (response.data.response) {
-        data.navigate("/tagsearch"); // window.location.href = "/tagsearch";
+        data.navigate("/tagsearch");
         return response.data.list;
       } else {
         data.navigate("/tagsearch");
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -181,7 +170,6 @@ export const moreBungleList = createAsyncThunk(
 export const getMapBungle = createAsyncThunk(
   "GET/getMapBungle",
   async (data) => {
-    // console.log(data);
     try {
       const response = await AxiosAPI.get(`/map`, {
         params: {
@@ -189,14 +177,14 @@ export const getMapBungle = createAsyncThunk(
           longitude: data.longitude,
         },
       });
-      // console.log(response);
+
       if (response.data.response) {
         return response.data;
       } else {
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
+
     }
   }
 );
@@ -205,7 +193,6 @@ export const getMapBungle = createAsyncThunk(
 export const getDetailMap = createAsyncThunk(
   "GET/getDetailMap",
   async (data) => {
-    // console.log(data);
     try {
       const response = await AxiosAPI.get(`/map/details`, {
         params: {
@@ -216,14 +203,13 @@ export const getDetailMap = createAsyncThunk(
           longitude: data.location.longitude,
         },
       });
-      // console.log(response);
+
       if (response.data.response) {
         return response.data.mapListDtos;
       } else {
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -232,16 +218,14 @@ export const getDetailMap = createAsyncThunk(
 export const likeBungleList = createAsyncThunk(
   "LIKE/likeBungleList",
   async (postId) => {
-    // console.log(postId);
     try {
       const response = await AxiosAPI.post(`/posts/like/${postId}`, {});
-      // console.log(response);
+
       if (response.data.response) {
         return postId;
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -250,16 +234,13 @@ export const likeBungleList = createAsyncThunk(
 export const detailBungleList = createAsyncThunk(
   "DETAIL/detailBungleList",
   async (postId) => {
-    // console.log(postId);
     try {
       const response = await AxiosAPI.get(`/posts/${postId}`);
-      // console.log(response);
       if (response.data.response) {
         return response.data.postDetailsResponseDto;
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -268,19 +249,16 @@ export const detailBungleList = createAsyncThunk(
 export const detailLikeBungleList = createAsyncThunk(
   "LIKE/detailLikeBungleList",
   async (postId) => {
-    // console.log(postId);
     try {
       const response = await AxiosAPI.post(
         `${SERVER_URL}/posts/like/${postId}`,
         {}
       );
-      // console.log(response);
       if (response.data.response) {
         return postId;
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -289,17 +267,15 @@ export const detailLikeBungleList = createAsyncThunk(
 export const categoryBungleList = createAsyncThunk(
   "GET/categoryBungleList",
   async (item) => {
-    // console.log(item);
     try {
       const response = await AxiosAPI.get(`/posts/categories`, {
         params: {
           latitude: item.location.latitude,
           longitude: item.location.longitude,
-          // if( item.c)
           categories: item.category,
         },
       });
-      // console.log(response);
+
       if (response.data.response) {
         item.navigate(`/categorysearch/${item.category}`);
         return response.data.list;
@@ -308,7 +284,6 @@ export const categoryBungleList = createAsyncThunk(
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -325,12 +300,9 @@ export const tagBungleList = createAsyncThunk(
           tags: item.tag,
         },
       });
-      // console.log(response);
+
       if (response.data.response) {
-        // console.log(response.data.list);
-        // console.log(item);
         item.navigate("/tagsearch");
-        // window.location.href = "/tagsearch";
         return response.data.list;
       } else {
         item.navigate("/tagsearch");
@@ -338,7 +310,6 @@ export const tagBungleList = createAsyncThunk(
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -355,14 +326,12 @@ export const mapTagSearch = createAsyncThunk(
           tags: item.tag,
         },
       });
-      // console.log(response);
+
       if (response.data.response) {
-        // console.log(response.data.list);
         return response.data.list;
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -372,13 +341,11 @@ export const getUserProfile = createAsyncThunk(
   async () => {
     try {
       const response = await AxiosAPI.get(`/user/profile`, {});
-      // console.log(response);
       if (response.data.response) {
         return response.data.profileResponseDto;
       }
     } catch (error) {
       console.log(error);
-      // window.location.href = `/notFound/${error.message}`;
     }
   }
 );
@@ -398,8 +365,7 @@ export const editUserProfile = createAsyncThunk(
         return response.data.profileResponseDto;
       }
     } catch (error) {
-      // console.log(error);
-      // window.location.href = `/notFound/${error.message}`;
+      console.log(error);
     }
   }
 );
@@ -416,13 +382,12 @@ export const myLikeBungleList = createAsyncThunk(
           longitude: location.longitude,
         },
       });
-      // console.log(response);
+      
       if (response.data.response) {
         return response.data.list;
       }
     } catch (error) {
       console.log(error);
-      // window.location.href = `/notFound/${error.message}`;
     }
   }
 );
@@ -431,16 +396,14 @@ export const myLikeBungleList = createAsyncThunk(
 export const myChattingList = createAsyncThunk(
   "GET/myChattingList",
   async () => {
-    // console.log(1);
     try {
       const response = await AxiosAPI.get(`/chat/rooms`);
-      // console.log(response);
+
       if (response.status === 200) {
         return response.data;
       }
     } catch (e) {
       console.log(e);
-      // window.location.href = `/notFound/${e.message}`;
     }
   }
 );
@@ -457,7 +420,6 @@ export const getIntervalNotification = createAsyncThunk(
       }
     } catch (error) {
       console.log(error);
-      // window.location.href = `/notFound/${error.message}`;
     }
   }
 );
@@ -475,9 +437,8 @@ export const LogOut = createAsyncThunk("POST/LogOut", async (data) => {
         },
       }
     );
-    // console.log(response);
+
     if (response.status === 200) {
-      // console.log("쿠키, 로컬 삭제");
       localStorage.clear();
       resetCookie("webid_ts");
       resetCookie("webid");
@@ -493,8 +454,6 @@ export const LogOut = createAsyncThunk("POST/LogOut", async (data) => {
 export const Withdrawal = createAsyncThunk(
   "DELETE/Withdrawal",
   async (data) => {
-    // console.log("회원 탈퇴");
-
     try {
       const response = await AxiosAPI.delete(`/user`);
 
@@ -507,7 +466,6 @@ export const Withdrawal = createAsyncThunk(
       }
     } catch (error) {
       console.log(error);
-      // window.location.href = `/notFound/${error.message}`;
     }
   }
 );
@@ -575,11 +533,9 @@ const BungleSlice = createSlice({
   extraReducers: {
     // 벙글 생성, post ID 전달
     [createBungleList.fulfilled]: (state, action) => {
-      // console.log( action.payload );
       state.OnwerPostId = action.payload;
     },
     [createBungleList.rejected]: (state, action) => {
-      // console.log("create reject");
     },
 
     // Main 전체 게시글 조회
@@ -591,21 +547,17 @@ const BungleSlice = createSlice({
 
         state.endTime = action.payload.list.postListEndTime;
         state.realTime = action.payload.list.postListRealTime;
-        // console.log( current( state.endTime ), current( state.realTime ) );
       }
     },
     [getMainBungleList.rejected]: (state, action) => {
-      console.log("Main reject");
     },
 
     // 게시글 찜하기
     [likeBungleList.fulfilled]: (state, action) => {
       // realTime Update
-      // const realTimeUpdate = current(state.realTime).map((item) => {
+
       const realTimeUpdate = state.realTime?.map((item) => {
-        // console.log( item )
         if (item.postId === action.payload) {
-          // console.log( item.isLike );
           if (item.isLike) {
             return { ...item, isLike: false };
           } else {
@@ -617,11 +569,8 @@ const BungleSlice = createSlice({
       });
       state.realTime = realTimeUpdate;
       // endTimeUpdate
-      // const endTimeUpdate = current(state.endTime).map((item) => {
       const endTimeUpdate = state.endTime?.map((item) => {
-        // console.log( item )
         if (item.postId === action.payload) {
-          // console.log( item.isLike );
           if (item.isLike) {
             return { ...item, isLike: false };
           } else {
@@ -634,10 +583,8 @@ const BungleSlice = createSlice({
       state.endTime = endTimeUpdate;
 
       // more or Tag search Update
-      // const moreTempUpdate = current(state.moreList).map((item) => {
       const moreTempUpdate = state.moreList?.map((item) => {
         if (item.postId === action.payload) {
-          // console.log( item.isLike );
           if (item.isLike) {
             return { ...item, isLike: false };
           } else {
@@ -651,11 +598,8 @@ const BungleSlice = createSlice({
       state.moreList = moreTempUpdate;
 
       // 카테고리 update
-      // const CategoryUpdate = current(state.categoriesList).map((item) => {
       const CategoryUpdate = state.categoriesList?.map((item) => {
-        // console.log( item )
         if (item.postId === action.payload) {
-          // console.log( item.isLike );
           if (item.isLike) {
             return { ...item, isLike: false };
           } else {
@@ -669,9 +613,7 @@ const BungleSlice = createSlice({
       state.categoriesList = CategoryUpdate;
 
       // 지도 벙글 update
-      // const MapBungleUpdate = current(state.mapList).map((item) => {
       const MapBungleUpdate = state.mapList?.map((item) => {
-        // console.log(item);
         if (item.postId === action.payload) {
           if (item.isLike) {
             return { ...item, isLike: false };
@@ -685,9 +627,7 @@ const BungleSlice = createSlice({
       state.mapList = MapBungleUpdate;
 
       // 지도 상세 검색 벙글 update
-      // const MapDetailBungleUpdate = current(state.detailMapBungle).map(
       const MapDetailBungleUpdate = state.detailMapBungle?.map((item) => {
-        // console.log(item);
         if (item.postId === action.payload) {
           if (item.isLike) {
             return { ...item, isLike: false };
@@ -701,7 +641,6 @@ const BungleSlice = createSlice({
 
       state.detailMapBungle = MapDetailBungleUpdate;
 
-      // const MyLikeBungleUpdate = current(state.myLikeList).map((item) => {
       const MyLikeBungleUpdate = state.myLikeList?.map((item) => {
         if (item.postId === action.payload) {
           if (item.isLike) {
@@ -731,7 +670,6 @@ const BungleSlice = createSlice({
 
     // 지도 리스트
     [getMapBungle.fulfilled]: (state, action) => {
-      // console.log(action.payload);
       state.mapList = action.payload.mapListDtos;
       state.isOwner = action.payload.owner;
     },
@@ -739,14 +677,12 @@ const BungleSlice = createSlice({
 
     // 지도 상세 검색 후리스트
     [getDetailMap.fulfilled]: (state, action) => {
-      // console.log(action.payload);
       state.detailMapBungle = action.payload;
     },
     [getDetailMap.rejected]: (state, action) => {},
 
     // 상세 조회
     [detailBungleList.fulfilled]: (state, action) => {
-      // console.log( action.payload );
       state.detailBungle = action.payload;
     },
     [detailBungleList.rejected]: (state, action) => {},
@@ -799,9 +735,7 @@ const BungleSlice = createSlice({
 
     // 게시물 삭제
     [deleteMyBungleList.fulfilled]: (state, action) => {
-      const postId = action.payload.postId;
       const isOwner = action.payload.isOwner;
-
       state.isOwner = isOwner;
     },
     [deleteMyBungleList.rejected]: (state, action) => {},

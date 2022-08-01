@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+
 import { getMapBungle, mapTagSearch } from "../redux/modules/BungleSlice";
 import { tagBungleList } from "../redux/modules/BungleSlice";
 import { getDetailMap } from "../redux/modules/BungleSlice";
@@ -36,7 +36,6 @@ import Setting from "../assets/icon-setting.svg";
 import Notification from "../assets/icon-notification.svg";
 import NotificationOn from "../assets/icon-notification-on.svg";
 import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
 import IconChat from "../assets/icon-chat.svg";
 import IconMyBungae from "../assets/icon-account.svg";
 import IconCreate from "../assets/icon-create-post.svg";
@@ -59,7 +58,6 @@ import IconLocationCurrent from "../assets/icon-location-current.svg";
 
 //Components
 import BottomSheet from "./BottomSheet";
-import Divide from "../components/Divider";
 import Loading from "../components/Loading";
 
 //StyledComponents
@@ -86,7 +84,6 @@ import {
 } from "../styles/StyledFooter.js";
 import {
   CategoryWrap,
-  CategorySelectedImgWrap,
   CategoryItem,
   CatogoryName,
   CategoryImgWrap,
@@ -97,7 +94,6 @@ import {
   MapPostPeopleCount,
   PostPeopleCountTitleWrap,
   MapPostPeopleTitle,
-  PostPeopleCountTitle,
 } from "../styles/StyledCreatePost";
 
 //CSS
@@ -120,8 +116,6 @@ function Map() {
   useEffect(() => {
     setNotificationState(NotificationState);
   }, [NotificationState]);
-
-  const isOwner = useSelector((state) => state.Bungle.isOwner);
 
   const dispatch = useDispatch();
   // navigate
@@ -164,27 +158,20 @@ function Map() {
   });
   //태그 검색, 상세 조회, 주변 지도 리스트 담을 배열 state
   const [mapBungleData, setMapBungleData] = useState([]);
-  //태그 검색, 상세 조회, 주변 지도 리스트 없을때 배열
-  const [nothingBungleData, setNothingBungleData] = useState([]);
+
   //태그 검색, 상세 조회 구분 boolean state
   //첫번째 전체, 두번째 태그, 세번째 상세조회
   const [checkMapData, setCheckMapData] = useState([true, false, false]);
   //주변 지도 리스트
   const getAroundBungle = useSelector((state) => state.Bungle.mapList);
-  // console.log("전체 지도 벙글 조회: ", getAroundBungle);
   //상세 검색 후 리스트
   const getDetailMapBungle = useSelector(
     (state) => state.Bungle.detailMapBungle
   );
   //태그 검색 후 리스트
   const getTagSearchBungle = useSelector((state) => state.Bungle.moreList);
-  // console.log("태그 검색 리스트: ", getTagSearchBungle);
-  // console.log("상세 조회 리스트: ", getDetailMapBungle);
   //Footer 작성, 삭제 구분
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-
-  // console.log("전체냐 태그냐 상세냐 그것이 문제로다 :", mapBungleData);
-  // console.log("전체, 태그, 상세: ", checkMapData);
 
   //현재 위치 state에 현재 위치 담기
   const handleSuccess = (pos) => {
@@ -208,28 +195,20 @@ function Map() {
   //지도 전체 리스트
   useEffect(() => {
     if (location) {
-      // console.log("전체리스트 갖고오기");
       dispatch(getMapBungle(location));
     }
   }, [location]);
 
   useEffect(() => {
-    // console.log("전체: ", location, checkMapData[0]);
     if (location && checkMapData[0] === true) {
-      // console.log("전체 리스트 갖고와서 넣어주기");
       setMapBungleData(() => getAroundBungle);
     }
   }, [getAroundBungle]);
 
   //태그 검색
-  // const [key, setKey] = useState();
   const onKeyDown = (e) => {
-    // setKey(() => e.key);
     if (e.target.value.length !== 0 && e.key === "Enter") {
-      // console.log("태그 리스트 가져오기");
       dispatch(mapTagSearch({ tag: e.target.value, location }));
-      // console.log("태그 검색 플래그 세우기");
-
       setCheckMapData([false, true, false]);
     }
   };
@@ -237,7 +216,6 @@ function Map() {
   //태그 검색 시 배열에 태그 검색 리스트 담기
   useEffect(() => {
     if (location && checkMapData[1] === true) {
-      // console.log("태그 리스트 가져와서 넣어주기");
       setMapBungleData(() => getTagSearchBungle);
     }
   }, [checkMapData[1], getTagSearchBungle]);
@@ -294,9 +272,7 @@ function Map() {
   //세부 설정 적용 함수
   const mapSearch = () => {
     if (location && onlyNumber && onlyDistance && selectCategory) {
-      // console.log("세부 설정 적용 리스트 불러오기");
       dispatch(getDetailMap(sendData));
-      // console.log("세부 설정 플래그 세우기");
       setCheckMapData([false, false, true]);
       setIsDetail(false);
     }
@@ -304,7 +280,6 @@ function Map() {
 
   useEffect(() => {
     if (location && checkMapData[2] === true) {
-      // console.log("세부 설정 리스트 담아주기");
       setMapBungleData(() => getDetailMapBungle);
     }
   }, [checkMapData[2], getDetailMapBungle]);
@@ -356,12 +331,8 @@ function Map() {
 
   //지도 생성
   useEffect(() => {
-    // const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-    // if (detailBungleInfo !== "") {
     if (!isLoad && mapBungleData) {
       const options = {
-        //지도를 생성할 때 필요한 기본 옵션
-        // center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
         center: new kakao.maps.LatLng(location?.latitude, location?.longitude),
         level: 10, //지도의 레벨(확대, 축소 정도)
       };
@@ -370,30 +341,14 @@ function Map() {
 
       // 마커를 표시할 위치와 title 객체 배열입니다
       var nowPosition = [
-        // {
-        //   title: "카카오",
-        //   latlng: new kakao.maps.LatLng(33.450705, 126.570677),
-        // },
         {
           latlng: new kakao.maps.LatLng(location.latitude, location.longitude),
         },
       ];
 
       var positions = [
-        // {
-        //   // title: "생태연못",
-        //   latlng: new kakao.maps.LatLng(33.450936, 126.569477),
-        // },
-        // {
-        //   // title: "텃밭",
-        //   latlng: new kakao.maps.LatLng(33.450879, 126.56994),
-        // },
-        // {
-        //   // title: "근린공원",
-        //   latlng: new kakao.maps.LatLng(33.451393, 126.570738),
-        // },
+        
       ];
-      // console.log("왜 안돼 이거");
 
       mapBungleData.map((location, index) => {
         positions = [
@@ -457,28 +412,12 @@ function Map() {
 
       // 마커를 표시할 위치와 title 객체 배열입니다
       var nowPosition = [
-        // {
-        //   title: "카카오",
-        //   latlng: new kakao.maps.LatLng(33.450705, 126.570677),
-        // },
         {
           latlng: new kakao.maps.LatLng(location.latitude, location.longitude),
         },
       ];
 
       var positions = [
-        // {
-        //   // title: "생태연못",
-        //   latlng: new kakao.maps.LatLng(33.450936, 126.569477),
-        // },
-        // {
-        //   // title: "텃밭",
-        //   latlng: new kakao.maps.LatLng(33.450879, 126.56994),
-        // },
-        // {
-        //   // title: "근린공원",
-        //   latlng: new kakao.maps.LatLng(33.451393, 126.570738),
-        // },
       ];
 
       // 마커 이미지의 이미지 주소입니다
@@ -545,7 +484,6 @@ function Map() {
   };
 
   if (!location) {
-    // console.log(location);
     return <Loading></Loading>;
   } else {
     return (
@@ -604,21 +542,6 @@ function Map() {
                       />
                       <MapPageTitle>설정</MapPageTitle>
                       <HeadrIconsWrap>
-                        {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                        {/* <span className="material-icons"> clear </span> */}
-                        {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                       </HeadrIconsWrap>
                     </PostHeaderWrap>
                     <div
@@ -720,14 +643,10 @@ function Map() {
             </ModalWrapper>
           )}
           <div className="map-wrapper">
-            {/* <button>{key}</button> */}
             {isDetail && (
               <div className="map-detail-modal-wrapper">
                 <div
                   className="map-detail-modal-overlay"
-                  // onClick={(e) => {
-                  //   handleDetailModal(e);
-                  // }}
                 >
                   <div className="map-detail-modal-inner">
                     <div className="map-detail-modal-content-wrap">
@@ -736,21 +655,6 @@ function Map() {
                           src={IconBackKey}
                           onClick={() => {
                             setIsDetail(false);
-                            // setOnlyDistance(100);
-                            // setOnlyNumber(25);
-                            // setSelectCategory([]);
-                            // setIsCategoryClick([
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            //   false,
-                            // ]);
                           }}
                         />
                         <div

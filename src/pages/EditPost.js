@@ -46,8 +46,6 @@ import {
   SelectChatBtnWrap,
   SelectChatLetterBtn,
   SelectChatVideoBtn,
-  SelectChatBtnName,
-  SelectChatBtnImg,
   // 해쉬태그
   HashTagWrap,
   HashTagInput,
@@ -58,7 +56,6 @@ import {
   SearchAddressItemWrap,
   SearchAddressInput,
   SearhAddressBtn,
-  SearhAddressCloseBtn,
   SearchCurrentPositionItemWrap,
   SearchCurrentPositionIcon,
   SearchCurrentPositionTitle,
@@ -111,11 +108,10 @@ function EditPost() {
   // modal state
   const [isModal, setIsModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  // chat test
+
   const client = useSelector((state) => state.Bungle.ChatClient.client);
   const guest = useSelector((state) => state.Bungle.ChatClient.guest);
   const Owner = useSelector((state) => state.Bungle.OnwerPostId);
-  // console.log( client, guest, Owner );
   // dispatch
   const dispatch = useDispatch();
   // navigate
@@ -130,7 +126,6 @@ function EditPost() {
   const [isLoad, setIsLoad] = useState(true);
   // 나의 벙글 가져오기
   const myBungle = useSelector((state) => state.Bungle.myBunglePost);
-  // console.log(myBungle);
   // load
   useEffect(() => {
     if (isLoad) {
@@ -280,7 +275,6 @@ function EditPost() {
     setPostUrls(
       postUrls.map((item, index) => {
         if (index === 0) {
-          // console.log("!!");
           return (item = "");
         }
       })
@@ -302,9 +296,7 @@ function EditPost() {
   };
 
   const onFistFileChange = (e) => {
-    // console.log( e );
     if (e.target.files[0]) {
-      // console.log("gg");
       setFirstFile(e.target.files[0]);
       uploadFiles(e, 0);
     } else {
@@ -400,7 +392,6 @@ function EditPost() {
 
   // ChatButton 클릭 함수
   const ChatButtonClickHandler = (text) => {
-    // console.log("Chat : ", text);
     setChatBtnState(true);
     setOnlyNumber("2");
     if (text === "letter") {
@@ -414,7 +405,6 @@ function EditPost() {
 
   // 카테고리 중복 선택 가능 함수
   const CategoryClickHandler = (selectCategory) => {
-    // console.log(selectCategory);
     setCheckedCategory(
       checkedCategory.map((item) => {
         if (item.category === selectCategory) {
@@ -428,8 +418,7 @@ function EditPost() {
   };
   // 엔터키 태그 입력
   const onKeyPress = (e) => {
-    // console.log( e, e.target.value );
-    if (e.target.value.length !== 0 && e.code === "Enter") {
+    if (e.target.value.length !== 0 && e.key === "Enter" ) {
       addHashTagItemHandler();
       e.target.value = "";
     }
@@ -499,16 +488,12 @@ function EditPost() {
   };
   // 시간 focus가 바뀌었을 떄
   const hourOnBlur = (event) => {
-    // console.log(event.target.value, isToday);
     if (isToday) {
       if (Number(event.target.value) < Number(currentHour)) {
         setIsModal(true);
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(
-        //   `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
-        // );
         const limitHour = Math.max(
           currentHour,
           Math.min(24, Number(event.target.value))
@@ -517,7 +502,7 @@ function EditPost() {
         setMinute(currentMinute);
       } else if (Number(event.target.value) >= 24) {
         setIsToday(false);
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+ 
         event.target.value -= 24;
         const limitHour = Math.max(
           0,
@@ -527,15 +512,11 @@ function EditPost() {
         setHour(("0" + limitHour).slice(-2));
       }
     } else {
-      // console.log(event.target.value, currentHour);
       if (Number(event.target.value) > Number(currentHour)) {
         setIsModal(true);
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(
-        //   `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
-        // );
         const limitHour = Math.max(
           0,
           Math.min(currentHour, Number(event.target.value))
@@ -552,7 +533,6 @@ function EditPost() {
     if (Number(event.target.value) >= 60) {
       setIsModal(true);
       setModalMessage(`분은 60분을 넘길 수 없습니다.`);
-      // alert(`분은 60분을 넘길 수 없습니다.`);
       setMinute(("0" + currentMinute).slice(-2));
     }
 
@@ -564,9 +544,7 @@ function EditPost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(
-        //   `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
-        // );
+        
         const limitMinute = Math.max(
           0,
           Math.min(currentMinute, Number(event.target.value))
@@ -581,14 +559,11 @@ function EditPost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(
-        //   `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
-        // );
+        
         const limitMinute = Math.max(
           currentMinute,
           Math.min(currentMinute, Number(event.target.value))
         );
-        // console.log("limit ", limitMinute);
         setMinute(limitMinute);
       }
     }
@@ -635,7 +610,7 @@ function EditPost() {
     if (Number(event.target.value) < 2) {
       setIsModal(true);
       setModalMessage(`인원 설정은 최소 2명입니다.`);
-      // alert(`인원 설정은 최소 2명입니다.`);
+      
       setOnlyNumber(2);
     }
   };
@@ -651,30 +626,16 @@ function EditPost() {
       setMinute(currentMinute);
     }
   };
-  // 다음 주소 검색
-  // 모바일용
-  // const addressStyle = {
-  //   display: "block",
-  //   position: "absolute",
-  //   top: "1120px",
-  //   left:"10px",
-  //   width: "375px",
-  //   height: "470px",
-  //   padding: "7px",
-  //   zIndex: 1,
-  // };
-  // 웹용
+  // 주소 style
   const addressStyle = {
     display: "block",
     position: "absolute",
-    top: "150%",
+    top: "140%",
     left: "50%",
     width: "375px",
     height: "470px",
     padding: "7px",
-    // marginTop:"-95px",
     marginLeft: "-195px",
-    // margin:"auto",
     zIndex: 5,
   };
   const handleComplete = (data) => {
@@ -691,7 +652,6 @@ function EditPost() {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    // console.log( fullAddress );
     setVisible(false);
     setIsAddress(fullAddress);
   };
@@ -730,7 +690,6 @@ function EditPost() {
   }, []);
 
   useEffect(() => {
-    // let coord = new kakao.maps.LatLng(location?.latitude, location?.longitude);
     if (location) {
       let geocoder = new kakao.maps.services.Geocoder();
       let coord = new kakao.maps.LatLng(location.latitude, location.longitude);
@@ -738,7 +697,6 @@ function EditPost() {
       let callback = function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
           const arr = { ...result };
-          // console.log(arr[0]);
           const _arr = arr[0].address.address_name;
           const _arrLoad = arr[0].address.road_address;
           setCurrentRoadAddress(_arrLoad);
@@ -786,17 +744,16 @@ function EditPost() {
       dates = year + "-" + month + "-" + day;
     }
 
-    // const sendCategory = extractCategory.join(",");
     const title = Title_ref.current.value.trim();
     const content = Content_ref.current.value.trim();
-    const hour = hour_ref.current.value; //("0" + hour_ref.current.value).slice(-2);
-    const minute = minute_ref.current.value; //("0" + minute_ref.current.value).slice(-2);
+    const hour = hour_ref.current.value; 
+    const minute = minute_ref.current.value;
     if (title.length <= 0) {
       setIsModal(true);
       setModalMessage("벙글 이름을 입력해주세요.");
       return null;
     }
-    // console.log("제목 길이:", title.length, "본문 길이:", content.length);
+    
     if (content.length > 100 || content.length === 0) {
       setIsModal(true);
       setModalMessage("벙글 소개글은 0자 이상 100자 이하여야 합니다.");
@@ -812,15 +769,11 @@ function EditPost() {
         address = currentAddress;
       }
       if (address.includes("(")) {
-        address = address.slice(0, address.indexOf("(") - 1); //, address.length - 1 ));
+        address = address.slice(0, address.indexOf("(") - 1); 
       }
 
       let postUrls = [];
-      // console.log(
-      //   isFirstFile?.includes("data"),
-      //   isSecondFile?.includes("data"),
-      //   isThirdFile?.includes("data")
-      // );
+      
       if (isFirstFile && !isFirstFile?.includes("data")) {
         postUrls.push(isFirstFile);
       }
@@ -828,14 +781,13 @@ function EditPost() {
         postUrls.push(isSecondFile);
       }
       if (isThirdFile && !isThirdFile?.includes("data")) {
-        // console.log("??");
         postUrls.push(isThirdFile);
       }
 
       const postDto = {
         title: title,
         content: content,
-        time: dates + ` ${hour}:${minute}:00`, //yyyy-MM-dd HH:mm:ss
+        time: dates + ` ${hour}:${minute}:00`, 
         personnel: Number(onlyNumber),
         place: address,
         tags: tagList,
@@ -843,18 +795,12 @@ function EditPost() {
         isLetter: isLetter,
         postUrls: postUrls,
       };
-      // console.log(postDto);
       const appendFile = isFile.filter((item) => {
-        // console.log(item);
         if (item !== "") {
           return item;
         }
       });
 
-      // console.log( isFirstFile, isSecondFile, isThirdFile );
-      // console.log(postUrls);
-      // console.log("append ", appendFile);
-      // console.log("isFile ", isFile);
       const formData = new FormData();
 
       formData.append(
@@ -872,7 +818,6 @@ function EditPost() {
         formData.append("postImg", "");
       } else {
         appendFile.forEach((item) => {
-          // console.log(item);
           formData.append("postImg", item);
         });
       }
@@ -885,8 +830,7 @@ function EditPost() {
     setIsDeleteModal(false);
     if (myBungle.isLetter) {
       chatDisconnect();
-      //dispatch(deleteMyBungleList({ postId, navigate }));
-    }
+     }
   };
 
   //Disconnect
@@ -902,9 +846,6 @@ function EditPost() {
         roomId: `${parseInt(guest)}`,
       };
     }
-
-    const PK = Number(localStorage.getItem("userId"));
-    // console.log("삭제 버튼 클릭", chatMessage);
     dispatch(
       deleteMyBungleList({
         postId: myBungle.postId,
@@ -913,9 +854,6 @@ function EditPost() {
         chatMessage,
       })
     );
-    // client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-    // client.disconnect(function () {
-    // });
   };
 
   const videoButtonClickHandler = () => {
@@ -953,7 +891,6 @@ function EditPost() {
             ref={Title_ref}
             style={{ backgroundColor: "transparent" }}
           />
-          {/* <DeleteButton src={IconClear} onClick={clearBtnOnClickHandler} /> */}
         </PostTilteDiv>
         {/* Body 저렇게 안 닫아주면 placeholder 안생김*/}
         <PostBody
@@ -982,7 +919,6 @@ function EditPost() {
                 type="file"
                 accept="image/jpg, image/png, image/jpeg, image/gif image/bmp image/jfif image/JPG image/PNG image/JPEG image/GIF iage/BMP image/img"
                 onChange={onFistFileChange}
-                // disabled={isFirstFileClear ? true : false}
                 onClick={(event) => (event.target.value = null)}
               />
             </UploadPictureWrap>
@@ -1032,7 +968,6 @@ function EditPost() {
           <UploadTitle>카테고리 설정</UploadTitle>
           <PostCategoriesItemWrap>
             {checkedCategory.map((item, index) => {
-              // console.log( item, index )
               return (
                 <PostCategoriesItem
                   isChecked={item.clicked}
@@ -1188,7 +1123,6 @@ function EditPost() {
             </SearchCurrentPositionTitle>
             <SearchCurrentPositionIconInput>
               · {currentAddress ? currentAddress : currentRoadAddress}
-              {/* · 서울 서초구 서초대로 233 */}
             </SearchCurrentPositionIconInput>
           </SearchCurrentPositionItemWrap>
         </SearchAddressWrap>
@@ -1218,11 +1152,7 @@ function EditPost() {
                 onClick={() => {
                   videoButtonClickHandler();
                 }}
-                // onClick={() => {
-                //   ChatButtonClickHandler("video");
-                // }}
               >
-                {/* <SelectChatBtnImg src={IconChatVideo} /> */}
                 <span
                   className="material-icons"
                   style={{ marginRight: "7px", marginTop: "2px" }}
@@ -1348,7 +1278,6 @@ function EditPost() {
           </ModalWrapper>
         )}
       </CreatePostWrap>
-      {/* </> } */}
     </>
   );
 }

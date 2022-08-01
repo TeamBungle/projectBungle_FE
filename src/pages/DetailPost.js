@@ -11,7 +11,6 @@ import {
 import { getCookie } from "../customapi/CustomCookie";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import Header from "../components/Header";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -89,7 +88,6 @@ import IconLike from "../assets/icon-like.svg";
 import IconUnlike from "../assets/icon-unlike.svg";
 import IconChat from "../assets/icon-chat.svg";
 import IconChatNo from "../assets/icon-chat-join-no.svg";
-import IconVideo from "../assets/icon-detail-camera.svg";
 
 import IconHighTemp from "../assets/icon-manner-high.svg";
 import IconMiddleTemp from "../assets/icon-manner-middle.svg";
@@ -136,8 +134,6 @@ const Post = () => {
   const dispatch = useDispatch();
 
   const container = useRef(null);
-  // const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-  const [isLoaded, setIsLoaded] = useState(true);
 
   // 알림 setInterval
   useEffect(() => {
@@ -150,7 +146,6 @@ const Post = () => {
   useEffect(() => {
     // postId가 있을 경우, dispatch 실행
     dispatch(detailBungleList(postId));
-    // console.log("Detail mount");
     window.scrollTo(0, 0);
   }, [postId]);
 
@@ -203,7 +198,6 @@ const Post = () => {
 
   const isLikeClick = (postId) => {
     dispatch(detailLikeBungleList(postId));
-    // console.log("like ", postId);
   };
 
   // 설정 modal state
@@ -286,21 +280,6 @@ const Post = () => {
                         />
                         <MapPageTitle>설정</MapPageTitle>
                         <HeadrIconsWrap>
-                          {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                          {/* <span className="material-icons"> clear </span> */}
-                          {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                         </HeadrIconsWrap>
                       </PostHeaderWrap>
                       <div
@@ -409,25 +388,6 @@ const Post = () => {
                   isLikeClick(detailBungleInfo.postId);
                 }}
               />
-              {/* {console.log(detailBungleInfo.postUrls.length)} */}
-              {/* { detailBungleInfo.postUrls.length === 1 && detailBungleInfo.postUrls[0] === filterPostURL ?
-              (
-                <PostImg src={IconNoPost} />
-              ) : (<Swiper
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  height: "207px",
-                }}
-              >
-                {detailBungleInfo.postUrls.map((item, index) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <PostImg src={item} />
-                    </SwiperSlide>
-                  );
-                })}
-              </Swiper>)} */}
               {detailBungleInfo.postUrls[0] !== null ? (
                 <Swiper
                   style={{
@@ -533,12 +493,10 @@ const Post = () => {
             </PostMemberWrap>
             {detailBungleInfo.isLetter ? (
               <PostJoinButtonWrapper>
-                {/* <PostJoinIcon src={IconChatNo} /> */}
                 {detailBungleInfo.joinCount === detailBungleInfo.personnel ? (
                   <>
                     <PostJoinIcon src={IconChatNo} />
                     <PostJoinButton
-                      // onClick={goToChatRoom}
                       style={{
                         border: "none",
                         pointerEvents: "none",
@@ -575,7 +533,6 @@ const Post = () => {
                 {detailBungleInfo.joinCount === detailBungleInfo.personnel ? (
                   <>
                     <PostJoinButton
-                      // onClick={goToChatRoom}
                       style={{
                         pointerEvents: "none",
                         backgroundColor: "#D9D9D9",

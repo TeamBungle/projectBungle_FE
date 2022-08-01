@@ -16,10 +16,6 @@ import AxiosAPI from "../customapi/CustomAxios";
 import "swiper/css";
 import "swiper/css/pagination";
 
-//Component
-// import Chat from "../components/Chat";
-// import ChatTest from "../components/ChatTest";
-
 //styled-components
 import {
   ChattingHeaderWrap,
@@ -30,7 +26,6 @@ import {
   PostMemberCard,
   PostMemberPicture,
   PostMemberVideo,
-  PostMemberName,
 } from "../styles/StyledDetailPost";
 import {
   // Moadl
@@ -46,14 +41,13 @@ import "../styles/Chat1.css";
 //icons
 import Hamburger from "../assets/icon-hamburger.svg";
 import IconBackKey from "../assets/icon-left-arrow.svg";
-import IconForwardKey from "../assets/icon-right-arrow.svg";
 import IconCamera from "../assets/icon-camera-mono (1).svg";
 import SendBtn from "../assets/icon-sendbtn (1).svg";
 import SendBtnActive from "../assets/icon-sendbtn-active.svg";
 import SendImgBtnActive from "../assets/icon-img-sendbtn.svg";
 import IconSiren from "../assets/icon-siren.svg";
 import IconMoon from "../assets/icon-share-mono.svg";
-import Notification from "../assets/icon-notification.svg";
+
 
 import IconHighTemp from "../assets/icon-manner-high.svg";
 import IconMiddleTemp from "../assets/icon-manner-middle.svg";
@@ -69,41 +63,15 @@ function ChattingRoom({ setRealTimeChat }) {
   // navigate
   const navigate = useNavigate();
 
-  // 방장권한
-  const BungleOnwer = useSelector((state) => state.Bungle.isOwner);
   // 내가 만든 채팅 룸 ID
   const Bungle = useSelector((state) => state.Bungle.OnwerPostId);
   // 참여자 채팅 룸 ID
-  // const Guest = useSelector((state) => state.Bungle.detailBungle.postId);
-  const userProfileInfo = useSelector((state) => state.Bungle.userProfile);
-  // console.log(userProfileInfo);
   const params = useParams();
-  // if (Bungle) {
-  //   console.log("PostID ", Bungle);
-  // }
   const token = localStorage.getItem("login-token");
   const PK = Number(localStorage.getItem("userId"));
 
   const Guest = params.postId;
   let postId = String(Guest);
-  // if (Bungle) {
-  //   postId = Bungle;
-  // } else {
-  //   postId = String(Guest);
-  // } // console.log(parseInt(postId)); }
-
-  console.log(
-    "OnwerPostId ",
-    Bungle,
-    "userId ",
-    PK,
-    "Guest( params.postId ) ",
-    Guest,
-    "Change Post ID ",
-    postId
-  );
-
-  // const { postID } = useParams();
 
   const userPersonalId = Number(localStorage.getItem("userId"));
 
@@ -144,38 +112,22 @@ function ChattingRoom({ setRealTimeChat }) {
     setUserData({ ...userData, connected: true });
 
     if (Bungle) {
-      // console.log("방장 connect");
       client.subscribe(`/sub/chat/room/${parseInt(postId)}`, onMessageReceived);
     } else if (Guest) {
-      // console.log("게스트 connect");
       client.subscribe(`/sub/chat/room/${parseInt(postId)}`, onMessageReceived);
     }
     userJoin();
   };
-  // console.log(userData);
 
   const userJoin = () => {
-    // console.log("Test user Join");
-    // if (Bungle) {
-    if (1) {
-      var chatMessage = {
-        type: "ENTER",
-        nickName: "seowoo",
-        roomId: `${postId}`,
-        status: "JOIN",
-      };
-    }
-    // else if (Guest) {
-    //   var chatMessage = {
-    //     type: "ENTER",
-    //     nickName: "seowoo",
-    //     roomId: `${parseInt(postId)}`,
-    //     status: "JOIN",
-    //   };
-    // }
+    let chatMessage = {
+      type: "ENTER",
+      nickName: "seowoo",
+      roomId: `${postId}`,
+      status: "JOIN",
+    };
 
     client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-    // console.log("Test user Subscribe");
   };
 
   const handleMessage = (event) => {
@@ -184,78 +136,34 @@ function ChattingRoom({ setRealTimeChat }) {
   };
 
   const sendValue = async () => {
-    // console.log("Test user send");
-
     if ((client && userData.message) || (client && fileUrl)) {
-      // if (Bungle) {
-      if (1) {
-        var chatMessage = {
-          type: "TALK",
-          message: userData.message,
-          roomId: `${postId}`,
-          fileUrl: fileUrl,
-        };
-      }
-      // else if (Guest) {
-      //   var chatMessage = {
-      //     type: "TALK",
-      //     message: userData.message,
-      //     roomId: `${parseInt(postId)}`,
-      //     fileUrl: fileUrl,
-      //   };
-      // }
-      // console.log(chatMessage);
+    let chatMessage = {
+        type: "TALK",
+        message: userData.message,
+        roomId: `${postId}`,
+        fileUrl: fileUrl,
+      };
+
       client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
       setUserData({ ...userData, message: "" });
       setFileUrl(null);
       setIsFile(null);
     }
   };
-  // console.log("userdata: ", userData);
-
+  
   const onMessageReceived = (payload) => {
-    var payloadData = JSON.parse(payload.body);
-    // console.log(payloadData);
+    let payloadData = JSON.parse(payload.body);
+  
     if (
       payloadData.type === "TALK" ||
       payloadData.type === "ENTER" ||
       payloadData.type === "QUIT"
     ) {
-      // console.log("switch Message");
       publicChats.push(payloadData);
       setNotiChats(() => payloadData);
       setPublicChats([...publicChats]);
     }
   };
-
-  //실시간 채팅 알림
-  // const { fireNotificationWithTimeout } = usePushNotification();
-  // useEffect(() => {
-  //   fireNotificationWithTimeout("Babble 채팅 메시지", 5000, {
-  //     body: `${notiChats.sender}: ${notiChats.message}`,
-  //   });
-  // }, [notiChats]);
-
-  // const realTimeChat = () => {
-  //   setRealTimeChat(notiChats);
-  //   console.log("됐다!!!");
-  // };
-  // useState(() => {
-  //   realTimeChat();
-  // }, [notiChats]);
-
-  // console.log(
-  //   "닉네임 : ",
-  //   notiChats.sender,
-  //   "//",
-  //   "메세지: ",
-  //   notiChats.message
-  // );
-  //Notification Hook
-  // const { fireNotificationWithTimeout } = usePushNotification();
-  // fireNotificationWithTimeout("Bungle 채팅 메시지", 5000, {
-  //   body: `${notiChats.sender}: ${notiChats.message}`,
-  // });
 
   //날짜 커스텀
   let chattingDate = [];
@@ -277,63 +185,30 @@ function ChattingRoom({ setRealTimeChat }) {
       chattingDate.push(ampm + " " + hour + ":" + minutes);
     }
   }
-  // console.log("publicChats: ", publicChats);
-
+  
   //Disconnect
   const chatDisconnect = () => {
-    // console.log("Chat disconnect");
-    // if (Bungle) {
-    if (1) {
-      var chatMessage = {
-        type: "QUIT",
-        roomId: `${postId}`,
-      };
-    }
-    // else if (Guest) {
-    //   var chatMessage = {
-    //     type: "QUIT",
-    //     roomId: `${parseInt(postId)}`,
-    //   };
-    // }
-    client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-    client.disconnect(function () {
-      setIsDisconnectModal(true);
-    });
+  
+  let chatMessage = {
+    type: "QUIT",
+    roomId: `${postId}`,
   };
-
-  //unsub
-  // const chatUnsubscribe = () => {
-  //   if (Bungle) {
-  //     let subscription = client.subscribe(
-  //       `/sub/chat/room/${postId}`,
-  //       onMessageReceived
-  //     );
-  //     subscription.unsubscribe();
-  //     navigate("/main");
-  //   } else if (Guest) {
-  //     let subscription = client.subscribe(
-  //       `/sub/chat/room/${postId}`,
-  //       onMessageReceived
-  //     );
-  //     subscription.unsubscribe();
-  //     navigate("/main");
-  //   }
-  // };
+  
+  client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
+  client.disconnect(function () {
+    setIsDisconnectModal(true);
+  });
+  };
 
   //엔터키
   const onKeyPress = (e) => {
-    // console.log(e.key);
-
     if (e.key === "Enter") {
       sendValue();
-      // console.log("Enter");
-      // scrollToBottom();
     }
   };
 
   //이미지 업로드
   const [isFile, setIsFile] = useState("");
-  // const [Img, setImg] = useState([]);
   const [fileUrl, setFileUrl] = useState();
 
   const imageUpload = (e) => {
@@ -344,34 +219,26 @@ function ChattingRoom({ setRealTimeChat }) {
       return;
     }
   };
-  // console.log(isFile);
-  // console.log(fileUrl);
-
+  
   const chatImg = async () => {
     if (fileUrl) {
       setFileUrl("");
-      // console.log(fileUrl);
     } else {
       const formData = new FormData();
       formData.append("file ", isFile);
       const response = await AxiosAPI.post(`/chat/message/file`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          // Authorization: token,
         },
       });
       setFileUrl(response.data);
     }
-    // console.log(fileUrl);
   };
-  // console.log(fileUrl);
-
+  
   useEffect(() => {
-    // console.log( isFile );
+
     if (isFile) {
       chatImg();
-      // setFileUrl(null);
-      // setIsFile(null);
     }
   }, [isFile]);
 
@@ -397,40 +264,28 @@ function ChattingRoom({ setRealTimeChat }) {
     AxiosAPI({
       method: "get",
       url: `/chat/message/userinfo/${postId}`,
-      // headers: {
-      //   Authorization: token,
-      // },
     })
-      .then((response) => {
-        // console.log(response.data);
-        setChatPeople(() => response.data);
-        MembersArray.push(chatPeople);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    .then((response) => {
+      setChatPeople(() => response.data);
+      MembersArray.push(chatPeople);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   };
 
-  // const [fileData, setFileData] = () => {};
   const chatFile = () => {
     AxiosAPI({
       method: "get",
       url: `/chat/message/files/${postId}`,
-      // headers: {
-      //   Authorization: token,
-      // },
     })
       .then((response) => {
-        // console.log(response.data);
         setChatFiles(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
   };
-  // console.log("사람 : ", chatPeople);
-  // console.log("파일 : ", chatFiles);
-
   // Modal state
 
   //채팅 상세 모달 state
@@ -450,10 +305,6 @@ function ChattingRoom({ setRealTimeChat }) {
   const ModalProfileOnClickHandler = () => {
     setProfileModal(() => true);
   };
-  //신고 모달에서 해당 사항클릭 후 버튼 state 관리
-  // const BtnOnClickHandler = () => {
-  //   setIsBtn(!isBtn);
-  // };
 
   //Chatting Detail Modal 밖 영역 클릭 시 닫기
   const handleModal = (e) => {
@@ -482,26 +333,14 @@ function ChattingRoom({ setRealTimeChat }) {
     }
   };
 
-  // console.log(
-  //   "신고모달 : ",
-  //   isModal,
-  //   "신고하기 버튼: ",
-  //   isBtn,
-  //   "채팅 상세: ",
-  //   chatModal
-  // );
-
   //신고하기
   const [report, setReport] = useState("");
   const [reportUserId, setReportUserId] = useState();
-  // console.log(report);
+
   const chatReportPerson = () => {
     AxiosAPI({
       method: "post",
       url: `/user/report/${reportUserId}`,
-      // headers: {
-      //   Authorization: token,
-      // },
       data: {
         history: report,
       },
@@ -518,9 +357,7 @@ function ChattingRoom({ setRealTimeChat }) {
   //userId 가져오는 함수
   function getInnerHTML(id) {
     setReportUserId(() => id);
-    // console.log(id);
   }
-  // console.log("유저 신고 Id: ", reportUserId);
 
   //프로필 상세 정보
   const [chatProfile, setChatProfile] = useState({});
@@ -528,9 +365,6 @@ function ChattingRoom({ setRealTimeChat }) {
     AxiosAPI({
       method: "get",
       url: `/chat/details/${postId}/${reportUserId}`,
-      // headers: {
-      //   Authorization: token,
-      // },
     })
       .then((response) => {
         setChatProfile(() => response.data);
@@ -540,7 +374,6 @@ function ChattingRoom({ setRealTimeChat }) {
       });
   };
   useEffect(() => {
-    // console.log("reportUser ", reportUserId);
     if (reportUserId) {
       detailProfile();
     }
@@ -576,12 +409,8 @@ function ChattingRoom({ setRealTimeChat }) {
     AxiosAPI({
       method: "get",
       url: `/chat/message/${postId}`,
-      // headers: {
-      //   Authorization: token,
-      // },
     })
       .then((response) => {
-        // console.log(response);
         for (let i = 0; i < response.data.length; i++) {
           if (response.data[i].type === "TALK") {
             setBeforeChat(response.data);
@@ -592,7 +421,6 @@ function ChattingRoom({ setRealTimeChat }) {
         console.log(error);
       });
   };
-  // console.log("이전: ", beforeChat);
 
   useEffect(() => {
     if (postId > 0) {
@@ -606,34 +434,14 @@ function ChattingRoom({ setRealTimeChat }) {
   const handleOutOwner = () => {
     for (let i = 0; i < publicChats.length; i++) {
       if (publicChats[i].quitOwner === true) {
-        // console.log("안에서 찍는거: ", publicChats[i].quitOwner);
         setOutOwner(() => true);
       }
     }
   };
-  // console.log("방장 나갔냐? : ", outOwner);
 
   useEffect(() => {
     handleOutOwner();
   }, [publicChats]);
-
-  //채팅 자동 스크롤
-  // const messagesEndRef = React.useRef(null);
-
-  // const scrollToBottom = () => {
-  //   const { scrollHeight, clientHeight } = messagesEndRef.current;
-  //   // console.log("스크롤 높이: ", scrollHeight, "보이는 높이: ", clientHeight);
-  //   messagesEndRef.current.scrollTop = scrollHeight - clientHeight;
-  //   // console.log(messagesEndRef);
-  // };
-
-  // useEffect(
-  //   () => {
-  //     scrollToBottom();
-  //   },
-  //   // [publicChats],
-  //   [beforeChat]
-  // );
 
   //스크롤 맨 밑에서 작성 시에만 scrollBottom
   const scrollRef = useRef();
@@ -642,7 +450,6 @@ function ChattingRoom({ setRealTimeChat }) {
   const [scrollState, setScrollState] = useState(true); // 자동 스크롤 여부
 
   const scrollEvent = _.debounce(() => {
-    // console.log("scroll");
     const scrollTop = boxRef.current.scrollTop; // 스크롤 위치
     const clientHeight = boxRef.current.clientHeight; // 요소의 높이
     const scrollHeight = boxRef.current.scrollHeight; // 스크롤의 높이
@@ -948,8 +755,6 @@ function ChattingRoom({ setRealTimeChat }) {
           <div className="chat-wrap" ref={boxRef}>
             {beforeChat.map((chat, index) => (
               <div key={index}>
-                {/* {console.log(chat)} */}
-                {/* {chat.type === "ENTER" && <div>{chat.message}</div>} */}
                 {chat.type === "TALK" ? (
                   <>
                     {userPersonalId !== chat.userId ? (
@@ -967,7 +772,6 @@ function ChattingRoom({ setRealTimeChat }) {
                                 </>
                               ) : (
                                 <>
-                                  {/* {console.log(chat.fileUrl.data)} */}
                                   {chat.fileUrl.slice(-3) === "jpg" ||
                                   chat.fileUrl.slice(-3) === "png" ||
                                   chat.fileUrl.slice(-4) === "jpeg" ||
@@ -1010,11 +814,7 @@ function ChattingRoom({ setRealTimeChat }) {
                     ) : (
                       <>
                         <div className="myitem">
-                          {/* <div className="profile">
-                    <img src={defaultProfile} alt="" />
-                  </div> */}
                           <div className="mybox">
-                            {/* <span className="mynickname">{chat.sender}</span> */}
                             {chat.message && chat.message !== "" ? (
                               <>
                                 <p className="mymsg">{chat.message}</p>
@@ -1066,8 +866,6 @@ function ChattingRoom({ setRealTimeChat }) {
             ))}
             {publicChats.map((chat, index) => (
               <div key={index}>
-                {/* {console.log(chat)} */}
-                {/* {chat.type === "ENTER" && <div>{chat.message}</div>} */}
                 {chat.type === "TALK" ? (
                   <>
                     {userPersonalId !== chat.userId ? (
@@ -1085,7 +883,6 @@ function ChattingRoom({ setRealTimeChat }) {
                                 </>
                               ) : (
                                 <>
-                                  {/* {console.log(chat.fileUrl.data)} */}
                                   {chat.fileUrl.slice(-3) === "jpg" ||
                                   chat.fileUrl.slice(-3) === "png" ||
                                   chat.fileUrl.slice(-4) === "jpeg" ||
@@ -1128,11 +925,7 @@ function ChattingRoom({ setRealTimeChat }) {
                     ) : (
                       <>
                         <div className="myitem">
-                          {/* <div className="profile">
-                    <img src={defaultProfile} alt="" />
-                  </div> */}
                           <div className="mybox">
-                            {/* <span className="mynickname">{chat.sender}</span> */}
                             {chat.message && chat.message !== "" ? (
                               <>
                                 <p className="mymsg">{chat.message}</p>
@@ -1262,13 +1055,6 @@ function ChattingRoom({ setRealTimeChat }) {
       </div>
     </>
   );
-
-  // return (
-  //   <div>
-  //     {/* <Chat /> */}
-  //     <ChatTest Bungle={Bungle} />
-  //   </div>
-  // );
 }
 
 export default ChattingRoom;

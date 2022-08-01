@@ -63,7 +63,6 @@ const Signup = () => {
       setIsSetPassword(true);
       setPasswordMessage("*비밀번호 형식이 올바릅니다.");
     }
-    // console.log("비밀번호 유효성 검사 :: ", regExp.test(e.target.value));
   };
 
   // 이메일 유효성 검사
@@ -112,14 +111,13 @@ const Signup = () => {
 
   // 이메일 입력 한글 방지
   const notInputHangleInputHandler = (event) => {
-    // console.log(event.target.value);
     setNotHangle(event.target.value.replace(/[^a-zA-Z-_0-9@.]/g, ""));
     const RegEx = /[^a-zA-Z-_0-9@.]/g;
 
     if (RegEx.test(event.target.value)) {
       event.target.value = "";
     }
-    // setEmail( event.target.value.length );
+    
     if (event.target.value.length > 0) {
       checkID(event);
       setIsEmailClear(true);
@@ -151,7 +149,7 @@ const Signup = () => {
       } else {
         alert(response.data.message);
       }
-      // console.log(response);
+      
     } catch (err) {
       console.log(err);
     }
@@ -229,7 +227,7 @@ const Signup = () => {
             `${SERVER_URL}/user/duplicate/username`,
             { username: event.target.value }
           );
-          // console.log(response);
+          
           setIsEmail(false);
           setEmailMessage(response.data.message);
           setDuplicateEmail(response.data.response);
@@ -343,7 +341,6 @@ const Signup = () => {
               </ModalContentWrap>
               <ModalDivider />
 
-              {/* <ModalButton onClick={ModalOnClickHandler}>확인</ModalButton> */}
               <ModalButton
                 onClick={() => {
                   ModalOnClickHandler();
@@ -351,7 +348,6 @@ const Signup = () => {
               >
                 확인
               </ModalButton>
-              {/* {  ( isSetPassword && duplicateEmail ) ? <ModalButton style={{backgroundColor:" #FFC634", color:"black"}}onClick={ModalOnClickHandler}>확인</ModalButton> : <ModalButton >확인</ModalButton>} */}
             </ModalInner>
           </ModalOverlay>
         </ModalWrapper>

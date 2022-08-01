@@ -1,8 +1,6 @@
 //Libraries
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-// Notification Hook
-// import usePushNotification from "./hook/usePushNotification";
 //CSS
 import "./App.css";
 //Pages
@@ -40,39 +38,57 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        {/* Private Routes Start */}
         <Route element={<PrivateRoutes />}>
-          {/* social login redirection URL */}
-          {/* <Route path="/oauth" element={<Login />} /> */}
+          {/* Main */}
           <Route path="/main" element={<Main />} />
+
+          {/* Search */}
           <Route path="/tagsearch" element={<TagSearch />} />
-          <Route
-            path="/categorysearch/:category"
-            element={<CategorySearch />}
-          />
+          <Route path="/categorysearch/:category" element={<CategorySearch />} />
+
           {/* MyPage */}
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/onboard" element={<OnBoarding/>} />
-          <Route path="/chatlist" element={<ChatList />} />
-          <Route path="/detailpost/:postId" element={<DetailPost />} />
-          <Route path="/map/detailpost/:postId" element={<DetailPost />} />
-          <Route path="/createpost" element={<CreatePost />} />
-          <Route path="/editpost" element={<EditPost />} />
-          <Route path="/profilesetting" element={<ProfileSetting />} />
           <Route path="/mylikebung" element={<MyLikeBung />} />
+          <Route path="/profilesetting" element={<ProfileSetting />} />
+
+          {/* Chattings */}
           <Route path="/chat" element={<ChattingRoom />} />
           <Route path="/chat/:postId" element={<ChattingRoom />} />
+          <Route path="/chatlist" element={<ChatList />} />
+
+          {/* Map */}
+          <Route path="/map/detailpost/:postId" element={<DetailPost />} />
+
+          {/* onBoarding */}
           <Route path="/map" element={<Map />} />
+          <Route path="/onboard" element={<OnBoarding/>} />
+
+          {/* Posts */}
+          <Route path="/createpost" element={<CreatePost />} />
+          <Route path="/detailpost/:postId" element={<DetailPost />} />
+          <Route path="/editpost" element={<EditPost />} />
+
+          {/* 이용 약관 */}
+          <Route path="/termsconditions" element={<TermsConditions />} />
+          
           {/* 알림 */}
           <Route path="notification" element={<Notification />} />
-          <Route path="/termsconditions" element={<TermsConditions />} />
         </Route>
+        {/* Private Routes End */}
+
+        {/* Public Routes Start */}
+        {/* Login */}
         <Route path="/" element={<Login />} />
+        {/* Social Rediection */}
         <Route path="/oauth" element={<LoadingLogin />} />
+        {/* SignUp */}
         <Route path="/signup" element={<SignUp />} />
         {/* Not Found */}
         <Route path="*" element={<NotFound />} />
+        {/* Public Routes End */}
+
       </Routes>
-      {/* <Footer /> */}
     </div>
   );
 }

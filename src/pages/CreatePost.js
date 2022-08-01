@@ -46,8 +46,6 @@ import {
   SelectChatBtnWrap,
   SelectChatLetterBtn,
   SelectChatVideoBtn,
-  SelectChatBtnName,
-  SelectChatBtnImg,
   // 해쉬태그
   HashTagWrap,
   HashTagInput,
@@ -58,7 +56,6 @@ import {
   SearchAddressItemWrap,
   SearchAddressInput,
   SearhAddressBtn,
-  SearhAddressCloseBtn,
   SearchCurrentPositionItemWrap,
   SearchCurrentPositionIcon,
   SearchCurrentPositionTitle,
@@ -96,14 +93,11 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledLogin";
-
-import {
-  // Moadl
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
 } from "../styles/StyledLogin";
+
 import { MapPageTitle } from "../styles/StyledHeader";
 //icon
 
@@ -437,7 +431,6 @@ function CreatePost() {
     if (Number(event.target.value) < 2) {
       setIsModal(true);
       setModalMessage(`인원 설정은 최소 2명입니다.`);
-      // alert(`인원 설정은 최소 2명입니다.`);
       setOnlyNumber(2);
     }
   };
@@ -518,7 +511,7 @@ function CreatePost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+        
         const limitHour = Math.max(
           currentHour,
           Math.min(24, Number(event.target.value))
@@ -527,7 +520,7 @@ function CreatePost() {
         setMinute(currentMinute);
       } else if (Number(event.target.value) >= 24) {
         setIsToday(false);
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+        
         event.target.value -= 24;
         const limitHour = Math.max(
           0,
@@ -542,7 +535,7 @@ function CreatePost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+        
         const limitHour = Math.max(
           0,
           Math.min(currentHour, Number(event.target.value))
@@ -556,12 +549,9 @@ function CreatePost() {
   };
   // 분 focus가 바뀌었을 떄
   const minuteOnBlur = (event) => {
-    // console.log( Number( currentHour + currentMinute ));
-    // console.log( Number( hour + event.target.value ) );
     if (Number(event.target.value) >= 60) {
       setIsModal(true);
       setModalMessage(`분은 60분을 넘길 수 없습니다.`);
-      // alert(`분은 60분을 넘길 수 없습니다.`);
       setMinute(("0" + currentMinute).slice(-2));
     }
 
@@ -573,8 +563,7 @@ function CreatePost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // console.log("??");
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+        
         const limitMinute = Math.max(
           0,
           Math.min(currentMinute, Number(event.target.value))
@@ -589,29 +578,17 @@ function CreatePost() {
         setModalMessage(
           `시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`
         );
-        // alert(`시간 설정은 당일 ${currentHour}:${currentMinute}부터 다음 날 ${currentHour}:${currentMinute}까지입니다.`);
+        
         const limitMinute = Math.max(
           currentMinute,
           Math.min(currentMinute, Number(event.target.value))
         );
-        // console.log("limit ", limitMinute);
         setMinute(limitMinute);
       }
     }
   };
-  // 다음 주소 검색
-  // 모바일용
-  // const addressStyle = {
-  //   display: "block",
-  //   position: "absolute",
-  //   top: "1120px",
-  //   left:"10px",
-  //   width: "375px",
-  //   height: "470px",
-  //   padding: "7px",
-  //   zIndex: 1,
-  // };
-  // 웹용
+  
+  // 주소 style
   const addressStyle = {
     display: "block",
     position: "absolute",
@@ -621,7 +598,6 @@ function CreatePost() {
     height: "470px",
     padding: "7px",
     marginLeft: "-195px",
-    // marginTop:"-50px",
     zIndex: 5,
   };
   const handleComplete = (data) => {
@@ -638,7 +614,7 @@ function CreatePost() {
       }
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
-    // console.log( fullAddress );
+    
     setVisible(false);
     setIsAddress(fullAddress);
   };
@@ -675,16 +651,12 @@ function CreatePost() {
       options
     );
     window.scrollTo(0, 0);
-    // const today = new Date();
-    // const currentHour = ("0" + today.getHours()).slice(-2);
-    // const currentMinute = ("0" + today.getMinutes()).slice(-2);
-
+    
     setHour(currentHour);
     setMinute(currentMinute);
   }, []);
 
   useEffect(() => {
-    // let coord = new kakao.maps.LatLng(location?.latitude, location?.longitude);
     if (location) {
       let geocoder = new kakao.maps.services.Geocoder();
       let coord = new kakao.maps.LatLng(location.latitude, location.longitude);
@@ -692,7 +664,6 @@ function CreatePost() {
       let callback = function (result, status) {
         if (status === kakao.maps.services.Status.OK) {
           const arr = { ...result };
-          // console.log(arr[0]);
           const _arr = arr[0].address.address_name;
           const _arrLoad = arr[0].address.road_address;
           setCurrentRoadAddress(_arrLoad);
@@ -760,7 +731,7 @@ function CreatePost() {
     } else {
       content = Content_ref.current.value.trim();
     }
-    // console.log("제목 길이 :", title.length, "본문 길이 :", content.length);
+    
     const hour = ("0" + hour_ref.current.value).slice(-2);
     const minute = ("0" + minute_ref.current.value).slice(-2);
 
@@ -774,20 +745,19 @@ function CreatePost() {
         address = currentAddress;
       }
       if (address.includes("(")) {
-        address = address.slice(0, address.indexOf("(") - 1); //, address.length - 1 ));
+        address = address.slice(0, address.indexOf("(") - 1); 
       }
 
       const postDto = {
         title: title,
         content: content,
-        time: dates + ` ${hour}:${minute}:00`, //yyyy-MM-dd HH:mm:ss
+        time: dates + ` ${hour}:${minute}:00`, 
         personnel: Number(onlyNumber),
         place: address,
         tags: tagList,
         categories: SeelectedCategories,
         isLetter: isLetter,
       };
-      // console.log(postDto);
 
       const appendFile = isFile.filter((item) => {
         if (item !== "") {
@@ -795,7 +765,6 @@ function CreatePost() {
         }
       });
 
-      // console.log(postDto);
       const formData = new FormData();
 
       formData.append(
@@ -817,7 +786,6 @@ function CreatePost() {
         });
       }
       dispatch(createBungleList({ formData, navigate, isLetter }));
-      // console.log( postDto.isLetter, postDto.personnel )
     } else {
     }
   };
@@ -920,21 +888,6 @@ function CreatePost() {
                     />
                     <MapPageTitle>설정</MapPageTitle>
                     <HeadrIconsWrap>
-                      {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                      {/* <span className="material-icons"> clear </span> */}
-                      {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                     </HeadrIconsWrap>
                   </PostHeaderWrap>
                   <div
@@ -1045,9 +998,7 @@ function CreatePost() {
             maxLength={36}
             ref={Title_ref}
           />
-          {/* <DeleteButton src={IconClear} onClick={clearBtnOnClickHandler} /> */}
         </PostTilteDiv>
-        {/* Body 저렇게 안 닫아주면 placeholder 안생김*/}
         <PostBody
           type="text"
           ref={Content_ref}
@@ -1310,11 +1261,7 @@ function CreatePost() {
                 onClick={() => {
                   videoButtonClickHandler();
                 }}
-                // onClick={() => {
-                //   ChatButtonClickHandler("video");
-                // }}
               >
-                {/* <SelectChatBtnImg src={IconChatVideo} /> */}
                 <span
                   className="material-icons-outlined"
                   style={{ marginRight: "7px", marginTop: "2px" }}

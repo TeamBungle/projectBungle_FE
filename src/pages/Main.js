@@ -1,9 +1,3 @@
-/*
-  작성자 : 한지용
-  작성 날짜 : 
-  작성 내용 :
-*/
-
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -96,7 +90,6 @@ import Notification from "../assets/icon-notification.svg";
 import NotificationOn from "../assets/icon-notification-on.svg";
 import Setting from "../assets/icon-setting.svg";
 import IconBackKey from "../assets/icon-left-arrow.svg";
-import IconCloseBtn from "../assets/icon-close-btn.svg";
 
 // Footer Icons
 import IconHomeCurrent from "../assets/icon-home-current.svg";
@@ -110,8 +103,6 @@ function Main() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
 
-  // OnBoarding
-  const [isOnboard, setIsOnboard] = useState(false);
   // 알림 call
   const interval = useRef(null);
   // 알림 state
@@ -122,16 +113,14 @@ function Main() {
   useEffect(() => {
     setNotificationState(NotificationState);
   }, [NotificationState]);
-  // isOwner
+
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-  // console.log(ownerCheck);
 
   // dispatch
   const dispatch = useDispatch();
   // navigate
   const navigate = useNavigate();
-  // load
-  const [isLoad, setIsLoad] = useState(true);
+
   const realTimeList = useSelector((state) => state.Bungle.realTime);
   const endTimeList = useSelector((state) => state.Bungle.endTime);
 
@@ -180,7 +169,6 @@ function Main() {
     if (error.message === "User denied Geolocation") {
       alert("사이트 설정에서 GPS 설정을 켜주세요");
     }
-    // if( error.message );
   };
 
   // GPS 아이콘 클릭, update position
@@ -194,9 +182,6 @@ function Main() {
   };
 
   useEffect(() => {
-    // const response = navigator.geolocation;
-    // console.log( response );
-
     navigator.geolocation.getCurrentPosition(
       handleSuccess,
       handleError,
@@ -242,7 +227,6 @@ function Main() {
 
   // 실시간 벙글 하트 클릭
   const HeartRealTimeClickHanlder = (realTimeIndex, postId) => {
-    // console.log(realTimeIndex, postId);
     setIsRealTimeHeart(
       isRealTimeHeart.map((item, Checkedindex) => {
         if (Checkedindex === realTimeIndex) {
@@ -284,16 +268,11 @@ function Main() {
   // 더보기 클릭
   const MoreBtnClickHandler = (status) => {
     if (status === "realTime") {
-      // console.log("More real time");
       dispatch(moreBungleList({ status, location, navigate }));
-      // navigate("/tagsearch");
     } else if (status === "manner") {
-      // console.log("More manner");
       // navigate("/tagsearch");
     } else {
-      // console.log("More endTime");
       dispatch(moreBungleList({ status, location, navigate }));
-      // navigate("/tagsearch");
     }
   };
 
@@ -328,8 +307,8 @@ function Main() {
       setSettingModal(false);
     }
   };
+
   if (!location || (!realTimeList && !endTimeList)) {
-    // console.log(location);
     return (
       <>
         <Loading></Loading>
@@ -339,7 +318,6 @@ function Main() {
 
   return (
     <>
-      {/* {!isLoad && ( */}
       <MainWrap>
         <MainHeaderWrap>
           <MainHeaderLogo src={IconMainLogo} />
@@ -514,7 +492,6 @@ function Main() {
           <MainContentTitle>실시간 벙글</MainContentTitle>
           <MainContentItemWrap>
             {realTimeList.map((item, index) => {
-              // console.log( item );
               return (
                 <MainContentItemFrame key={index}>
                   {item.postUrl ? (
@@ -600,8 +577,6 @@ function Main() {
           <MainContentTitle>마감 임박순 벙글</MainContentTitle>
           <MainContentItemWrap>
             {endTimeList.map((item, index) => {
-              // console.log( item );
-
               return (
                 <MainContentItemFrame key={index}>
                   {item.postUrl ? (

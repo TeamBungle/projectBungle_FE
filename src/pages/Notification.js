@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 
 import { clearNotificationState } from "../redux/modules/BungleSlice";
 import {
-  getIntervalNotification,
   LogOut,
   Withdrawal,
 } from "../redux/modules/BungleSlice";
@@ -42,7 +41,7 @@ import {
 } from "../styles/StyledHeader";
 import "../styles/Setting.css";
 
-import { LoadingWrap, LoadingLogo, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
 
 import Setting from "../assets/icon-setting.svg";
 import IconBackKey from "../assets/icon-left-arrow.svg";
@@ -105,7 +104,6 @@ function Notification() {
           }}
         />
         <HeadrIconsWrap>
-          {/* <IconNotification src={IconNotificationNonActive} /> */}
           <IconSetting
             src={Setting}
             onClick={() => {
@@ -128,22 +126,6 @@ function Notification() {
                   />
                   <MapPageTitle>설정</MapPageTitle>
                   <HeadrIconsWrap>
-                    {/* {notificationState ? (
-                      <IconNotification
-                        src={NotificationOn}
-                        onClick={() => {
-                          navigate("/notification");
-                        }}
-                      />
-                    ) : (
-                      <IconNotification src={Notification} />
-                    )} */}
-                    {/* <IconSetting
-                      onClick={() => {
-                        setSettingModal(true);
-                      }}
-                      src={Setting}
-                    /> */}
                   </HeadrIconsWrap>
                 </PostHeaderWrap>
                 <div
@@ -251,9 +233,6 @@ function Notification() {
             >
               <NotificationTitleWrap>
                 <div style={{ display: "flex", marginTop: "10px" }}>
-                  {/* <span style={{ color: "#FFC632" }} className="material-icons">
-                    notifications
-                  </span> */}
                   <img
                     style={{ width: "24px", height: "24px" }}
                     src={IconBell}
@@ -271,7 +250,6 @@ function Notification() {
         })
       ) : (
         <LoadingWrap>
-          {/* <LoadingLogo src={IconLoadingLogo} /> */}
           <LoadingText style={{ marginTop: "80%", color: "#898989" }}>
             알림이 없습니다.
           </LoadingText>

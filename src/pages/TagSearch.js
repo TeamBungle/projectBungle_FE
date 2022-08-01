@@ -40,7 +40,7 @@ import {
 } from "../styles/StyledLogin";
 import { MapPageTitle } from "../styles/StyledHeader";
 
-import { LoadingWrap, LoadingLogo, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
 
 //Components
 import TagSearchCard from "../components/TagSearchCard";
@@ -63,7 +63,6 @@ import IconMyBungae from "../assets/icon-account.svg";
 import IconCreate from "../assets/icon-create-post.svg";
 import IconEdit from "../assets/icon-edit-footer.svg";
 
-import IconLoadingLogo from "../assets/icon-splash-logo.svg";
 function TagSearch() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
@@ -87,7 +86,7 @@ function TagSearch() {
   const [isLoad, setIsLoad] = useState(true);
   //검색 정렬 드롭박스
   const searchList = useSelector((state) => state.Bungle.moreList);
-  // console.log(searchList);
+  
   const [selected, setSelected] = React.useState("최신순");
   const handleSelect = (e) => {
     // console.log(e.target.value);

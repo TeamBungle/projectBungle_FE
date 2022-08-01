@@ -21,10 +21,7 @@ function LoadingLogin() {
   
     // 네이버 소셜 로그인 시작
     // 네이버 소셜 로그인 시도 후, JWT 토큰 획득
-    const getNaverLoginJWTtoken = async () => {
-      // console.log(SERVER_URL);
-      // console.log(code);
-  
+    const getNaverLoginJWTtoken = async () => { 
       try {
         const response = await axios.get(`${SERVER_URL}/user/signin/naver`, {
           params: {
@@ -128,15 +125,11 @@ function LoadingLogin() {
     };
   
     if (code !== null) {
-      // console.log(code, url);
       if (url.href.includes("state")) {
-        // console.log("naver login");
         getNaverLoginJWTtoken();
       } else if (url.href.includes("scope")) {
-        // console.log("google login");
         getGoogleLoginJWTtoken();
       } else {
-        // console.log("kakao login");
         getKakaoLoginJWTtoken();
       }
     }
@@ -144,7 +137,6 @@ function LoadingLogin() {
   return (
     <LoadingWrap>
         <LoadingLogo src={IconLoadingLogo}/>
-        {/* <LoadingText>로딩 중</LoadingText> */}
         <LoadingText>잠시만 기다려주세요</LoadingText>
     </LoadingWrap>
   )

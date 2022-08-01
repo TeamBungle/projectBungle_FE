@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   myChattingList,
-  getIntervalNotification,
   LogOut,
   Withdrawal,
 } from "../redux/modules/BungleSlice";
 import { useNavigate } from "react-router-dom";
-import moment from "moment";
 
 import { getCookie } from "../customapi/CustomCookie";
 
@@ -43,14 +41,12 @@ import {
   HeadrIconsWrap,
 } from "../styles/StyledHeader.js";
 
-import { LoadingWrap, LoadingLogo, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
 
 import {
   // LeadingActions,
   SwipeableList,
   SwipeableListItem,
-  SwipeAction,
-  TrailingActions,
 } from "react-swipeable-list";
 import {
   // Moadl
@@ -64,7 +60,6 @@ import "react-swipeable-list/dist/styles.css";
 import "../styles/ChatListSwiper.css";
 
 //icon
-import IconLoadingLogo from "../assets/icon-splash-logo.svg";
 import Setting from "../assets/icon-setting.svg";
 import Notification from "../assets/icon-notification.svg";
 import IconHome from "../assets/icon-home.svg";
@@ -80,45 +75,20 @@ function App() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
 
-  const [lastMessageTime, setLastMessageTime] = useState([]);
-
   // disconnect modal state
   const [isDisconnectModal, setIsDisconnectModal] = useState(false);
 
   const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-  // console.log(ownerCheck);
-
-  // chat test
-  const client = useSelector((state) => state.Bungle.ChatClient.client);
-  // console.log(client);
-  const guest = useSelector((state) => state.Bungle.ChatClient.guest);
-  const Owner = useSelector((state) => state.Bungle.OnwerPostId);
 
   const myChattingInfo = useSelector((state) => state.Bungle.myChatting);
-  // console.log(myChattingInfo);
   const dispatch = useDispatch();
-
-  // const trailingActions = () => (
-  //   <TrailingActions>
-  //     <SwipeAction
-  //       destructive={true}
-  //       onClick={() => {
-  //         chatDisconnect();
-  //       }}
-  //     >
-  //       나가기
-  //     </SwipeAction>
-  //   </TrailingActions>
-  // );
 
   //postId 가져오는 함수
   const [getPostId, setGetPostId] = useState();
   function getInnerHTML(id) {
     setGetPostId(() => id);
-    // console.log(id);
     enterChat(id);
   }
-  // console.log("post Id: ", getPostId);
 
   const navigate = useNavigate();
   const enterChat = (id) => {
@@ -178,31 +148,7 @@ function App() {
           "일 벙글";
       }
     }
-    // console.log(realStartDate);
   }
-
-  //Disconnect
-  const chatDisconnect = () => {
-    if (Owner) {
-      var chatMessage = {
-        type: "QUIT",
-        roomId: `${Owner}`,
-      };
-    } else if (guest) {
-      var chatMessage = {
-        type: "QUIT",
-        roomId: `${parseInt(guest)}`,
-      };
-    }
-    // const token = localStorage.getItem("login-token");
-    const PK = Number(localStorage.getItem("userId"));
-    client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-    client.disconnect(function () {
-      setIsDisconnectModal(true);
-    });
-  };
-
-  // console.log();
 
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);
@@ -271,21 +217,6 @@ function App() {
                     />
                     <MapPageTitle>설정</MapPageTitle>
                     <HeadrIconsWrap>
-                      {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                      {/* <span className="material-icons"> clear </span> */}
-                      {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                     </HeadrIconsWrap>
                   </PostHeaderWrap>
                   <div
@@ -511,21 +442,6 @@ function App() {
                     />
                     <MapPageTitle>설정</MapPageTitle>
                     <HeadrIconsWrap>
-                      {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                      {/* <span className="material-icons"> clear </span> */}
-                      {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                     </HeadrIconsWrap>
                   </PostHeaderWrap>
                   <div
@@ -630,12 +546,9 @@ function App() {
           return (
             <SwipeableList key={index}>
               <SwipeableListItem
-              // leadingActions={leadingActions()}
-              // trailingActions={trailingActions()}
               >
                 <div className="first_swiper_main">
                   <div className="first_swiper_img">
-                    {/* <img src={defaultProfile} alt="" /> */}
                     <img
                       src={item.postUrl ? item.postUrl : IconDefaultChatList}
                       alt=""

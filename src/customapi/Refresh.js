@@ -9,12 +9,9 @@ const refresh = async (config) => {
   let refreshToken = getCookie("refresh_token");
   const expireAt = localStorage.getItem("expireAt");
   let token = localStorage.getItem("login-token");
-  // console.log("[interceptors]", expireAt);
-  // console.log("refresh ", refreshToken);
-  // console.log("login-token ", token );
+  // 저장되어 있는 만료 시간을 보고
+  // 만료시간이 지났다면 token 재 요청  
   if (moment(expireAt).diff(moment()) < 0 && refreshToken) {
-    // console.log("만료시간 경과");
-
     const response = await axios.post(
       `${SERVER_URL}/user/refresh`,
       {},
@@ -25,7 +22,7 @@ const refresh = async (config) => {
         },
       }
     );
-    // console.log(response);
+    
     if (response.data.response) {
       setCookie("refresh_token", response.headers.refreshtoken, {
         path: "/",
@@ -38,11 +35,6 @@ const refresh = async (config) => {
       );
 
       config.headers.Authorization = `${localStorage.getItem("login-token")}`;
-      // console.log(
-      //   "갱신 끝 ",
-      //   localStorage.getItem("login-token"),
-      //   localStorage.getItem("expireAt")
-      // );
     } else {
       alert(response.data.response, response.data.message);
     }
@@ -50,10 +42,8 @@ const refresh = async (config) => {
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    // console.log("[interceptors] not token");
   }
 
-  //   config.headers.Authorization = `Bearer ${token}`
   return config;
 };
 

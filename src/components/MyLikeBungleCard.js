@@ -1,35 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { likeBungleList } from "../redux/modules/BungleSlice";
 
-import {
-  PostHeaderWrap,
-  ChattingBackKey,
-  HeadrIconsWrap,
-  IconNotification,
-  IconSetting,
-} from "../styles/StyledHeader.js";
-
-import {
-  MapFooterWrap,
-  FooterIconWrap,
-  FooterIconImg,
-  FooterIconText,
-  FooterAddBungae,
-} from "../styles/StyledFooter.js";
-
-import {
-  MainContentItemDefalutWrap,
-  MainContentItemImgDefault,
-  MainContentItemImg,
-} from "../styles/StyledMain.js";
-
-import { LoadingWrap, LoadingLogo, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
 //swipe-list
 import {
-  LeadingActions,
   SwipeableList,
   SwipeableListItem,
   SwipeAction,
@@ -46,7 +23,6 @@ import UnlikeImg from "../assets/icon-unlike.svg";
 import IconHighTemp from "../assets/icon-manner-high.svg";
 import IconMiddleTemp from "../assets/icon-manner-middle.svg";
 import IconLowTemp from "../assets/icon-manner-low.svg";
-import IconLoadingLogo from "../assets/icon-splash-logo.svg";
 
 function MyLikeBungleCard(props) {
   const { myLikeList } = props;
@@ -65,7 +41,6 @@ function MyLikeBungleCard(props) {
   const navigate = useNavigate();
 
   const likeMyBugleList = (postId) => {
-    // console.log(postId);
     dispatch(likeBungleList(postId));
   };
 
@@ -74,7 +49,6 @@ function MyLikeBungleCard(props) {
       <SwipeAction
         destructive={true}
         onClick={() => {
-          // console.log("찜 삭제");
           likeMyBugleList(myLikeList.postId);
         }}
       >

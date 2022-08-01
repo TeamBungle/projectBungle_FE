@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 //Components
 import MyLikeBungleCard from "../components/MyLikeBungleCard";
 import {
-  getIntervalNotification,
   LogOut,
   Withdrawal,
   myLikeBungleList,
@@ -27,7 +26,7 @@ import {
   FooterAddBungae,
 } from "../styles/StyledFooter.js";
 
-import { LoadingWrap, LoadingLogo, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
 
 import {
   // Moadl
@@ -55,8 +54,6 @@ import Setting from "../assets/icon-setting.svg";
 import Notification from "../assets/icon-notification.svg";
 import NotificationOn from "../assets/icon-notification-on.svg";
 
-import IconLoadingLogo from "../assets/icon-splash-logo.svg";
-
 function MyPageRecent() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
@@ -66,7 +63,6 @@ function MyPageRecent() {
   const dispatch = useDispatch();
   const [isLoad, setIsLoad] = useState(true);
   const myLikeList = useSelector((state) => state.Bungle.myLikeList);
-  // const [myLikeList, setMyLikeList] = useState();
 
   const [location, setLocation] = useState();
   // 에러 메세지 저장
@@ -88,7 +84,6 @@ function MyPageRecent() {
     if (error.message === "User denied Geolocation") {
       alert("사이트 설정에서 GPS 설정을 켜주세요");
     }
-    // if( error.message );
   };
 
   // GPS 옵션
@@ -121,8 +116,6 @@ function MyPageRecent() {
     window.scrollTo(0, 0);
   }, []);
 
-  // console.log(location);
-
   const getMyLikeList = (location) => {
     dispatch(myLikeBungleList(location));
   };
@@ -149,7 +142,6 @@ function MyPageRecent() {
       }, 200);
     }
   }, []);
-  // console.log(myLikeList);
 
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);
@@ -234,21 +226,6 @@ function MyPageRecent() {
                   />
                   <MapPageTitle>설정</MapPageTitle>
                   <HeadrIconsWrap>
-                    {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                    {/* <span className="material-icons"> clear </span> */}
-                    {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                   </HeadrIconsWrap>
                 </PostHeaderWrap>
                 <div
@@ -349,14 +326,12 @@ function MyPageRecent() {
           </ModalOverlay>
         </ModalWrapper>
       )}
-      {/* <div style={{ marginBottom: "70px" }}> */}
       {myLikeList?.length > 0 ? (
         myLikeList.map((item, index) => {
           return <MyLikeBungleCard myLikeList={item} />;
         })
       ) : (
         <LoadingWrap>
-          {/* <LoadingLogo src={IconLoadingLogo} /> */}
           <LoadingText style={{ marginTop: "80%", color: "#898989" }}>
             찜한 벙글이 없습니다.
           </LoadingText>

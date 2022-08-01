@@ -10,7 +10,7 @@ import "react-swipeable-list/dist/styles.css";
 
 //img
 import defaultCardImg from "../assets/icon-main-default.svg";
-import tempImg from "../assets/icon-temp.svg";
+
 import likeImg from "../assets/icon-like.svg";
 import UnlikeImg from "../assets/icon-unlike.svg";
 import IconHighTemp from "../assets/icon-manner-high.svg";
@@ -20,12 +20,9 @@ import IconLowTemp from "../assets/icon-manner-low.svg";
 function CategorySearchCard(props) {
   const { categoryList } = props;
   const dispatch = useDispatch();
-  // console.log(moreList);
-  // console.log(categoryList);
   const navigate = useNavigate();
 
   const categoryListLikeClick = (postId) => {
-    // console.log(postId);
     dispatch(likeBungleList(postId));
   };
 
@@ -71,7 +68,6 @@ function CategorySearchCard(props) {
                 />
               </div>
             )}
-            {/* {console.log(categoryList.postId)} */}
             <img
               className="search-card-img-like"
               src={categoryList.isLike ? likeImg : UnlikeImg}

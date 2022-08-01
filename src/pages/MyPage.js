@@ -55,7 +55,7 @@ import {
 } from "../styles/StyledFooter.js";
 
 //img
-import defaultImg from "../assets/defaultImg.jpg";
+import defaultImg from "../assets/icon-main-default.svg";
 import lighteningImg from "../assets/icon-lightening.svg";
 
 import Setting from "../assets/icon-setting.svg";
@@ -106,7 +106,6 @@ function MyPage() {
   useEffect(() => {
     if (isLoad) {
       dispatch(getUserProfile());
-      // setReceiveUrl( userProfileInfo.profileUrl );
       setTimeout(() => {
         setIsLoad(false);
       }, 150);
@@ -141,9 +140,6 @@ function MyPage() {
       setSettingModal(false);
     }
   };
-
-  // 서비스 예정중인 메뉴 block
-  const noActiveMenuClickHander = () => {};
 
   return (
     <>
@@ -222,21 +218,6 @@ function MyPage() {
                       />
                       <MapPageTitle>설정</MapPageTitle>
                       <HeadrIconsWrap>
-                        {/* {notificationState ? (
-                        <IconNotification
-                          src={NotificationOn}
-                          onClick={() => {
-                            navigate("/notification");
-                          }}
-                        />
-                      ) : (
-                        <IconNotification src={Notification} />
-                      )} */}
-                        {/* <span className="material-icons"> clear </span> */}
-                        {/* <IconSetting
-                        style={{ visibility: "hidden" }}
-                        src={Setting}
-                      /> */}
                       </HeadrIconsWrap>
                     </PostHeaderWrap>
                     <div
@@ -434,7 +415,6 @@ function MyPage() {
               >
                 나의 신고 내역
               </div>
-              {/* <div className="mypage-selectbar">Lorem ipsum</div> */}
             </div>
           </div>
           <MapFooterWrap>
