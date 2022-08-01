@@ -43,8 +43,9 @@
 - FE Trouble Shooting
     <details>
     <summary>비인가 사용자 URL 막기</summary>
-    <div>문제 인지</div>
-    <div>로그인 하지 않는 사용자가 URL을 직접 입력해서 다른 페이지로 접근할 수 있는 상황이 발생</div>
+        * 문제 인지
+            - 로그인 하지 않는 사용자가 URL을 직접 입력해서 다른 페이지로 접근할 수 있는 상황이 발생</div>
+        * 
     <div markedown="1">
     https://github.com/TeamBungle/projectBungle_FE/blob/00460f7436e216b8d65729aae642864c7185c9ab/src/App.js#L42-L74
     </div>
