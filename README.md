@@ -88,12 +88,16 @@
     enter key 입력이 먹지 않음
     2. 선택지
       - enter key를 쓰지 않고 버튼 입력으로 전환하려 하였으나, 디자인 요소로 인해 반영할 수 없음
-      - 공식 문서를 통해 해결 방법을 모색하고자 함 - 참고 링크 : MDN 사이트( https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent/key )
+      - 공식 문서를 통해 해결 방법을 모색하고자 함 - 참고 링크 : <a href="https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent/key">MDN KeyboardEvent 사이트</a>
     3. 해결방법
       - MDN 공식 사이트의 KeyboradEvent 예제를 참고하여 android와 iOS의 Key envent를 직접 출력해봄
       - 결과, iOS는 event의 Code로 동작하였으나, android는 event Key로 동작하는 차이점을 발견
     </pre>
+    <h5>Login enter key 적용 코드</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/pages/Login.js#L295-L317
+    </details>
+    <details>
+    
     </details>
    
 
