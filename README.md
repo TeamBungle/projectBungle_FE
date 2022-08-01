@@ -42,15 +42,59 @@
 
 - FE Trouble Shooting
     <details>
+    <summary>사용자 로그인 보안 강화</summary>
+    <pre>
+    1. 문제 인지
+      모임을 주최하는 서비스인만큼, 사용자 정보의 보안이 강화되야 한다고 판단
+      기존의 Access token 방식으로는 손쉽게 사용자 정보가 탈취될 수 있음
+    2. 선택지
+      Refresh Token을 통해 보안을 강화
+      Cookie의 Options( secure 등 )을 통해 보안을 강화할 수 있다고 판단하여 Refresh Token은 Cookie에 저장
+      Access Token은 localStorage에 저장하되, 만료 기간( 30분 )을 체크하여 interceptor로 request 요청 전,
+      만료 여부를 검증
+    </pre>
+    <h5>Axios interceptor 설정</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/customapi/Refresh.js#L1-L64
+    <h5>Axios create 설정</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/customapi/CustomAxios.js#L1-L10
+    </details>
+    
+    <details>
     <summary>비인가 사용자 URL 막기</summary>
-    <div style="">문제 인지<div>
-       <div>- 로그인 하지 않는 사용자가 URL을 직접 입력해서 다른 페이지로 접근할 수 있는 상황이 발생</div>
-        * 
-    <div markedown="1">
+    <pre>
+    1. 문제 인지
+      로그인 하지 않는 사용자가 URL을 직접 입력해서 다른 페이지로 접근할 수 있는 상황이 발생
+    2. 선택지
+      로그인 여부를 판별할 수 있는 로직 검토 필요
+    3. 해결 방법
+      - localStorage에 access_token이 있는지를 확인하여, 사용자의 로그인 여부를 판별
+      - Private Route를 만들어 로그인 했을 때 보여줄 페이지만 감싸주고 나머지는 로그인 화면으로 
+        Redirection 할 수 있도록 함
+    </pre>
+    <h5>Private Route 설정</h5>
+    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/utils/PrivateRoutes.js#L1-L9
+    <h5>Private Route로 App.js의 Route 감싸기</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/00460f7436e216b8d65729aae642864c7185c9ab/src/App.js#L42-L74
-    </div>
     </details>
 
+    <details>
+        <summary>채팅 Client 문제</summary>
+    </details>    
+    <details>
+    <summary>크로스 브라우징 Enter Key 문제</summary>
+    <pre>
+    1. 문제 인지
+      기존 PC 개발 환경에서 enter key로 input 입력처리를 하였는데, 모바일 브라우저( Andorid )에서는 
+    enter key 입력이 먹지 않음
+    2. 선택지
+      - enter key를 쓰지 않고 버튼 입력으로 전환하려 하였으나, 디자인 요소로 인해 반영할 수 없음
+      - 공식 문서를 통해 해결 방법을 모색하고자 함 - 참고 링크 : MDN 사이트( https://developer.mozilla.org/ko/docs/Web/API/KeyboardEvent/key )
+    3. 해결방법
+      - MDN 공식 사이트의 KeyboradEvent 예제를 참고하여 android와 iOS의 Key envent를 직접 출력해봄
+      - 결과, iOS는 event의 Code로 동작하였으나, android는 event Key로 동작하는 차이점을 발견
+    </pre>
+    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/pages/Login.js#L295-L317
+    </details>
    
 
 ### 😍 벙글 [서비스 링크 바로가기](https://bungle.life)
