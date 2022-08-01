@@ -1,31 +1,36 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import CategorySearchCard from "./CategorySearchCard";
 import {
   getIntervalNotification,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
-import { getCookie } from "../customapi/CustomCookie";
+} from "../../redux/modules/BungleSlice";
+import { getCookie } from "../../customapi/CustomCookie";
 
 //CSS
-import "../styles/TagCategorySearch.css";
+import "../../styles/TagCategorySearch.css";
+import "../../styles/Setting.css";
+//Components
+
 import {
   PostHeaderWrap,
   ChattingBackKey,
   HeadrIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
-// css
 import {
   FooterWrap,
   FooterIconWrap,
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
+
+import { LoadingWrap, LoadingText } from "../../styles/StyledLoading";
 
 import {
   // Moadl
@@ -37,37 +42,39 @@ import {
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
-} from "../styles/StyledLogin";
-import { MapPageTitle } from "../styles/StyledHeader";
+} from "../../styles/StyledLogin";
+import { MapPageTitle } from "../../styles/StyledHeader";
+import Divider from "../../components/Divider";
 
-import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
-
-//Components
-import TagSearchCard from "../components/TagSearchCard";
-import Divider from "../components/Divider";
-//Styled-Components
-import Tag from "../components/Tag";
-import Search from "../components/Search";
-
-// Haeder icon
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
-import Setting from "../assets/icon-setting.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+// icon
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import Setting from "../../assets/icon-setting.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 // Footer Icons
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconMyBungae from "../assets/icon-account.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
+import IconHomeCurrent from "../../assets/icon-home-current.svg";
+import IconLocation from "../../assets/icon-location.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconMyBungae from "../../assets/icon-account.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
 
-function TagSearch() {
+function CategorySearch() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
 
   const dispatch = useDispatch();
+  const ownerCheck = useSelector((state) => state.Bungle.isOwner);
+  // isLoad
+  const [isLoad, setIsLaod] = useState(true);
+  //
+  const categoryList = useSelector((state) => state.Bungle.categoriesList);
+  // console.log( categoryList );
+
+  const navigate = useNavigate();
+  const { category } = useParams();
+
   // 알림 call
   const interval = useRef(null);
   // 알림 state
@@ -79,28 +86,6 @@ function TagSearch() {
     setNotificationState(NotificationState);
   }, [NotificationState]);
 
-  const ownerCheck = useSelector((state) => state.Bungle.isOwner);
-  //
-  const navigate = useNavigate();
-  // isLoad
-  const [isLoad, setIsLoad] = useState(true);
-  //검색 정렬 드롭박스
-  const searchList = useSelector((state) => state.Bungle.moreList);
-  
-  const [selected, setSelected] = React.useState("최신순");
-  const handleSelect = (e) => {
-    // console.log(e.target.value);
-    setSelected(e.target.value);
-  };
-  useEffect(() => {
-    if (isLoad) {
-      window.scrollTo(0, 0);
-      setTimeout(() => {
-        setIsLoad(false);
-      }, 200);
-    }
-  }, []);
-
   // 알림 interval
   useEffect(() => {
     interval.current = setInterval(async () => {
@@ -109,6 +94,15 @@ function TagSearch() {
     return () => clearInterval(interval.current);
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  //검색 정렬 드롭박스
+  const [selected, setSelected] = React.useState("최신순");
+  const handleSelect = (e) => {
+    // console.log(e.target.value);
+    setSelected(e.target.value);
+  };
   // console.log(selected);
   const searchOptions = [
     { key: 1, value: "최신순" },
@@ -138,14 +132,7 @@ function TagSearch() {
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        marginBottom: "90px",
-      }}
-    >
+    <div className="top-category-search-wrap">
       <PostHeaderWrap>
         <ChattingBackKey
           src={IconBackKey}
@@ -156,15 +143,6 @@ function TagSearch() {
 
         <HeadrIconsWrap>
           {notificationState ? (
-            // <span
-            //   style={{ cursor: "pointer", color: "#FFC632" }}
-            //   className="material-icons"
-            //   onClick={() => {
-            //     navigate("/notification");
-            //   }}
-            // >
-            //   notifications
-            // </span>
             <IconNotification
               src={NotificationOn}
               onClick={() => {
@@ -322,32 +300,17 @@ function TagSearch() {
           </ModalOverlay>
         </ModalWrapper>
       )}
-      {/* <Tag /> 인기 태그 숨기기 */}
-      <Search />
       <div className="search-result-wrap">
-        <Divider />
         <div className="search-result-header">
-          <p className="search-result-header-title">검색 결과</p>
-          {/* <select
-            className="search-result-header-dropbox"
-            onChange={handleSelect}
-            value={selected}
-          >
-            {searchOptions.map((item, index) => (
-              <option key={item.key} value={item.value}>
-                {item.value}
-              </option>
-            ))}
-          </select> */}
+          <p className="search-result-header-title">{category}</p>
         </div>
         <div className="search-result-card-wrap">
-          {searchList ? (
-            searchList.map((item, index) => {
-              return <TagSearchCard key={index} moreList={item} />;
+          {categoryList ? (
+            categoryList.map((item, index) => {
+              return <CategorySearchCard categoryList={item} />;
             })
           ) : (
             <LoadingWrap>
-              {/* <LoadingLogo src={IconLoadingLogo} /> */}
               <LoadingText style={{ marginTop: "80%", color: "#898989" }}>
                 검색 결과 벙글이 없습니다.
               </LoadingText>
@@ -361,8 +324,8 @@ function TagSearch() {
             navigate("/main");
           }}
         >
-          <FooterIconImg src={IconHome} />
-          <FooterIconText>홈</FooterIconText>
+          <FooterIconImg src={IconHomeCurrent} />
+          <FooterIconText style={{ color: "#FFC632" }}>홈</FooterIconText>
         </FooterIconWrap>
         <FooterIconWrap
           onClick={() => {
@@ -421,4 +384,4 @@ function TagSearch() {
   );
 }
 
-export default TagSearch;
+export default CategorySearch;

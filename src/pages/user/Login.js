@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 
-import { setCookie } from "../customapi/CustomCookie";
+import { setCookie } from "../../customapi/CustomCookie";
 import moment from "moment";
 
 // styles
-import "../styles/Login.css";
+import "../../styles/Login.css";
 // jiyong css
 import {
   LoginWrap,
@@ -34,12 +33,12 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 
 // icon
-import IconLoginLogo from "../assets/icon-login-title.svg";
-import IconTextClear from "../assets/icon-login-clear.svg";
-import IconIllustration from "../assets/icon-login-illustration.svg";
+import IconLoginLogo from "../../assets/icon-login-title.svg";
+import IconTextClear from "../../assets/icon-login-clear.svg";
+import IconIllustration from "../../assets/icon-login-illustration.svg";
 
 // 소셜 로그인 URL - Naver
 const NAVER_AUTH_URL = `https://nid.naver.com/oauth2.0/authorize?client_id=${process.env.REACT_APP_NAVER_LOGIN_CLIENT_KEY}&response_type=code&redirect_uri=${process.env.REACT_APP_SOCIAL_LOGIN_REDIRECTION_URL}`;

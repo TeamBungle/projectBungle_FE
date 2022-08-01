@@ -4,10 +4,10 @@ import {
   myChattingList,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
+} from "../../redux/modules/BungleSlice";
 import { useNavigate } from "react-router-dom";
 
-import { getCookie } from "../customapi/CustomCookie";
+import { getCookie } from "../../customapi/CustomCookie";
 
 import {
   MapHeaderWrap,
@@ -15,7 +15,7 @@ import {
   MapIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 import {
   MapFooterWrap,
@@ -23,7 +23,7 @@ import {
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
 
 import {
   // Moadl
@@ -33,43 +33,41 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledLogin";
+  ModalButtonWrap,
+  ModalCancelButton,
+  ModalDeleteButton,
+} from "../../styles/StyledLogin";
 
 import {
   PostHeaderWrap,
   ChattingBackKey,
   HeadrIconsWrap,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
-import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
+import { LoadingWrap, LoadingText } from "../../styles/StyledLoading";
 
 import {
   // LeadingActions,
   SwipeableList,
   SwipeableListItem,
 } from "react-swipeable-list";
-import {
-  // Moadl
-  ModalButtonWrap,
-  ModalCancelButton,
-  ModalDeleteButton,
-} from "../styles/StyledLogin";
-import Divider from "../components/Divider";
+
+import Divider from "../../components/Divider";
 import "react-swipeable-list/dist/styles.css";
 
-import "../styles/ChatListSwiper.css";
+import "../../styles/ChatListSwiper.css";
 
 //icon
-import Setting from "../assets/icon-setting.svg";
-import Notification from "../assets/icon-notification.svg";
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconChatCurrent from "../assets/icon-chat-current.svg";
-import IconMyBungae from "../assets/icon-account.svg";
-import IconDefaultChatList from "../assets/icon-chatlist-default.png";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import Setting from "../../assets/icon-setting.svg";
+import Notification from "../../assets/icon-notification.svg";
+import IconHome from "../../assets/icon-home.svg";
+import IconLocation from "../../assets/icon-location.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconChatCurrent from "../../assets/icon-chat-current.svg";
+import IconMyBungae from "../../assets/icon-account.svg";
+import IconDefaultChatList from "../../assets/icon-chatlist-default.png";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 function App() {
   let refreshToken = getCookie("refresh_token");

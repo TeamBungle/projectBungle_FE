@@ -1,32 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-//Components
-import MyLikeBungleCard from "../components/MyLikeBungleCard";
 import {
+  getIntervalNotification,
   LogOut,
   Withdrawal,
-  myLikeBungleList,
-} from "../redux/modules/BungleSlice";
-import { getCookie } from "../customapi/CustomCookie";
+} from "../../redux/modules/BungleSlice";
+import { getCookie } from "../../customapi/CustomCookie";
 
+//CSS
+import "../../styles/TagCategorySearch.css";
 import {
   PostHeaderWrap,
   ChattingBackKey,
   HeadrIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
+// css
 import {
-  MapFooterWrap,
+  FooterWrap,
   FooterIconWrap,
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
-
-import { LoadingWrap, LoadingText } from "../styles/StyledLoading";
+} from "../../styles/StyledFooter.js";
 
 import {
   // Moadl
@@ -38,92 +37,37 @@ import {
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
-} from "../styles/StyledLogin";
-import { MapPageTitle } from "../styles/StyledHeader";
-import Divider from "../components/Divider";
+} from "../../styles/StyledLogin";
+import { MapPageTitle } from "../../styles/StyledHeader";
 
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconMyBungleCurrent from "../assets/icon-mybungle-current.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
+import { LoadingWrap, LoadingText } from "../../styles/StyledLoading";
 
-import IconBackKey from "../assets/icon-left-arrow.svg";
-import Setting from "../assets/icon-setting.svg";
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
+//Components
+import TagSearchCard from "../../pages/search/TagSearchCard";
+import Divider from "../../components/Divider";
+//Styled-Components
+import Tag from "../../components/Tag";
+import Search from "../../components/Search";
 
-function MyPageRecent() {
+// Haeder icon
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import Setting from "../../assets/icon-setting.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
+
+// Footer Icons
+import IconHome from "../../assets/icon-home.svg";
+import IconLocation from "../../assets/icon-location.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconMyBungae from "../../assets/icon-account.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
+
+function TagSearch() {
   let refreshToken = getCookie("refresh_token");
   let token = localStorage.getItem("login-token");
 
-  const isOwner = useSelector((state) => state.Bungle.isOwner);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isLoad, setIsLoad] = useState(true);
-  const myLikeList = useSelector((state) => state.Bungle.myLikeList);
-
-  const [location, setLocation] = useState();
-  // 에러 메세지 저장
-  const [error, setError] = useState();
-
-  const handleSuccess = (pos) => {
-    const { latitude, longitude } = pos.coords;
-
-    setLocation({
-      latitude,
-      longitude,
-    });
-  };
-
-  const handleError = (error) => {
-    setError(error.message);
-    console.log(error.code);
-    console.log(error.message);
-    if (error.message === "User denied Geolocation") {
-      alert("사이트 설정에서 GPS 설정을 켜주세요");
-    }
-  };
-
-  // GPS 옵션
-  const options = {
-    /*
-    maximumAge
-    : 캐시에 저장한 위치정보를 대신 반환할 수 있는 최대 시간을 나타내는 양의 long 값. 
-    0을 지정한 경우 장치가 위치정보 캐시를 사용할 수 없으며 반드시 실시간으로 위치를 알아내려 시도해야 한다는 뜻. 
-    Infinity를 지정한 경우 지난 시간에 상관없이 항상 캐시에 저장된 위치정보를 반환해야 함. 기본 값은 0입니다.
-    timeout
-    : 기기가 위치를 반환할 때 소모할 수 있는 최대 시간(밀리초)을 나타내는 양의 long 값. 
-    기본 값은 Infinity로, 위치를 알아내기 전에는 getCurrentPosition()이 반환하지 않을 것임을 나타냄.
-    enableHighAccuracy
-    : 위치정보를 가장 높은 정확도로 수신하고 싶음을 나타내는 불리언 값. true를 지정했으면, 지원하는 경우 장치가 더 정확한 위치를 제공. 
-     그러나 응답 속도가 느려지며 전력 소모량이 증가. 
-     반면 false를 지정한 경우 기기가 더 빠르게 반응하고 전력 소모도 줄일 수 있는 대신 정확도가 떨어짐. 기본 값은 false.
-    */
-    enableHighAccuracy: true,
-    // timeout
-    timeout: 10000, // 10000
-    maximumAge: 0,
-  };
-
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      handleSuccess,
-      handleError,
-      options
-    );
-    window.scrollTo(0, 0);
-  }, []);
-
-  const getMyLikeList = (location) => {
-    dispatch(myLikeBungleList(location));
-  };
-
-  useEffect(() => {
-    getMyLikeList(location);
-  }, [location]);
-
   // 알림 call
   const interval = useRef(null);
   // 알림 state
@@ -135,13 +79,41 @@ function MyPageRecent() {
     setNotificationState(NotificationState);
   }, [NotificationState]);
 
+  const ownerCheck = useSelector((state) => state.Bungle.isOwner);
+  //
+  const navigate = useNavigate();
+  // isLoad
+  const [isLoad, setIsLoad] = useState(true);
+  //검색 정렬 드롭박스
+  const searchList = useSelector((state) => state.Bungle.moreList);
+  
+  const [selected, setSelected] = React.useState("최신순");
+  const handleSelect = (e) => {
+    // console.log(e.target.value);
+    setSelected(e.target.value);
+  };
   useEffect(() => {
     if (isLoad) {
+      window.scrollTo(0, 0);
       setTimeout(() => {
         setIsLoad(false);
       }, 200);
     }
   }, []);
+
+  // 알림 interval
+  useEffect(() => {
+    interval.current = setInterval(async () => {
+      dispatch(getIntervalNotification());
+    }, 5000);
+    return () => clearInterval(interval.current);
+  }, []);
+
+  // console.log(selected);
+  const searchOptions = [
+    { key: 1, value: "최신순" },
+    { key: 2, value: "인기순" },
+  ];
 
   // 설정 modal state
   const [settingModal, setSettingModal] = useState(false);
@@ -168,22 +140,31 @@ function MyPageRecent() {
   return (
     <div
       style={{
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         marginBottom: "90px",
-        width: "100%",
       }}
     >
       <PostHeaderWrap>
         <ChattingBackKey
           src={IconBackKey}
           onClick={() => {
-            navigate("/mypage");
+            navigate("/main");
           }}
         />
 
         <HeadrIconsWrap>
           {notificationState ? (
+            // <span
+            //   style={{ cursor: "pointer", color: "#FFC632" }}
+            //   className="material-icons"
+            //   onClick={() => {
+            //     navigate("/notification");
+            //   }}
+            // >
+            //   notifications
+            // </span>
             <IconNotification
               src={NotificationOn}
               onClick={() => {
@@ -226,6 +207,21 @@ function MyPageRecent() {
                   />
                   <MapPageTitle>설정</MapPageTitle>
                   <HeadrIconsWrap>
+                    {/* {notificationState ? (
+                        <IconNotification
+                          src={NotificationOn}
+                          onClick={() => {
+                            navigate("/notification");
+                          }}
+                        />
+                      ) : (
+                        <IconNotification src={Notification} />
+                      )} */}
+                    {/* <span className="material-icons"> clear </span> */}
+                    {/* <IconSetting
+                        style={{ visibility: "hidden" }}
+                        src={Setting}
+                      /> */}
                   </HeadrIconsWrap>
                 </PostHeaderWrap>
                 <div
@@ -326,18 +322,40 @@ function MyPageRecent() {
           </ModalOverlay>
         </ModalWrapper>
       )}
-      {myLikeList?.length > 0 ? (
-        myLikeList.map((item, index) => {
-          return <MyLikeBungleCard myLikeList={item} />;
-        })
-      ) : (
-        <LoadingWrap>
-          <LoadingText style={{ marginTop: "80%", color: "#898989" }}>
-            찜한 벙글이 없습니다.
-          </LoadingText>
-        </LoadingWrap>
-      )}
-      <MapFooterWrap>
+      {/* <Tag /> 인기 태그 숨기기 */}
+      <Search />
+      <div className="search-result-wrap">
+        <Divider />
+        <div className="search-result-header">
+          <p className="search-result-header-title">검색 결과</p>
+          {/* <select
+            className="search-result-header-dropbox"
+            onChange={handleSelect}
+            value={selected}
+          >
+            {searchOptions.map((item, index) => (
+              <option key={item.key} value={item.value}>
+                {item.value}
+              </option>
+            ))}
+          </select> */}
+        </div>
+        <div className="search-result-card-wrap">
+          {searchList ? (
+            searchList.map((item, index) => {
+              return <TagSearchCard key={index} moreList={item} />;
+            })
+          ) : (
+            <LoadingWrap>
+              {/* <LoadingLogo src={IconLoadingLogo} /> */}
+              <LoadingText style={{ marginTop: "80%", color: "#898989" }}>
+                검색 결과 벙글이 없습니다.
+              </LoadingText>
+            </LoadingWrap>
+          )}
+        </div>
+      </div>
+      <FooterWrap>
         <FooterIconWrap
           onClick={() => {
             navigate("/main");
@@ -354,7 +372,7 @@ function MyPageRecent() {
           <FooterIconImg src={IconLocation} />
           <FooterIconText>벙글지도</FooterIconText>
         </FooterIconWrap>
-        {isOwner ? (
+        {ownerCheck ? (
           <FooterAddBungae
             src={IconEdit}
             onClick={() => {
@@ -394,16 +412,13 @@ function MyPageRecent() {
               navigate("/mypage");
             }}
           >
-            <FooterIconImg src={IconMyBungleCurrent} />
-            <FooterIconText style={{ color: "#FFC634" }}>
-              나의 벙글
-            </FooterIconText>
+            <FooterIconImg src={IconMyBungae} />
+            <FooterIconText>나의 벙글</FooterIconText>
           </div>
         </FooterIconWrap>
-      </MapFooterWrap>
+      </FooterWrap>
     </div>
-    // </div>
   );
 }
 
-export default MyPageRecent;
+export default TagSearch;

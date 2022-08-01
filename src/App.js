@@ -4,31 +4,31 @@ import { Routes, Route } from "react-router-dom";
 //CSS
 import "./App.css";
 //Pages
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
-import TagSearch from "./pages/TagSearch";
-import CategorySearch from "./pages/CategorySearch";
+import Login from "./pages/user/Login";
+import SignUp from "./pages/user/SignUp";
+import TagSearch from "./pages/search/TagSearch";
+import CategorySearch from "./pages/search/CategorySearch";
 import Main from "./pages/Main";
-import MyPage from "./pages/MyPage";
+import MyPage from "./pages/mypage/MyPage";
 
-import DetailPost from "./pages/DetailPost";
-import CreatePost from "./pages/CreatePost";
-import EditPost from "./pages/EditPost";
+import DetailPost from "./pages/posts/DetailPost";
+import CreatePost from "./pages/posts/CreatePost";
+import EditPost from "./pages/posts/EditPost";
 
-import ProfileSetting from "./pages/ProfileSetting";
-import MyLikeBung from "./pages/MyLikeBung";
-import ChatList from "./pages/ChatList";
-import ChattingRoom from "./pages/ChattingRoom";
-import Map from "./pages/Map";
+import ProfileSetting from "./pages/mypage/ProfileSetting";
+import MyLikeBung from "./pages/mypage/MyLikeBung";
+import ChatList from "./pages/chatting/ChatList";
+import ChattingRoom from "./pages/chatting/ChattingRoom";
+import Map from "./pages/map/Map";
 
 import OpenViduSettings from "./components/videos/OpenViduSettings";
 
 import LoadingLogin from "./components/LoadingLogin";
-import Notification from "./pages/Notification";
+import Notification from "./components/Notification";
 
-import OnBoarding from "./pages/OnBoarding";
+import OnBoarding from "./components/OnBoarding";
 
-import TermsConditions from "./pages/TermsConditions";
+import TermsConditions from "./components/TermsConditions";
 // 404 Not found
 import NotFound from "./components/NotFound";
 // Private Routes
