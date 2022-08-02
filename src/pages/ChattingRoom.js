@@ -37,7 +37,7 @@ import {
   ModalButton,
 } from "../styles/StyledLogin";
 //CSS
-import "../styles/Chat1.css";
+import "../styles/ChatRoom.css";
 //icons
 import Hamburger from "../assets/icon-hamburger.svg";
 import IconBackKey from "../assets/icon-left-arrow.svg";
@@ -47,7 +47,6 @@ import SendBtnActive from "../assets/icon-sendbtn-active.svg";
 import SendImgBtnActive from "../assets/icon-img-sendbtn.svg";
 import IconSiren from "../assets/icon-siren.svg";
 import IconMoon from "../assets/icon-share-mono.svg";
-
 
 import IconHighTemp from "../assets/icon-manner-high.svg";
 import IconMiddleTemp from "../assets/icon-manner-middle.svg";
@@ -137,7 +136,7 @@ function ChattingRoom({ setRealTimeChat }) {
 
   const sendValue = async () => {
     if ((client && userData.message) || (client && fileUrl)) {
-    let chatMessage = {
+      let chatMessage = {
         type: "TALK",
         message: userData.message,
         roomId: `${postId}`,
@@ -150,10 +149,10 @@ function ChattingRoom({ setRealTimeChat }) {
       setIsFile(null);
     }
   };
-  
+
   const onMessageReceived = (payload) => {
     let payloadData = JSON.parse(payload.body);
-  
+
     if (
       payloadData.type === "TALK" ||
       payloadData.type === "ENTER" ||
@@ -185,19 +184,18 @@ function ChattingRoom({ setRealTimeChat }) {
       chattingDate.push(ampm + " " + hour + ":" + minutes);
     }
   }
-  
+
   //Disconnect
   const chatDisconnect = () => {
-  
-  let chatMessage = {
-    type: "QUIT",
-    roomId: `${postId}`,
-  };
-  
-  client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
-  client.disconnect(function () {
-    setIsDisconnectModal(true);
-  });
+    let chatMessage = {
+      type: "QUIT",
+      roomId: `${postId}`,
+    };
+
+    client.send("/pub/chat/message", { PK }, JSON.stringify(chatMessage));
+    client.disconnect(function () {
+      setIsDisconnectModal(true);
+    });
   };
 
   //엔터키
@@ -219,7 +217,7 @@ function ChattingRoom({ setRealTimeChat }) {
       return;
     }
   };
-  
+
   const chatImg = async () => {
     if (fileUrl) {
       setFileUrl("");
@@ -234,9 +232,8 @@ function ChattingRoom({ setRealTimeChat }) {
       setFileUrl(response.data);
     }
   };
-  
-  useEffect(() => {
 
+  useEffect(() => {
     if (isFile) {
       chatImg();
     }
@@ -265,13 +262,13 @@ function ChattingRoom({ setRealTimeChat }) {
       method: "get",
       url: `/chat/message/userinfo/${postId}`,
     })
-    .then((response) => {
-      setChatPeople(() => response.data);
-      MembersArray.push(chatPeople);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        setChatPeople(() => response.data);
+        MembersArray.push(chatPeople);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const chatFile = () => {
