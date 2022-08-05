@@ -226,3 +226,5 @@
 | FE | 한결님 | https://github.com/GHan19 |
 | FE( L ) | 한지용님 | https://github.com/jigomgom |
 | Designer | 양승연님 | didtmddus123@gmail.com |
+
+![image](https://user-images.githubusercontent.com/107230384/182984029-9de38ffc-186e-415c-a372-76b2bf59a6dd.png)
