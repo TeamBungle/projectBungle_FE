@@ -216,15 +216,15 @@
 
 ### 😶 벙글 팀원 소개( L : 팀장, LV : 부팀장 )
 
-| 역할 | 이름 | Git 주소 |
-| --- | --- | --- |
-| BE | 강현구님 | https://github.com/kootner |
-| BE( LV ) | 김민수님 | https://github.com/minssu86 |
-| BE | 김정훈님 | https://github.com/junghoon-kim96 |
+| 역할 | 이름 | Git 주소 | 메일 주소 |
+| --- | --- | --- | --- |
+| BE | 강현구님 | https://github.com/kootner | refromto@naver.com |
+| BE( LV ) | 김민수님 | https://github.com/minssu86 | manager.kim86@gmail.com |
+| BE | 김정훈님 | https://github.com/junghoon-kim96 | 0527wj@naver.com |
 | BE | 정현욱님 | https://github.com/Jeonghyeonuk |
-| FE | 최서우님 | https://github.com/zerovodka |
-| FE | 한결님 | https://github.com/GHan19 |
-| FE( L ) | 한지용님 | https://github.com/jigomgom |
+| FE | 최서우님 | https://github.com/zerovodka | 264826@naver.com |
+| FE | 한결님 | https://github.com/GHan19 | gksrufdla@naver.com |
+| FE( L ) | 한지용님 | https://github.com/jigomgom | hjy583@naver.com |
 | Designer | 양승연님 | didtmddus123@gmail.com |
 
 ![image](https://user-images.githubusercontent.com/107230384/182984029-9de38ffc-186e-415c-a372-76b2bf59a6dd.png)
