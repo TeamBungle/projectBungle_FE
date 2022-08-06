@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useSelector } from "react-redux";
 
 import { useDispatch } from "react-redux";
-import { getChatClient } from "../redux/modules/BungleSlice";
+import { getChatClient } from "../../redux/modules/BungleSlice";
 
 import _ from "lodash";
 
-import AxiosAPI from "../customapi/CustomAxios";
+import AxiosAPI from "../../customapi/CustomAxios";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -21,12 +21,12 @@ import {
   ChattingHeaderWrap,
   ChattingRoomBackKey,
   IconHamburger,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 import {
   PostMemberCard,
   PostMemberPicture,
   PostMemberVideo,
-} from "../styles/StyledDetailPost";
+} from "../../styles/StyledDetailPost";
 import {
   // Moadl
   ModalWrapper,
@@ -35,24 +35,24 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 //CSS
-import "../styles/ChatRoom.css";
+import "../../styles/ChatRoom.css";
 //icons
-import Hamburger from "../assets/icon-hamburger.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
-import IconCamera from "../assets/icon-camera-mono (1).svg";
-import SendBtn from "../assets/icon-sendbtn (1).svg";
-import SendBtnActive from "../assets/icon-sendbtn-active.svg";
-import SendImgBtnActive from "../assets/icon-img-sendbtn.svg";
-import IconSiren from "../assets/icon-siren.svg";
-import IconMoon from "../assets/icon-share-mono.svg";
+import Hamburger from "../../assets/icon-hamburger.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
+import IconCamera from "../../assets/icon-camera-mono (1).svg";
+import SendBtn from "../../assets/icon-sendbtn (1).svg";
+import SendBtnActive from "../../assets/icon-sendbtn-active.svg";
+import SendImgBtnActive from "../../assets/icon-img-sendbtn.svg";
+import IconSiren from "../../assets/icon-siren.svg";
+import IconMoon from "../../assets/icon-share-mono.svg";
 
-import IconHighTemp from "../assets/icon-manner-high.svg";
-import IconMiddleTemp from "../assets/icon-manner-middle.svg";
-import IconLowTemp from "../assets/icon-manner-low.svg";
+import IconHighTemp from "../../assets/icon-manner-high.svg";
+import IconMiddleTemp from "../../assets/icon-manner-middle.svg";
+import IconLowTemp from "../../assets/icon-manner-low.svg";
 
-import IconLightening from "../assets/icon-lightening.svg";
+import IconLightening from "../../assets/icon-lightening.svg";
 
 let client = null;
 function ChattingRoom({ setRealTimeChat }) {

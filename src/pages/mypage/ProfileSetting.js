@@ -2,17 +2,17 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { editUserProfile } from "../redux/modules/BungleSlice";
+import { editUserProfile } from "../../redux/modules/BungleSlice";
 import { useSelector } from "react-redux";
 //Img
-import profileSetImg from "../assets/icon-profilesetting.svg";
+import profileSetImg from "../../assets/icon-profilesetting.svg";
 //CSS
-import "../styles/ProfileSetting.css";
+import "../../styles/ProfileSetting.css";
 import {
   MapDetailHeaderWrap,
   ChattingBackKey,
   EditHeadrIconsWrap,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 import {
   MapFooterWrap,
@@ -20,7 +20,7 @@ import {
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
 
 import {
   // Moadl
@@ -30,17 +30,17 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconMyBungleCurrent from "../assets/icon-mybungle-current.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
+import IconHome from "../../assets/icon-home.svg";
+import IconLocation from "../../assets/icon-location.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconMyBungleCurrent from "../../assets/icon-mybungle-current.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
 
 //icon
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 function MyPageSetting() {
   const isOwner = useSelector((state) => state.Bungle.isOwner);

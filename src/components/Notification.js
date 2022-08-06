@@ -31,7 +31,7 @@ import {
   ModalDeleteButton,
 } from "../styles/StyledLogin";
 import { MapPageTitle } from "../styles/StyledHeader";
-import Divider from "../components/Divider";
+import Divider from "./Divider";
 
 import {
   PostHeaderWrap,

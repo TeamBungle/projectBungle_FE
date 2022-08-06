@@ -3,14 +3,14 @@ import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { getMapBungle, mapTagSearch } from "../redux/modules/BungleSlice";
-import { tagBungleList } from "../redux/modules/BungleSlice";
-import { getDetailMap } from "../redux/modules/BungleSlice";
+import { getMapBungle, mapTagSearch } from "../../redux/modules/BungleSlice";
+import { tagBungleList } from "../../redux/modules/BungleSlice";
+import { getDetailMap } from "../../redux/modules/BungleSlice";
 import {
   getIntervalNotification,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
+} from "../../redux/modules/BungleSlice";
 
 import {
   // Moadl
@@ -22,50 +22,50 @@ import {
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
-} from "../styles/StyledLogin";
-import Divider from "../components/Divider";
+} from "../../styles/StyledLogin";
+import Divider from "../../components/Divider";
 
-import { getCookie } from "../customapi/CustomCookie";
+import { getCookie } from "../../customapi/CustomCookie";
 
 //Icons
-import MarkerLightening from "../assets/icon-map-lightening.svg";
-import MarkerMyLocation from "../assets/icon-map-center.svg";
-import IconMyPoint from "../assets/icon-mylocation.svg";
-import IconMapSort from "../assets/icon-map-sort.svg";
-import Setting from "../assets/icon-setting.svg";
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
-import IconHome from "../assets/icon-home.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconMyBungae from "../assets/icon-account.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
-import IconReset from "../assets/icon-reset.svg";
+import MarkerLightening from "../../assets/icon-map-lightening.svg";
+import MarkerMyLocation from "../../assets/icon-map-center.svg";
+import IconMyPoint from "../../assets/icon-mylocation.svg";
+import IconMapSort from "../../assets/icon-map-sort.svg";
+import Setting from "../../assets/icon-setting.svg";
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import IconHome from "../../assets/icon-home.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconMyBungae from "../../assets/icon-account.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
+import IconReset from "../../assets/icon-reset.svg";
 // category icons
-import IconRestarunt from "../assets/icon-category-restaurant.svg";
-import IconTravel from "../assets/icon-category-travel.svg";
-import IconNorae from "../assets/icon-category-noraebang.svg";
-import IconExercise from "../assets/icon-category-excercise.svg";
-import IconCaffe from "../assets/icon-category-caffe.svg";
-import IconFriendShip from "../assets/icon-category-friendship.svg";
-import IconGame from "../assets/icon-category-game.svg";
-import IconStudy from "../assets/icon-category-study.svg";
-import IconShopping from "../assets/icon-category-shoppin.svg";
-import IconExhibit from "../assets/icon-category-exhibit.svg";
+import IconRestarunt from "../../assets/icon-category-restaurant.svg";
+import IconTravel from "../../assets/icon-category-travel.svg";
+import IconNorae from "../../assets/icon-category-noraebang.svg";
+import IconExercise from "../../assets/icon-category-excercise.svg";
+import IconCaffe from "../../assets/icon-category-caffe.svg";
+import IconFriendShip from "../../assets/icon-category-friendship.svg";
+import IconGame from "../../assets/icon-category-game.svg";
+import IconStudy from "../../assets/icon-category-study.svg";
+import IconShopping from "../../assets/icon-category-shoppin.svg";
+import IconExhibit from "../../assets/icon-category-exhibit.svg";
 
-import IconLocationCurrent from "../assets/icon-location-current.svg";
+import IconLocationCurrent from "../../assets/icon-location-current.svg";
 
 //Components
-import BottomSheet from "./BottomSheet";
-import Loading from "../components/Loading";
+import BottomSheet from "../../components/BottomSheet";
+import Loading from "../../components/Loading";
 
 //StyledComponents
 import {
   PostHeaderWrap,
   ChattingBackKey,
   HeadrIconsWrap,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 import {
   MapHeaderWrap,
   MapPageTitle,
@@ -74,33 +74,33 @@ import {
   IconSetting,
   MapDetailHeaderWrap,
   MapBackKey,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 import {
   MapFooterWrap,
   FooterIconWrap,
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
 import {
   CategoryWrap,
   CategoryItem,
   CatogoryName,
   CategoryImgWrap,
   CategoryImg,
-} from "../styles/StyledCategory";
+} from "../../styles/StyledCategory";
 import {
   // 인원수 설정
   MapPostPeopleCount,
   PostPeopleCountTitleWrap,
   MapPostPeopleTitle,
-} from "../styles/StyledCreatePost";
+} from "../../styles/StyledCreatePost";
 
 //CSS
-import "../styles/Map.css";
+import "../../styles/Map.css";
 // slider 추가
 import Slider from "rc-slider";
-import "../styles/rc-slider/index.css";
+import "../../styles/rc-slider/index.css";
 
 function Map() {
   let refreshToken = getCookie("refresh_token");

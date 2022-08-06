@@ -1,22 +1,22 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useDispatch } from "react-redux/es/exports";
+import { useDispatch } from "react-redux";
 import {
   getUserProfile,
   myLikeBungleList,
   getIntervalNotification,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
+} from "../../redux/modules/BungleSlice";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import { getCookie } from "../customapi/CustomCookie";
+import { getCookie } from "../../customapi/CustomCookie";
 // Library
 
 //CSS
-import "../styles/MyPage.css";
+import "../../styles/MyPage.css";
 //Components
-import Divider from "../components/Divider";
+import Divider from "../../components/Divider";
 
 import {
   // Moadl
@@ -29,13 +29,13 @@ import {
   ModalCancelButton,
   ModalDeleteButton,
   ModalButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 
 import {
   PostHeaderWrap,
   ChattingBackKey,
   HeadrIconsWrap,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 // Header css
 import {
@@ -44,7 +44,7 @@ import {
   MapIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 // Footer css
 import {
   MapFooterWrap,
@@ -52,25 +52,25 @@ import {
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
 
 //img
-import defaultImg from "../assets/icon-main-default.svg";
-import lighteningImg from "../assets/icon-lightening.svg";
+import defaultImg from "../../assets/icon-main-default.svg";
+import lighteningImg from "../../assets/icon-lightening.svg";
 
-import Setting from "../assets/icon-setting.svg";
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconMyBungleCurrent from "../assets/icon-mybungle-current.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
-import IconHighTemp from "../assets/icon-manner-high.svg";
-import IconMiddleTemp from "../assets/icon-manner-middle.svg";
-import IconLowTemp from "../assets/icon-manner-low.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import Setting from "../../assets/icon-setting.svg";
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import IconHome from "../../assets/icon-home.svg";
+import IconLocation from "../../assets/icon-location.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconMyBungleCurrent from "../../assets/icon-mybungle-current.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
+import IconHighTemp from "../../assets/icon-manner-high.svg";
+import IconMiddleTemp from "../../assets/icon-manner-middle.svg";
+import IconLowTemp from "../../assets/icon-manner-low.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 function MyPage() {
   let refreshToken = getCookie("refresh_token");

@@ -1,6 +1,6 @@
 /* global kakao */
 import React, { useRef, useState, useEffect } from "react";
-import Divider from "../components/Divider";
+import Divider from "../../components/Divider";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +10,13 @@ import {
   getIntervalNotification,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
+} from "../../redux/modules/BungleSlice";
 
-import { getCookie } from "../customapi/CustomCookie";
+import { getCookie } from "../../customapi/CustomCookie";
 
 // slider 추가
 import Slider from "rc-slider";
-import "../styles/rc-slider/index.css";
+import "../../styles/rc-slider/index.css";
 // 다음 주소 검색 API 추가
 import DaumPostCode from "react-daum-postcode";
 
@@ -75,7 +75,7 @@ import {
   PostPeopleCountTitle,
   // 게시글 작성 버튼
   PostCreateButton,
-} from "../styles/StyledCreatePost";
+} from "../../styles/StyledCreatePost";
 import {
   PostHeaderWrap,
   ChattingBackKey,
@@ -83,7 +83,7 @@ import {
   HeadrIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 import {
   // Moadl
@@ -96,20 +96,20 @@ import {
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 
-import { MapPageTitle } from "../styles/StyledHeader";
+import { MapPageTitle } from "../../styles/StyledHeader";
 //icon
 
-import IconClear from "../assets/icon-clear.svg";
-import IconUpload from "../assets/icon-upload.svg";
-import IconMylocation from "../assets/icon-mylocation-gray.svg";
+import IconClear from "../../assets/icon-clear.svg";
+import IconUpload from "../../assets/icon-upload.svg";
+import IconMylocation from "../../assets/icon-mylocation-gray.svg";
 
 // header icon
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
-import Setting from "../assets/icon-setting.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import Setting from "../../assets/icon-setting.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 const CategoriesArray = [
   "맛집",

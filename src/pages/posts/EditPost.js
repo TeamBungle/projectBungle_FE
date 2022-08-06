@@ -1,6 +1,6 @@
 /* global kakao */
 import React, { useRef, useState, useEffect } from "react";
-import Divider from "../components/Divider";
+import Divider from "../../components/Divider";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,11 +12,11 @@ import {
   getMyBungleList,
   editMyBungleList,
   deleteMyBungleList,
-} from "../redux/modules/BungleSlice";
+} from "../../redux/modules/BungleSlice";
 
 // slider 추가
 import Slider from "rc-slider";
-import "../styles/rc-slider/index.css";
+import "../../styles/rc-slider/index.css";
 // 다음 주소 검색 API 추가
 import DaumPostCode from "react-daum-postcode";
 
@@ -75,13 +75,13 @@ import {
   PostPeopleCountTitle,
   // 게시글 작성 버튼
   PostCreateButton,
-} from "../styles/StyledEditPost";
+} from "../../styles/StyledEditPost";
 import {
   PostHeaderWrap,
   ChattingBackKey,
   PageTitle,
   EditHeadrIconsWrap,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 import {
   // Moadl
@@ -94,13 +94,13 @@ import {
   ModalCancelButton,
   ModalDeleteButton,
   ModalButton,
-} from "../styles/StyledLogin";
+} from "../../styles/StyledLogin";
 
 //icon
-import IconClear from "../assets/icon-clear.svg";
-import IconUpload from "../assets/icon-upload.svg";
-import IconMylocation from "../assets/icon-mylocation-gray.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import IconClear from "../../assets/icon-clear.svg";
+import IconUpload from "../../assets/icon-upload.svg";
+import IconMylocation from "../../assets/icon-mylocation-gray.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
 function EditPost() {
   //delete modal state

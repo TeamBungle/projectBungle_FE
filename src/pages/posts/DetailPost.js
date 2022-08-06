@@ -7,8 +7,8 @@ import {
   getIntervalNotification,
   LogOut,
   Withdrawal,
-} from "../redux/modules/BungleSlice";
-import { getCookie } from "../customapi/CustomCookie";
+} from "../../redux/modules/BungleSlice";
+import { getCookie } from "../../customapi/CustomCookie";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -49,7 +49,7 @@ import {
   PostCategoriesItem,
   PostJoinButtonWrapper,
   PostJoinIcon,
-} from "../styles/StyledDetailPost";
+} from "../../styles/StyledDetailPost";
 
 import {
   PostHeaderWrap,
@@ -57,7 +57,7 @@ import {
   HeadrIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 import {
   FooterWrap,
@@ -65,7 +65,7 @@ import {
   FooterIconImg,
   FooterIconText,
   FooterAddBungae,
-} from "../styles/StyledFooter.js";
+} from "../../styles/StyledFooter.js";
 
 import {
   // Moadl
@@ -77,37 +77,37 @@ import {
   ModalButtonWrap,
   ModalCancelButton,
   ModalDeleteButton,
-} from "../styles/StyledLogin";
-import { MapPageTitle } from "../styles/StyledHeader";
-import Divider from "../components/Divider";
+} from "../../styles/StyledLogin";
+import { MapPageTitle } from "../../styles/StyledHeader";
+import Divider from "../../components/Divider";
 
 // icons
-import IconShared from "../assets/icon-url-shared.svg";
-import IconLightening from "../assets/icon-lightening.svg";
-import IconLike from "../assets/icon-like.svg";
-import IconUnlike from "../assets/icon-unlike.svg";
-import IconChat from "../assets/icon-chat.svg";
-import IconChatNo from "../assets/icon-chat-join-no.svg";
+import IconShared from "../../assets/icon-url-shared.svg";
+import IconLightening from "../../assets/icon-lightening.svg";
+import IconLike from "../../assets/icon-like.svg";
+import IconUnlike from "../../assets/icon-unlike.svg";
+import IconChat from "../../assets/icon-chat.svg";
+import IconChatNo from "../../assets/icon-chat-join-no.svg";
 
-import IconHighTemp from "../assets/icon-manner-high.svg";
-import IconMiddleTemp from "../assets/icon-manner-middle.svg";
-import IconLowTemp from "../assets/icon-manner-low.svg";
+import IconHighTemp from "../../assets/icon-manner-high.svg";
+import IconMiddleTemp from "../../assets/icon-manner-middle.svg";
+import IconLowTemp from "../../assets/icon-manner-low.svg";
 
-import Notification from "../assets/icon-notification.svg";
-import NotificationOn from "../assets/icon-notification-on.svg";
-import Setting from "../assets/icon-setting.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import Notification from "../../assets/icon-notification.svg";
+import NotificationOn from "../../assets/icon-notification-on.svg";
+import Setting from "../../assets/icon-setting.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
-import IconCurrentMarker from "../assets/icon-marker-current.svg";
-import IconNoPost from "../assets/icon-detail-no-post.svg";
+import IconCurrentMarker from "../../assets/icon-marker-current.svg";
+import IconNoPost from "../../assets/icon-detail-no-post.svg";
 
 // Footer Icons
-import IconHome from "../assets/icon-home.svg";
-import IconLocation from "../assets/icon-location.svg";
-// import IconChat from "../assets/icon-chat.svg";
-import IconMyBungae from "../assets/icon-account.svg";
-import IconCreate from "../assets/icon-create-post.svg";
-import IconEdit from "../assets/icon-edit-footer.svg";
+import IconHome from "../../assets/icon-home.svg";
+import IconLocation from "../../assets/icon-location.svg";
+
+import IconMyBungae from "../../assets/icon-account.svg";
+import IconCreate from "../../assets/icon-create-post.svg";
+import IconEdit from "../../assets/icon-edit-footer.svg";
 
 //채팅 입장 client
 const Post = () => {

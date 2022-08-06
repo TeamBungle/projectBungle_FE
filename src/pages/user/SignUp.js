@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../styles/SignUp.css";
+import "../../styles/SignUp.css";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
@@ -24,7 +24,7 @@ import {
   ModalContentWrap,
   ModalDivider,
   ModalButton,
-} from "../styles/StyledSiginUp";
+} from "../../styles/StyledSiginUp";
 
 import {
   PostHeaderWrap,
@@ -33,15 +33,15 @@ import {
   HeadrIconsWrap,
   IconNotification,
   IconSetting,
-} from "../styles/StyledHeader.js";
+} from "../../styles/StyledHeader.js";
 
 // icon
 // header icon
-import Notification from "../assets/icon-notification.svg";
-import Setting from "../assets/icon-setting.svg";
-import IconBackKey from "../assets/icon-left-arrow.svg";
+import Notification from "../../assets/icon-notification.svg";
+import Setting from "../../assets/icon-setting.svg";
+import IconBackKey from "../../assets/icon-left-arrow.svg";
 
-import IconInputClear from "../assets/icon-input-xbtn.svg";
+import IconInputClear from "../../assets/icon-input-xbtn.svg";
 
 const Signup = () => {
   useEffect(() => {

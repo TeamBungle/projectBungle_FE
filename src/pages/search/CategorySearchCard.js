@@ -2,20 +2,20 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { likeBungleList } from "../redux/modules/BungleSlice";
+import { likeBungleList } from "../../redux/modules/BungleSlice";
 
 //CSS
-import "../styles/SearchCard.css";
+import "../../styles/SearchCard.css";
 import "react-swipeable-list/dist/styles.css";
 
 //img
-import defaultCardImg from "../assets/icon-main-default.svg";
+import defaultCardImg from "../../assets/icon-main-default.svg";
 
-import likeImg from "../assets/icon-like.svg";
-import UnlikeImg from "../assets/icon-unlike.svg";
-import IconHighTemp from "../assets/icon-manner-high.svg";
-import IconMiddleTemp from "../assets/icon-manner-middle.svg";
-import IconLowTemp from "../assets/icon-manner-low.svg";
+import likeImg from "../../assets/icon-like.svg";
+import UnlikeImg from "../../assets/icon-unlike.svg";
+import IconHighTemp from "../../assets/icon-manner-high.svg";
+import IconMiddleTemp from "../../assets/icon-manner-middle.svg";
+import IconLowTemp from "../../assets/icon-manner-low.svg";
 
 function CategorySearchCard(props) {
   const { categoryList } = props;
