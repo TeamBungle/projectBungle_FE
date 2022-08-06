@@ -313,21 +313,21 @@
     </pre>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
     </details>
+ 
+ ## 😇 성능 테스트
+- 채팅 테스트
     
-<!--    
     <details>
-    <summary>브라우징 : font 적용 문제</summary>
-    <div>
-    &ensp;&ensp;&ensp;1. 문제 인지<br/>
-    &ensp;&ensp;&ensp;&ensp;&ensp;1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 font 적용이 되지 않는 문제 발견<br/>   
-    &ensp;&ensp;&ensp;2. 선택지<br/>
-    &ensp;&ensp;&ensp;&ensp;&ensp;다른 브라우저에서는 해당 "Noto Sans"가 없다면 적용할 수 없다는 사실을 인지<br/>
-    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"를 적용할 수 있는 다른 방법을 검토<br/>
-    &ensp;&ensp;&ensp;3. 해결방법<br/>
-    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"의 font 체를 다운로드 받아 프로젝트에 import 시킴<br/>
-    </div>  
-    <p align="center">
-    https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
-    </p>
+    <summary>채팅 Message 조회 부하 문제</summary>
+    <pre>
+     문제
+      - 채팅방에 입장 할 때 이전 메세지를 불러오는 방식에대해서 처음에는 DB에서 바로 조회해오는 방식으로 구상하였으나, 
+        해당 방법은 트래픽에 부담이 크지 않을까? 라는 의문과 함께 조회방식에 대한 최적화를 고민
+     해결방법
+      - memory cache에 저장 후 조회하는 방식이 RDB로부터 불러오는 방식보다 성능이 더 좋다는 것을 조사를 통해 알게 됨
+      - 메세지를 저장할 때는 Redis와 DB에 같이 저장하고, 메세지를 조회할 경우에는 Redis Cache를 사용하는 로직 적용 후 테스트 결과
+        RDB에서 조회 하는 것 대비 18% 성능 향상을 확인할 수 있었음
+      <p align="center"><img src="https://user-images.githubusercontent.com/107230384/183238734-c914cb06-6fca-4364-8406-0b6e751aa08c.png"></p>
+    </pre>
     </details>
-   -->
+
