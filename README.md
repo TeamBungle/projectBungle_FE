@@ -223,14 +223,14 @@
     
     <details>
     <summary>크로스 브라우징 : input 태그 CSS 적용 문제</summary>
-    <pre>
+    <div>???
     1. 문제 인지
       1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 input 태그의 css요소 적용이 안되는 문제를 발견
     2. 선택지
       구글링을 통해 비슷한 사례가 있는지 확인하고 그 문제를 해결하기 위한 해결책이 있는지 검색
     3. 해결방법
       실제 safari에서 그와 같은 문제가 발생하는 것을 확인할 수 있었고, css 를 적용하여 문제를 해결
-    </pre>
+    </div>
     <h5>적용 CSS 코드</h5>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/App.css#L29-L40
     </details>
@@ -247,5 +247,22 @@
       "Noto Sans"의 font 체를 다운로드 받아 프로젝트에 import 시킴
     </pre>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
+    </details>
+    
+    
+    <details>
+    <summary>브라우징 : font 적용 문제</summary>
+    <div>
+    &ensp;&ensp;&ensp;1. 문제 인지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 font 적용이 되지 않는 문제 발견<br/>   
+    &ensp;&ensp;&ensp;2. 선택지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;다른 브라우저에서는 해당 "Noto Sans"가 없다면 적용할 수 없다는 사실을 인지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"를 적용할 수 있는 다른 방법을 검토<br/>
+    &ensp;&ensp;&ensp;3. 해결방법<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"의 font 체를 다운로드 받아 프로젝트에 import 시킴<br/>
+    </div>  
+    <p align="center">
+    https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
+    </p>
     </details>
    
