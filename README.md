@@ -1,7 +1,7 @@
 
 ![배너용](https://user-images.githubusercontent.com/107230384/182052615-f4743530-6596-4b4f-9b5e-6100f021eebb.jpg)
 
-**싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.**
+<div align="center"><h3>싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.</h3></div>
 
 ## 😍 벙글 [서비스 링크 바로가기](https://bungle.life)
 
@@ -11,19 +11,44 @@
 - Front-end Github   https://github.com/TeamBungle/projectBungle_FE
 
 ## 😶 벙글 팀원 소개( L : 팀장, LV : 부팀장 )
-
-| 역할 | 이름 | Git 주소 | 메일 주소 |
-| --- | --- | --- | --- |
-| <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white">  | 강현구님 | https://github.com/kootner | refromto@naver.com |
-| <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> | ( LV ) 김민수님 | https://github.com/minssu86 | manager.kim86@gmail.com |
-| <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> | 김정훈님 | https://github.com/junghoon-kim96 | 0527wj@naver.com |
-| <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> | 정현욱님 | https://github.com/Jeonghyeonuk | junghunwook456@naver.com |
-| <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">  | 최서우님 | https://github.com/zerovodka | 264826@naver.com |
-| <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">  | 한결님 | https://github.com/GHan19 | gksrufdla@naver.com |
-| <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">  | ( L ) 한지용님 | https://github.com/jigomgom | hjy583@naver.com |
-| <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"> | 양승연님 | didtmddus123@gmail.com |
-
-![image](https://user-images.githubusercontent.com/107230384/182984029-9de38ffc-186e-415c-a372-76b2bf59a6dd.png)
+<!-- 표 시작 -->
+<div align="center">
+<table>
+      <thead>
+        <tr>
+          <th>역할</th><th>이름</th><th>개인 Git 주소</th><th>개인 메일 주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>강현구님</td><td>https://github.com/kootner</td><td>refromto@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>( LV ) 김민수님</td><td>https://github.com/minssu86</td><td>manager.kim86@gmail.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>김정훈님</td><td>https://github.com/junghoon-kim96</td><td>0527wj@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>정현욱님</td><td>https://github.com/Jeonghyeonuk</td><td>junghunwook456@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>최서우님</td><td>https://github.com/zerovodka</td><td>264826@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>한결님</td><td>https://github.com/GHan19</td><td>gksrufdla@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>( L ) 한지용님</td><td>https://github.com/jigomgom</td><td>hjy583@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"></td><td>양승연님</td><td></td><td>didtmddus123@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!--표 끝-->
+<p align="center"><img src="https://user-images.githubusercontent.com/107230384/182984029-9de38ffc-186e-415c-a372-76b2bf59a6dd.png"></p>    
 
 
 
