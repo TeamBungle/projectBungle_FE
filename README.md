@@ -58,74 +58,64 @@
 
 - <p><a href="https://www.notion.so/Feasibility-test-b8f7d2dccd354a0db0577e245a12f4a4">팀 Feasibility Test 페이지 </a>로 바로가기</p>
 
-## 😤 FE 기술 Stack
-### React
+## 😏 QA 프로세스
+- <p><a href="https://www.notion.so/QA-c3a48710c4f241298990b8413bff3e0d">팀 QA 프로세스 페이지</a>로 바로가기</p>
 
-- component를 재사용할 수 있음
-- Virtual DOM을 활용하여 UI를 빠르게 렌더링하는 장점
-- Virtual DOM은 또한 이전 UI 상태를 메모리에 유지해서, 변경될 UI의 최소 집합을 계산하는 로직을 포함하는데 이로써 좋은 성능을 내는 장점이 있음
+## 😤 FE 기술 Stack
+
+### React
+   - component를 재사용할 수 있음
+   - Virtual DOM을 활용하여 UI를 빠르게 렌더링하는 장점
+   - Virtual DOM은 또한 이전 UI 상태를 메모리에 유지해서, 변경될 UI의 최소 집합을 계산하는 로직을 포함하는데 이로써 좋은 성능을 내는 장점이 있음
 
 ### react-router-dom( v6 )
-
-- component간 이동을 할 수 있도록 도와주는 라이브러리
-- url에 따라 분기 처리하여 렌더링하기 위해서 선택
+   - component간 이동을 할 수 있도록 도와주는 라이브러리
+   - url에 따라 분기 처리하여 렌더링하기 위해서 선택
 
 ### redux toolkit
-
-- 전역 상태 관리를 할 수 있는 라이브러리
-- 기본 redux보다 간편하고 immer를 관리해줌
+   - 전역 상태 관리를 할 수 있는 라이브러리
+   - 기본 redux보다 간편하고 immer를 관리해줌
 
 ### axios
-
-- 서버와 통신하기 위한 비동기 통신 라이브러리
-- 기본 Data flow를 구성하기 위해 사용
+   - 서버와 통신하기 위한 비동기 통신 라이브러리
+   - 기본 Data flow를 구성하기 위해 사용
 
 ### dotenv
-
-- React .env를 사용하기 위해 필요한 라이브러리
-- 중요 정보( Back-end server URL, Social Login Client Key ) 등을 .env 파일에서 전역적으로 관리
+   - React .env를 사용하기 위해 필요한 라이브러리
+   - 중요 정보( Back-end server URL, Social Login Client Key ) 등을 .env 파일에서 전역적으로 관리
 
 ### moment
-
-- 시간을 손쉽게 처리하기 위해 사용한 라이브러리
-- Access token의 만료 기간을 설정하여 현재 시간과 비교하여 처리
+   - 시간을 손쉽게 처리하기 위해 사용한 라이브러리
+   - Access token의 만료 기간을 설정하여 현재 시간과 비교하여 처리
 
 ### react-cookie
-
-- Refresh token을 안전하게 관리하기 위해 cookie 에 저장하기 쉽도록 도와주는 라이브러리
-- option에 secure, httpOnly 등을 통해 보안을 강화할 수 있음
+   - Refresh token을 안전하게 관리하기 위해 cookie 에 저장하기 쉽도록 도와주는 라이브러리
+   - option에 secure, httpOnly 등을 통해 보안을 강화할 수 있음
 
 ### StompJS
-
-- 양방향 커뮤니케이션 적용
-- Publish-Subscribe 매커니즘 제공
-- Stomp를 사용하지 않고 WebsocketHandler( 어떤 형식, 메세지는 어떻게 보낼지 등)를 설정하는 것 보다 형식이 정해져있는 Stomp를 사용하는 것이 더 효율적이라 판단
+   - 양방향 커뮤니케이션 적용
+   - Publish-Subscribe 매커니즘 제공
+   - Stomp를 사용하지 않고 WebsocketHandler( 어떤 형식, 메세지는 어떻게 보낼지 등)를 설정하는 것 보다 형식이 정해져있는 Stomp를 사용하는 것이 더 효율적이라 판단
 
 ### Sock JS
-
-- 순수 WebSocket만 가지고 간단한 채팅을 구현하면 Firefox, Chrome, Edge, Whale에서는 동작하지만, 모바일 크롬 브라우저와 IE에서는 WebSocket이 동작하지 않음 (크로스 브라우징)
+   - 순수 WebSocket만 가지고 간단한 채팅을 구현하면 Firefox, Chrome, Edge, Whale에서는 동작하지만, 모바일 크롬 브라우저와 IE에서는 WebSocket이 동작하지 않음 (크로스 브라우징)
 
 ### styled-components
+   - React 프레임워크를 주요 대상으로 한 CSS 라이브러리.
 
-- React 프레임워크를 주요 대상으로 한 CSS 라이브러리.
-
-### ****react-swipeable-list****
-
-- 찜 목록을 스와이프했을 때 삭제 / 나가기 버튼을 활성화하기 위한 라이브러리
+### react-swipeable-list
+   - 찜 목록을 스와이프했을 때 삭제 / 나가기 버튼을 활성화하기 위한 라이브러리
 
 ### swiper
-
-- 간단하게 Carousel( 캐로셀 )을 구현하기 위해 사용한 라이브러리
-- 커스터마이징을 하기 위해서는 오히려 react-slick 이 더욱 간편하다는 의견이 있음
+   - 간단하게 Carousel( 캐로셀 )을 구현하기 위해 사용한 라이브러리
+   - 커스터마이징을 하기 위해서는 오히려 react-slick 이 더욱 간편하다는 의견이 있음
 
 ### rc-slider
-
-- 슬라이드 바를 커스터마이징 하기 위해 사용하는 라이브러리
-- 일반 CSS input type=range로 하게 되면 브라우저 환경마다 다른 슬라이더 이미지를 적용하기 때문에 선택
+   - 슬라이드 바를 커스터마이징 하기 위해 사용하는 라이브러리
+   - 일반 CSS input type=range로 하게 되면 브라우저 환경마다 다른 슬라이더 이미지를 적용하기 때문에 선택
 
 ### CloudFront
-
-- 캐싱을 통해 사용자에게 좀 더 빠른 전송 속도를 제공함. Edge Server(Location)을 두고 Client에 가장 가까운 Edge Server를 찾아 Latency를 최소화시켜 빠른 데이터를 제공
+   - 캐싱을 통해 사용자에게 좀 더 빠른 전송 속도를 제공함. Edge Server(Location)을 두고 Client에 가장 가까운 Edge Server를 찾아 Latency를 최소화시켜 빠른 데이터를 제공
 
 ## 🙂 아키텍쳐
 
@@ -134,8 +124,8 @@
 ## 🤩 벙글 주요 기능
 
 1. GPS를 사용한 현재 위치 확인 ( geolocation )
-    - 사용자 위치 기준, 400km 반경의 실시간 벙글 위치와 마감 임박순 벙글 을 나타냄
-    - 서비스 론칭 기간이 짧기 때문에 400km로 결정, 추후 데이터가 많이 쌓이면 50km로 변경 예정
+   - 사용자 위치 기준, 400km 반경의 실시간 벙글 위치와 마감 임박순 벙글 을 나타냄
+   - 서비스 론칭 기간이 짧기 때문에 400km로 결정, 추후 데이터가 많이 쌓이면 50km로 변경 예정
 
 <p align="center"><img src="https://user-images.githubusercontent.com/107230384/182052513-562cce1e-09d0-4496-aceb-e17440cf3b22.png" width="920px" height="400px"></p>    
 
