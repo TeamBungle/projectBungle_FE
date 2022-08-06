@@ -172,7 +172,8 @@
       - Access Token은 localStorage에 저장하되, 만료 기간( 30분 )을 체크하여 interceptor로 request 요청 전, 만료 여부를 검증
     </pre>
     <h5>Axios interceptor 설정</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/customapi/Refresh.js#L1-L64
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/customapi/Refresh.js#L1-L54
+    
     <h5>Axios create 설정</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/customapi/CustomAxios.js#L1-L10
     </details>
@@ -191,7 +192,7 @@
     <h5>Private Route 설정</h5>
     https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/utils/PrivateRoutes.js#L1-L9
     <h5>Private Route로 App.js의 Route 감싸기</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/00460f7436e216b8d65729aae642864c7185c9ab/src/App.js#L42-L74
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/App.js#L38-L95
     </details>
     
     <details>
@@ -205,7 +206,8 @@
 	3. 해결 방법
       - 기존 token을 보내는 방식이 아닌 유저의 PK( primary key )를 send 함수 인자로 전달하여 유저를 구분하였음
     </pre>
-    <h5>PK send로 대체</h5>    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/ChattingRoom.js#L208-L209
+    <h5>PK send로 대체</h5> 
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/chatting/ChattingRoom.js#L146-L147
     </details>
     
     <details>
@@ -223,7 +225,8 @@
       - 서버의 redis default 용량을 10MB로 변경하여 좀더 큰 용량의 파일을 처리할 수 있게 함
     </pre>
     <h5>채팅 이미지 전송</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/ChattingRoom.js#L350-L366
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/chatting/ChattingRoom.js#L221-L234	
+    
     </details>  
     
     <details>
@@ -240,9 +243,10 @@
       - post 삭제시, redux의 client 객체를 불러와 disconnect 함수를 실행할 수 있었음
     </pre>
     <h5>Redux client 객체 저장</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/redux/modules/BungleSlice.js#L563-L568
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/redux/modules/BungleSlice.js#L523-L526	
+    
     <h5>게시글 삭제시, extraReducer를 활용하여 disconnect</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/redux/modules/BungleSlice.js#L94-L124
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/redux/modules/BungleSlice.js#L90-L119	
     </details>
     
     <details>
@@ -257,11 +261,11 @@
       하나의 useEffect() 내에서 조건문을 통해 실행할 경우, dependency array가 공용으로 사용되다보니, 데이터르 제대로 못 넣었다. 그리하여 각 데이터마다 useEffect()를 실행하여 dependency array에 서버에서 받아온 각각의 데이터를 넣어주고 flag state를 만들어 해당 flag일 때 실행되도록 하니 동기적으로 잘 작동함.
     </pre>
     <h5>state 배열 선언 및 관리</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L166-L171
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/map/Map.js#L159-L164	
     <h5>렌더링 시 전체 리스트, 태그 검색 리스트 적용 </h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L209-L243
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/map/Map.js#L195-L221
     <h5>상세 정보 검색 리스트 적용</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/dad9dd32e40bd9d1aadf40ecda3d2c0325d46ea1/src/pages/Map.js#L295-L310
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/map/Map.js#L272-L285
     </details>
     
     <details>
@@ -277,21 +281,21 @@
       - 결과, iOS는 event의 Code로 동작하였으나, android는 event Key로 동작하는 차이점을 발견
     </pre>
     <h5>Login enter key 적용 코드</h5>
-    https://github.com/TeamBungle/projectBungle_FE/blob/c6a7252dbd2c1ca3d01e6b1fdcebfce3c207044d/src/pages/Login.js#L295-L317
+    https://github.com/TeamBungle/projectBungle_FE/blob/0c974e47c946f0c2ca2456a800ec6c6242e5a2ca/src/pages/user/Login.js#L167-L188
     </details>
     
     
     
     <details>
     <summary>크로스 브라우징 : input 태그 CSS 적용 문제</summary>
-    <div>???
+    <pre>
     1. 문제 인지
       1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 input 태그의 css요소 적용이 안되는 문제를 발견
     2. 선택지
       구글링을 통해 비슷한 사례가 있는지 확인하고 그 문제를 해결하기 위한 해결책이 있는지 검색
     3. 해결방법
       실제 safari에서 그와 같은 문제가 발생하는 것을 확인할 수 있었고, css 를 적용하여 문제를 해결
-    </div>
+    </pre>
     <h5>적용 CSS 코드</h5>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/App.css#L29-L40
     </details>
