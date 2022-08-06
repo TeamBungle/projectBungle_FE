@@ -399,7 +399,7 @@
 <h4>1. 지도 [ 4건 ]</h4>
 <div>
 &nbsp;&nbsp;[유저 피드백] 벙글 지도가 늘리고 줄일 때 버벅임이 심함<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 테스트 후, 개선 방향 논의 필요
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 테스트 후, 개선 방향 논의 필요<br>
 &nbsp;&nbsp;[유저 피드백] 지도가 더 확대된 상태로 시작되면 좋을 것 같아요.<br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 예상 해결 방안 (Map.js options 부분의 level값 수정)<br>
 &nbsp;&nbsp;[유저 피드백] 지도에서 아래 클릭하면 팝업창처럼 올라오는 게 끌어올리면 올라올줄알았는데 
