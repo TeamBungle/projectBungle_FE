@@ -330,4 +330,63 @@
       <p align="center"><img src="https://user-images.githubusercontent.com/107230384/183238734-c914cb06-6fca-4364-8406-0b6e751aa08c.png"></p>
     </pre>
     </details>
+    
+- 게시글 조회 부하 문제
+
+    <details>
+    <summary>Geometry 관련 연산 부하 문제</summary>
+    <pre>
+     문제
+      - 게시글 조회시 사용자 위치 정보에 따른 거리 계산 작업이 필요
+      - 초기 작업시 거리 계산을 위해 MBRContains 적용시 DB에서 해당 데이터 추출후 거리순 정렬 작업이 추가로 필요하여, 
+        Query조회시 거리순 정렬 및 추출을 한번에 할 수 있는 ST_DISTANCE_SPHERE를 사용하는 것이 더 좋다고 판단하여 적용하였지만, 
+	부하 테스트 결과 MBRContains 사용시 성능이 더 좋은 결과가 나옴
+     해결방법
+      - 현재는 게시물 조회시 무한 스크롤이 적용되지 않은 상태에서 테스트한 결과이며, 
+        무한 스크롤을 적용한 테스트를 추가로 진행 한후에도 같은 결과가 도출될 시 현재 적용중인 ST_DISTANCE_SPHERE를 MBRContains로 변경 예정
+    </pre>
+    </details>
+
+
+## 🤫 유저 피드백 및 반영 사항
+<h3>총 개선된 사항[ 9건 ]</h3>
+<h4>지도 [ 3건 ]</h4>
+<div>
+&nbsp;&nbsp;[유저 피드백] 위치가 정확하지 않아요<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 모바일로 접속 시 기기 자체의 GPS 값을 가져오기에 정확하나, PC로 접속 시 IP 기반으로 GPS 값을 가져오기에 다소 부정확<br>
+&nbsp;&nbsp;&nbsp;- geolocation의 options 값 변경 및 테스트 필요
+</div>
+
+<h4>회원가입 / 로그인 [ 2건 ]</h4>
+<div>
+&nbsp;&nbsp;[유저 피드벡] 페이지 이동할 때마다 로딩이 너무 길어요<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- CloudFront를 통한 정적 파일의 로딩 시간 감소<br>
+&nbsp;&nbsp;[유저 피드벡] 회원 탈퇴 기능을 추가해주세요<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Back-end와 상의하여 회원 탈퇴 API 추가
+</div>
+
+<h4>검색 / 게시물 [1건]</h4>
+<div>
+&nbsp;&nbsp;[유저 피드백] 검색 부분 돋보기 위치, 채팅 input padding 일정하지 않음, 벙글 게시물 참여 인원 사진 비율이 다르게 나옴<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 디자이너와 상의 후, 아이콘 재배치 및 CSS 수정
+</div>
+
+<h4>채팅 [ 1건 ]</h4>
+<div>
+&nbsp;&nbsp;[유저 피드백] 채팅 기능 시 파일첨부를 하게되면 미리보기가 있으면 조금 좋을 것 같습니다.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 사진 업로드 시, 클라이언트가 사진이 업로드되었다는 사실을 확인할 수 있도록, UI 추가
+</div>
+
+<h4>메인 [2건]</h4>
+<div>
+&nbsp;&nbsp;[유저 피드백] 우측상단에 알림표시랑 gps 표시는 메인화면에서 눌러도 아무기능이 없네요
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 메인 화면의 GPS는 클릭 시 현재 위치를 다시 가져오는 기능을 하였는데, 메인 화면 렌더링 시 이미 GPS 정보를 불러오기 때문에 삭제하기로 결정
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 알림 아이콘의 경우 알림이 온 경우에만 알림 페이지로 이동할 수 있게 하였으나, 현재는 알림이 오지 않아도 알림페이지로 이동할 수 있도록 수정
+</div>
+
+<h4>사용 방법[ 1건 ]</h4>
+<div>
+</div>
+
+## 🤔 향후 계획 및 개선 필요 사항
 
