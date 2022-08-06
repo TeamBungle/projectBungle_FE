@@ -1,43 +1,85 @@
 
 ![배너용](https://user-images.githubusercontent.com/107230384/182052615-f4743530-6596-4b4f-9b5e-6100f021eebb.jpg)
 
+<div align="center"><h3>싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.</h3></div>
 
-**싱글벙글, 사용자 현재 위치 기반으로 빠르게 주변 모임을 확인할 수 있습니다.**
+## 😍 벙글 [서비스 링크 바로가기](https://bungle.life)
 
-### 🤔 프로젝트 시장 조사 및 Feasibility Test
+## 😆 프로젝트 Git address
 
-[Feasibility test](https://www.notion.so/Feasibility-test-b8f7d2dccd354a0db0577e245a12f4a4) 
+- Back-end Github    https://github.com/TeamBungle/projectBungle_BE
+- Front-end Github   https://github.com/TeamBungle/projectBungle_FE
 
-### 🙂 아키텍쳐
+## 😶 벙글 팀원 소개( L : 팀장, LV : 부팀장 )
+<!-- 표 시작 -->
+<div align="center">
+<table>
+      <thead>
+        <tr>
+          <th>역할</th><th>이름</th><th>개인 Git 주소</th><th>개인 메일 주소</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>강현구님</td><td>https://github.com/kootner</td><td>refromto@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>( LV ) 김민수님</td><td>https://github.com/minssu86</td><td>manager.kim86@gmail.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>김정훈님</td><td>https://github.com/junghoon-kim96</td><td>0527wj@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"></td><td>정현욱님</td><td>https://github.com/Jeonghyeonuk</td><td>junghunwook456@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>최서우님</td><td>https://github.com/zerovodka</td><td>264826@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>한결님</td><td>https://github.com/GHan19</td><td>gksrufdla@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"></td><td>( L ) 한지용님</td><td>https://github.com/jigomgom</td><td>hjy583@naver.com</td>
+        </tr>
+        <tr>
+          <td><img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=Figma&logoColor=white"></td><td>양승연님</td><td></td><td>didtmddus123@gmail.com</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
+<!--표 끝-->
+<p align="center"><img src="https://user-images.githubusercontent.com/107230384/182984029-9de38ffc-186e-415c-a372-76b2bf59a6dd.png"></p>    
+
+
+
+## 🤔 프로젝트 시장 조사 및 Feasibility Test
+
+- <p><a href="https://www.notion.so/Feasibility-test-b8f7d2dccd354a0db0577e245a12f4a4">팀 Feasibility Test 페이지 </a>로 바로가기</p>
+
+## 🙂 아키텍쳐
 
 ![최종 아키텍처](https://user-images.githubusercontent.com/107230384/182052947-7c29f084-224a-492b-9a71-0c0f09c65a9e.jpg)
 
-
-
-### 🤩 벙글 주요 기능
+## 🤩 벙글 주요 기능
 
 1. GPS를 사용한 현재 위치 확인 ( geolocation )
     - 사용자 위치 기준, 400km 반경의 실시간 벙글 위치와 마감 임박순 벙글 을 나타냄
     - 서비스 론칭 기간이 짧기 때문에 400km로 결정, 추후 데이터가 많이 쌓이면 50km로 변경 예정
-    
-![Untitled (1)](https://user-images.githubusercontent.com/107230384/182052513-562cce1e-09d0-4496-aceb-e17440cf3b22.png)
-    
+
+<p align="center"><img src="https://user-images.githubusercontent.com/107230384/182052513-562cce1e-09d0-4496-aceb-e17440cf3b22.png" width="920px" height="400px"></p>    
 
 2. 실시간 벙글 생성 및 문자 채팅 ( Redis, StompJS, SockJS )
     - 벙글 생성을 통해 주변 사람들과 모임을 가질 수 있고 문자 채팅에서 상세 결정을 내릴 수 있음
     - 사용자 피드백에 따라 화상 채팅 추가 예정
-
-![Untitled (2)](https://user-images.githubusercontent.com/107230384/182052538-9e3d28f1-0f7f-4604-a944-35c920fa2aca.png)
-
+<p align="center"><img src="https://user-images.githubusercontent.com/107230384/182052538-9e3d28f1-0f7f-4604-a944-35c920fa2aca.png"></p>    
 
 3. 지도를 통해 실시간 진행 중인 벙글 확인 ( Redis, Kakao map API )
+<p align="center"><img src="https://user-images.githubusercontent.com/107230384/182052556-d5fb2af0-7617-403a-9e39-a3becd215dd3.png"></p>
 
-![Untitled (3)](https://user-images.githubusercontent.com/107230384/182052556-d5fb2af0-7617-403a-9e39-a3becd215dd3.png)
 
+## 🧐 Trouble Shooting
 
-### 🧐 Trouble Shooting
-
-- BE Trouble Shooting
+- <p><a href="https://github.com/TeamBungle/projectBungle_BE/">BE Trouble Shooting </a>로 바로가기</p>
     
 
 - FE Trouble Shooting
@@ -181,14 +223,14 @@
     
     <details>
     <summary>크로스 브라우징 : input 태그 CSS 적용 문제</summary>
-    <pre>
+    <div>???
     1. 문제 인지
       1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 input 태그의 css요소 적용이 안되는 문제를 발견
     2. 선택지
       구글링을 통해 비슷한 사례가 있는지 확인하고 그 문제를 해결하기 위한 해결책이 있는지 검색
     3. 해결방법
       실제 safari에서 그와 같은 문제가 발생하는 것을 확인할 수 있었고, css 를 적용하여 문제를 해결
-    </pre>
+    </div>
     <h5>적용 CSS 코드</h5>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/App.css#L29-L40
     </details>
@@ -206,24 +248,21 @@
     </pre>  
     https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
     </details>
+    
+    
+    <details>
+    <summary>브라우징 : font 적용 문제</summary>
+    <div>
+    &ensp;&ensp;&ensp;1. 문제 인지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;1차 배포 전, android와 iOS 디바이스 테스트에서 iOS의 safari 브라우저에서 font 적용이 되지 않는 문제 발견<br/>   
+    &ensp;&ensp;&ensp;2. 선택지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;다른 브라우저에서는 해당 "Noto Sans"가 없다면 적용할 수 없다는 사실을 인지<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"를 적용할 수 있는 다른 방법을 검토<br/>
+    &ensp;&ensp;&ensp;3. 해결방법<br/>
+    &ensp;&ensp;&ensp;&ensp;&ensp;"Noto Sans"의 font 체를 다운로드 받아 프로젝트에 import 시킴<br/>
+    </div>  
+    <p align="center">
+    https://github.com/TeamBungle/projectBungle_FE/blob/a26e741aab0d49111168fcf5e3afa5ea01984253/src/index.css#L11-L58
+    </p>
+    </details>
    
-
-### 😍 벙글 [서비스 링크 바로가기](https://bungle.life)
-
-### 😆 프로젝트 Git address
-
-- Back-end Github    https://github.com/TeamBungle/projectBungle_BE
-- Front-end Github   https://github.com/TeamBungle/projectBungle_FE
-
-### 😶 벙글 팀원 소개( L : 팀장, LV : 부팀장 )
-
-| 역할 | 이름 | Git 주소 |
-| --- | --- | --- |
-| BE | 강현구님 | https://github.com/kootner |
-| BE( LV ) | 김민수님 | https://github.com/minssu86 |
-| BE | 김정훈님 | https://github.com/junghoon-kim96 |
-| BE | 정현욱님 | https://github.com/Jeonghyeonuk |
-| FE | 최서우님 | https://github.com/zerovodka |
-| FE | 한결님 | https://github.com/GHan19 |
-| FE( L ) | 한지용님 | https://github.com/jigomgom |
-| Designer | 양승연님 |  |
